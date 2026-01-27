@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="stock0011" width="500" height="590" titletext="login" onclick="stock0011_onclick">
+    <Layouts>
+      <Layout height="590" mobileorientation="landscape" width="500">
+        <Static id="Static00" taborder="0" text="Create an account" top="30" height="60" fittocontents="width" left="75" width="291" cssclass="sta_login_head" textAlign="left" onclick="Static00_onclick"/>
+        <TextField id="TextFieldEmail" taborder="1" labeltext="Email" top="110" width="365" onchanged="TextField00_onchanged" height="60" contentheight="" left="75" usetrailingbutton="false" cssclass="txtField_login_basic"/>
+        <TextField id="TextFieldPW" taborder="2" labeltext="Confirm Password" top="350" width="365" onchanged="TextField00_onchanged" height="60" contentheight="" left="75" cssclass="txtField_login_basic"/>
+        <Button id="BtnLogin" taborder="3" text="Create account" left="75" top="457" width="365" height="60" cssclass="btn_header_login" onclick="Common_onclick" font="bold 14pt/normal &quot;Arial&quot;"/>
+        <Static id="Static01" taborder="4" text="Already Have An Account ?" left="120" top="540" width="168" height="15" cssclass="sta_login_explan" onclick="Common_onclick"/>
+        <Button id="btnLogin" taborder="5" text="Log In" left="289" top="538" width="64" height="17" cssclass="btn_login_choose" onclick="btnLogin_onclick"/>
+        <TextField id="TextFieldPW00" taborder="6" labeltext="Password" top="270" width="365" onchanged="TextField00_onchanged" height="60" contentheight="" left="75" cssclass="txtField_login_basic"/>
+        <TextField id="TextFieldPW01" taborder="7" labeltext="name" top="190" width="365" onchanged="TextField00_onchanged" height="60" contentheight="" left="75" cssclass="txtField_login_basic"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[
+this.btnLogin_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.go("Login::stock0011.xfdl");
+};
+]]></Script>
+  </Form>
+</FDL>

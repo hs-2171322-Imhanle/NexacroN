@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="stock0030" width="1250" height="728" titletext="dashboard" background="#FFFBF7">
+    <Layouts>
+      <Layout height="728" width="1250">
+        <Static id="Static00" taborder="0" text="종목" left="40" top="32" width="50" height="30" font="bold 16pt/normal &quot;Malgun Gothic&quot;" color="black"/>
+        <Button id="btnAll" taborder="1" text="전체" left="110" top="30" width="60" height="35" cssclass="btn_group"/>
+        <Button id="btnAdd" taborder="2" text="+" left="180" top="30" width="40" height="35" cssclass="btn_group" font="bold 11pt/normal &quot;Arial&quot;" border="1px solid #888888"/>
+      </Layout>
+    </Layouts>
+  </Form>
+</FDL>

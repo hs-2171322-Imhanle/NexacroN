@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="stock0010" width="285" height="728" titletext="menu" background="white">
+    <Layouts>
+      <Layout height="728" width="285">
+        <Button id="btnBoard" taborder="0" text="DashBoard" left="100" top="40" width="114" height="28" cssclass="btn_menu" onclick="btnBoard_onclick"/>
+        <Static id="Static00" taborder="1" left="48" top="34" width="51" height="40" background="url('theme://NewFolder/Gridview.png') no-repeat center center"/>
+        <Static id="Static00_00" taborder="2" left="48" top="100" width="51" height="40" background="url('theme://NewFolder/Addchart.png') no-repeat center center"/>
+        <Button id="btnCreate" taborder="3" text="CreateStock" left="106" top="106" width="114" height="28" cssclass="btn_menu" onclick="btnCreate_onclick"/>
+        <Static id="Static00_00_00" taborder="4" left="48" top="164" width="51" height="40" background="url('theme://NewFolder/Vector.png') no-repeat center center"/>
+        <Button id="btnCreate00" taborder="5" text="StockList" left="109" top="170" width="86" height="28" cssclass="btn_menu" onclick="btnCreate_onclick"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[
+this.btnBoard_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.parent.parent.divLeft.width = 285; 
+	this.parent.parent.divMain.left = "divLeft: -1";
+	this.parent.parent.divMain.url = "SubForm::stock0030.xfdl";
+};
+
+this.btnCreate_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.parent.parent.divLeft.width = 0; 
+	this.parent.parent.divMain.left = "divLeft: -1";
+	this.parent.parent.divMain.url = "SubForm::stock0040.xfdl";
+};
+]]></Script>
+  </Form>
+</FDL>

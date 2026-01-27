@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="stock0000" width="1535" height="788" titletext="Main" oninit="Main_oninit">
+    <Layouts>
+      <Layout height="788" width="1535">
+        <Div id="divLeft" taborder="1" left="0" top="59" width="285" bottom="0" url="SubForm::stock0010.xfdl" text=""/>
+        <Div id="divHeader" taborder="0" text="Div00" left="0" top="0" height="60" right="0" url="Main::stock0001.xfdl"/>
+        <Div id="divMain" taborder="2" top="60" bottom="0" right="-5" left="291" border="0px none,0px none,0px none,1px solid #e9e9e9">
+          <Layouts>
+            <Layout/>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[
+this.Main_oninit = function(obj:nexacro.Form,e:nexacro.EventInfo)
+{
+	this.divLeft.width = 0; 
+	this.divMain.left = "divLeft: -1";
+};
+]]></Script>
+  </Form>
+</FDL>

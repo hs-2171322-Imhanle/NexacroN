@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="stock0010" width="1535" height="728" titletext=" main" background="white">
+    <Layouts>
+      <Layout height="728" width="1535">
+        <ImageViewer id="imgViewLogin" taborder="0" left="0" top="0" bottom="0" minwidth="" minheight="" width="750" image="url('theme::p02_thema/NewFolder/bg.png')"/>
+        <Div id="divWork" taborder="1" left="890" top="60" width="610" height="630" text="" url="Login::stock0011.xfdl"/>
+      </Layout>
+    </Layouts>
+  </Form>
+</FDL>

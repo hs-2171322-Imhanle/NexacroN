@@ -1,0 +1,209 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="stock0020" width="1535" height="728" titletext="student" onload="form_onload">
+    <Layouts>
+      <Layout height="728" width="1535">
+        <Edit id="editSearch" taborder="1" left="320" top="36" width="200" height="35" cssclass="edit_search" displaynulltext="Search..." onkeyup="editSearch_onkeyup"/>
+        <Grid id="gridStudent" taborder="0" left="174" top="86" width="1187" height="544" binddataset="ds_student" autofittype="col" cssclass="grid_basic" background="white">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="48"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="120"/>
+                <Column size="120"/>
+                <Column size="120"/>
+                <Column size="120"/>
+              </Columns>
+              <Rows>
+                <Row size="50" band="head"/>
+                <Row size="60"/>
+              </Rows>
+              <Band id="head">
+                <Cell displaytype="checkboxcontrol" text="bind:CHK_DEL"/>
+                <Cell col="1" colspan="2" text="이름"/>
+                <Cell col="3" text="계좌 금액"/>
+                <Cell col="4" text="투자 원금"/>
+                <Cell col="5" text="수익률"/>
+                <Cell col="6" text="평가 금액"/>
+              </Band>
+              <Band id="body">
+                <Cell edittype="checkbox" displaytype="checkboxcontrol" text="bind:CHK_DEL"/>
+                <Cell col="1" text="bind:IMAGE"/>
+                <Cell col="2" text="bind:NAME"/>
+                <Cell col="3" text="bind:ACCOUNT"/>
+                <Cell col="4" text="bind:PRINCIPAL"/>
+                <Cell col="5" text="bind:RETURN"/>
+                <Cell col="6" text="bind:MARKET_VALUE"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="btnFilter" taborder="2" left="173" top="36" width="40" height="35" cssclass="btn_filter"/>
+        <Button id="btnDeleteStu" taborder="3" text="회원삭제" left="1270" top="36" width="91" height="33" cssclass="btn_work_select" onclick="btnDeleteStu_onclick"/>
+        <Div id="divPage" taborder="4" text="Div00" left="174" top="640" width="1187" height="50" url="Cmm::CmmPaging.xfdl"/>
+        <Button id="btnSearch" taborder="5" left="328" top="40" width="25" height="26" cssclass="btn_search" onlbuttonup="btnSearch_onlbuttonup"/>
+        <Combo id="Combo00" taborder="6" left="545" top="30" width="150" height="35" cssclass="combo_filter" value="" index="-1"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_student">
+        <ColumnInfo>
+          <Column id="IMAGE" type="STRING" size="256" description="이미지"/>
+          <Column id="NAME" type="STRING" size="256" description="이름"/>
+          <Column id="ACCOUNT" type="INT" size="256" description="계좌 금액"/>
+          <Column id="PRINCIPAL" type="INT" size="256" description="투자원금"/>
+          <Column id="MARKET_VALUE" type="INT" size="256" description="평가금액"/>
+          <Column id="RETURN" type="STRING" size="256" description="수익률"/>
+          <Column id="CHK_DEL" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsSearch">
+        <ColumnInfo>
+          <Column id="records" type="INT" size="256"/>
+          <Column id="page" type="INT" size="256"/>
+          <Column id="recordsOffset" type="INT" size="256"/>
+          <Column id="pageCount" type="INT" size="256"/>
+          <Column id="pName" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsPagingInfo">
+        <ColumnInfo>
+          <Column id="totalCount" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[
+this.fvRecords=0; 			//목록갯수
+this.fvPage=0;	 			//페이지번호
+this.fvRecordsOffset=0;		//시작rownum
+this.fvTotalCount=0;		//전체데이터갯수
+this.fvPageCount=0; 		//실제표출페이지갯수
+
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{	
+	this.gfnFormOnLoad(this);
+	this.fnPageInit(); 
+	
+};
+
+ this.fnPageInit = function ()
+ {
+ 	//pagin info init setting
+	this.fvRecords=8;								 //목록갯수
+	this.fvPage=0;	 								 //페이지번호
+	this.fvRecordsOffset=0;							 //시작rownum
+	this.fvPageCount = 10;							 //실제표출페이지갯수
+	
+	this.fnSearch(); //조회함수호출
+	this.gridCheckBox();
+	
+ };
+
+this.fnSearch = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	
+	// 조회조건 설정
+	//데이터를 넘길 경우 데이터셋에 추가해서 넘기는 방식과
+	//아규먼트를 추가해서 넘기는 방식 모두 사용가능
+	this.dsSearch.clearData();
+	var nRow = this.dsSearch.addRow();
+	
+	this.dsSearch.setColumn(nRow, "pName", this.editSearch.text); 
+	this.dsSearch.setColumn(nRow, "records", this.fvRecords);
+	this.dsSearch.setColumn(nRow, "recordsOffset", this.fvRecordsOffset); 
+
+	
+ 	var strSvcId    = "search";
+	var strSvcUrl   = "student/Paigng.do";
+	var inData      = "dsSearch=dsSearch";
+	var outData     = "ds_student=ds_student dsPagingInfo=dsPagingInfo";
+	var sParam      = "";
+	var callBackFnc = "fnCallback";
+	var isAsync   	= true;
+	
+	this.gfnTransaction(strSvcId , 		// transaction을 구분하기 위한 svc id값
+						strSvcUrl , 	// trabsaction을 요청할 주소
+						inData , 		// 입력값으로 보낼 dataset id , a=b형태로 실제이름과 입력이름을 매칭
+						outData , 		// 처리결과값으로 받을 dataset id, a=b형태로 실제이름과 입력이름을 매칭
+						sParam, 		// 입력값으로 보낼 arguments, strFormData="20120607"
+						callBackFnc, 	// transaction의 결과를 받을 Function 이름
+						isAsync); 		// 비동기통신 여부 [생략가능]
+};
+
+this.fnCallback = function(svcID,errorCode,errorMsg)
+{
+	switch(svcID)
+	{
+		case "search":
+			this.fnPagingSetting(); //make paging
+			break;
+	}
+};
+
+
+this.fnPagingCallback = function(nPage, nRecordsOffset)
+{
+ 	this.fvPage = nPage; 				
+ 	this.fvRecordsOffset = nRecordsOffset;
+	
+	this.fnSearch();
+};
+
+
+this.fnPagingSetting = function ()
+{
+	this.fvTotalCount = nexacro.toNumber(this.dsPagingInfo.getColumn("totalCount")); //전체로우갯수
+	//create page 
+	this.divPage.form.fnCreatePage("fnPagingCallback",
+									this.fvTotalCount,
+									this.fvRecords,
+									this.fvPage,
+									this.fvPageCount);									
+};
+
+
+this.editSearch_onkeyup = function(obj:nexacro.Edit,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode == "13"){
+		this.fnSearch();
+	}
+};
+
+this.btnSearch_onlbuttonup = function(obj:nexacro.Button,e:nexacro.MouseEventInfo)
+{
+	this.fnSearch();	
+};
+
+this.btnDeleteStu_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	let deleteRow = this.ds_student.extractRows("CHK_DEL=='1'")
+	this.ds_student.deleteMultiRows(deleteRow);
+	
+	this.saveTransaction();
+};
+
+this.saveTransaction = function()
+{
+	var strSvcId    = "save";
+	var strSvcUrl   = "student/SaveStudent.do";
+	var inData      = "ds_student=ds_student:u";
+	var outData     = "";
+	var sParam      = "";
+	var callBackFnc = "fnCallback";
+	
+	this.gfnTransaction(strSvcId , 		
+						strSvcUrl , 	
+						inData , 		
+						outData , 		
+						sParam, 		
+						callBackFnc); 
+}
+
+
+
+
+]]></Script>
+  </Form>
+</FDL>

@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ENV version="2.1">
+  <Environment themeid="theme::p02_thema" datatyperule="2.0" checkversion="true" version="2026.01.22.01" loadingimage="url('theme://images/btn_LF_Bookmark.png')">
+    <ScreenDefinition>
+      <Screen id="Desktop_screen" type="desktop"/>
+    </ScreenDefinition>
+    <Variables>
+      <Variable id="evRunMode" initval="S"/>
+      <Variable id="evUserId" initval="admin"/>
+      <Variable id="evUserNm" initval="관리자"/>
+      <Variable id="evTraceMode" initval="true"/>
+      <Variable id="evMessagePopup" initval="true"/>
+      <Variable id="evLanguage" initval="KO"/>
+      <Variable id="evLanguageChange" initval="KO"/>
+      <Variable id="evQuikView" initval="Y"/>
+      <Variable id="env_var1" initval="Variable Value1"/>
+      <Variable id="env_var2" initval="Variable Value1"/>
+    </Variables>
+    <Cookies>
+      <Cookie id="env_cookie1" secure="false" initval="Cookie Value1"/>
+      <Cookie id="env_cookie2" secure="true" initval="Cookie Value2"/>
+      <Cookie id="JID" secure="false"/>
+    </Cookies>
+    <httpheader>
+      <Variable id="env_header1" initval="HTTP Header Value1"/>
+      <Variable id="env_header2" initval="HTTP Header Value2"/>
+    </httpheader>
+  </Environment>
+</ENV>
