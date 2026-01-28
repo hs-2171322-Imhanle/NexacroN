@@ -5,15 +5,14 @@
       <Layout height="728" width="1535">
         <Static id="Static00" taborder="0" text="새 종목 추가" left="182" top="30" width="136" height="40" cssclass="sta_login_head"/>
         <Static id="Static01" taborder="1" text="학생들이 거래할 수 있는 새로운 종목을 추가 합니다." left="182" top="70" width="302" height="30" cssclass="sta_login_explan"/>
-        <Tab id="tabStock" taborder="3" tabindex="0" left="186" top="115" width="304" onchanged="Tab00_onchanged" bottom="30">
+        <Tab id="tabStock" taborder="3" tabindex="0" left="186" top="115" width="304" onchanged="Tab00_onchanged" bottom="30" cssclass="tab_chart">
           <Tabpages>
-            <Tabpage id="Tabpage1" text="Tabpage1" url="SubForm::stock0041.xfdl" cssclass="cbo_orange"/>
-            <Tabpage id="Tabpage2" text="Tabpage2"/>
+            <Tabpage id="Tabpage1" text="기록형 종목" url="SubForm::stock0041.xfdl" cssclass="cbo_orange"/>
+            <Tabpage id="Tabpage2" text="주식형 종목"/>
           </Tabpages>
         </Tab>
         <Div id="divChart" taborder="2" left="tabStock:60" top="70" width="780" bottom="30" background="white" border="1px solid #e9e9e9" url="SubForm::stock0045.xfdl"/>
-        <Button id="btnSave" taborder="4" text="저장" left="1230" top="23" width="100" height="35" onclick="btnSave_onclick"/>
-        <Static id="Static02" taborder="5" text="Static02" left="554" top="11" width="188" height="51"/>
+        <Button id="btnSave" taborder="4" text="저장" left="1250" top="30" width="80" height="28" onclick="btnSave_onclick" cssclass="btn_work_select"/>
       </Layout>
     </Layouts>
     <Script type="xscript5.1"><![CDATA[

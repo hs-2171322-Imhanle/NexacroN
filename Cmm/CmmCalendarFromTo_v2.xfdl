@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="CmmCalendarFromTo" width="256" height="30" titletext="기간달력" onload="form_onload">
+    <Layouts>
+      <Layout height="30" width="256">
+        <Calendar id="cal" taborder="0" left="0" top="0" width="46.484375%" height="30" ondropdown="cal_ondropdown" dateformat="yyyy-MM-dd" popuptype="none" minwidth="120" maxwidth=""/>
+        <PopupDiv id="pdvCal" text="PopupDiv00" visible="false" left="0" top="30" width="300" height="300" cssclass="pdiv_WF_Area">
+          <Layouts>
+            <Layout>
+              <Calendar id="pdvCalFrom" taborder="0" left="0" top="0" width="200" height="220" dateformat="yyyy-MM-dd" editformat="yyyy-MM-dd" type="monthonly" showmonthspin="false" usetrailingday="false" popuptype="none" value="" border="0px none" cssclass="cal_WF_Month"/>
+              <Button id="btnPdvConfirm" taborder="2" text="확인" left="39" top="220" width="60" height="28" onclick="pdvCal_btnPdvConfirm_onclick" uWord="popup.ok" cssclass="btn_WF_FillBlue"/>
+              <Button id="btnPdvCancle" taborder="1" text="취소" left="109" top="220" width="60" height="28" onclick="pdvCal_btnPdvCancle_onclick" uWord="popup.cancel" cssclass="btn_WF_LineGray"/>
+            </Layout>
+          </Layouts>
+        </PopupDiv>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.fnInit(); //달력초기화
+};
+
+this.fnInit = function()
+{
+	//요구사항에 따라 오늘날짜 3개월 등등 지정 현재 디폴트="";
+	this.cal.value = this.gfnGetFirstDate();	// FROM 달력 셋팅
+};
+
+/**
+* @description from 일자 갖고오기
+*/
+this.fnGetFromDate = function ()
+{	
+	var sDate = this.calFrom.value;
+	return sDate;
+};
+
+
+/**
+* @description from일자 세팅하기
+*/
+this.fnSetFromDate = function (sDate)
+{
+	this.calFrom.value = sDate;
+};
+
+
+/**
+* @description enable true/false세팅
+*/
+this.fnSetEnable = function (bValue)
+{
+	this.calFrom.enable = bValue;
+	
+};
+
+/**
+* @description readonly true/false세팅
+*/
+this.fnSetReadonly = function (bValue)
+{
+	this.calFrom.readonly = bValue;
+	
+};
+
+/**
+* @description Essential true/false세팅
+*/
+this.fnSetEssential  = function (bValue)
+{
+	if(bValue){
+		this.calFrom.cssclass = "cal_WF_Essential";
+		
+	}
+	else{
+		this.calFrom.cssclass = "";
+		
+	}
+};
+
+
+this.cal_ondropdown = function(obj:nexacro.Calendar,e:nexacro.EventInfo)
+{
+	var sDate = this.gfnGetDate(); //default today = 해당월1일부터 오늘까지
+	
+	//from달력세팅
+	if (this.gfnIsNull(this.cal.value)) {
+		this.pdvCal.form.pdvCalFrom.value = (sDate.substr(0,6) + "01");
+	} 
+	else {
+		this.pdvCal.form.pdvCalFrom.value = this.cal.value;
+	}
+
+	//Div 안에 넣을 경우 팝업 위치 이상해서 수정
+	this.pdvCal.trackPopupByComponent(this.cal, 0, obj.height);
+		
+};
+
+this.pdvCal_btnPdvConfirm_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sFromValue = this.pdvCal.form.pdvCalFrom.value;
+	this.cal.value = sFromValue;
+	this.pdvCal.closePopup();
+};
+
+this.pdvCal_btnPdvCancle_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.pdvCal.closePopup();
+};
+
+]]></Script>
+    <Objects/>
+    <Bind>
+      <BindItem id="item0" compid="cal" propid="value" datasetid="ds_info" columnid="DATE"/>
+    </Bind>
+  </Form>
+</FDL>

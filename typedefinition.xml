@@ -45,6 +45,9 @@
     <Component type="JavaScript" id="PopupDateRangePicker" classname="nexacro.PopupDateRangePicker"/>
     <Component type="JavaScript" id="SpinField" classname="nexacro.SpinField"/>
     <Component type="JavaScript" id="ChartJS" classname="nexacro.ChartJS" iconindex="400" iconextra="true" defaultwidth="120" defaultheight="60"/>
+    <Component type="JavaScript" id="FileDialog" classname="nexacro.FileDialog"/>
+    <Component type="JavaScript" id="FileDownTransfer" classname="nexacro.FileDownTransfer"/>
+    <Component type="JavaScript" id="FileUpTransfer" classname="nexacro.FileUpTransfer"/>
   </Components>
   <Services>
     <Service prefixid="theme" type="resource" url="./_resource_/_theme_/" version="0" cachelevel="dynamic" include_subdir="true"/>

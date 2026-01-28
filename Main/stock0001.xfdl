@@ -4,10 +4,10 @@
     <Layouts>
       <Layout height="60" mobileorientation="landscape" width="1535">
         <Static id="Static00" taborder="0" left="0" top="0" right="0" bottom="3" background="white" boxShadow="0px 4px 100px 100px #eaeaea"/>
-        <Static id="StaLogo" taborder="1" text="STOCK" left="30" top="0" width="120" bottom="5" cssclass="sta_header_logo"/>
+        <Static id="StaLogo" taborder="1" text="STOCK" left="110" top="0" width="120" bottom="5" cssclass="sta_header_logo"/>
         <Button id="btnStudent" taborder="2" text="학생관리" top="0" width="120" bottom="5" right="460" cssclass="btn_header_noLine" onclick="btnStudent_onclick"/>
         <Button id="btnStock" taborder="3" text="종목관리" top="0" width="120" bottom="5" right="320" cssclass="btn_header_noLine" onclick="btnStock_onclick"/>
-        <Button id="btnLogin" taborder="4" text="로그인" top="8" right="50" width="100" bottom="12" onclick="btnLogin_onclick" cssclass="btn_header_login"/>
+        <Button id="btnLogin" taborder="4" text="로그인" top="8" right="120" width="100" bottom="12" onclick="btnLogin_onclick" cssclass="btn_header_login"/>
       </Layout>
     </Layouts>
     <Script type="xscript5.1"><![CDATA[
@@ -32,7 +32,7 @@ this.btnStock_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 	this.parent.parent.divLeft.width = 285; 
 	this.parent.parent.divMain.left = "divLeft: -1";
 	this.parent.parent.divMain.url = "SubForm::stock0030.xfdl";
-	this.parent.parent.divLeft.url = "SubForm::stock0010.xfdl";W
+	this.parent.parent.divLeft.url = "SubForm::stock0010.xfdl";
 };
 ]]></Script>
   </Form>

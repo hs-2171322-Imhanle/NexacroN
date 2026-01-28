@@ -5,7 +5,7 @@
       <Layout height="26" width="280">
         <Calendar id="calFrom" taborder="1" left="0" top="0" width="46.43%" height="26" ondropdown="calFrom_ondropdown" dateformat="yyyy-MM-dd" popuptype="none" value="20250101" minwidth="130" maxwidth=""/>
         <Static id="Static00" taborder="2" text="~" left="calFrom:5" top="0" width="10" height="26"/>
-        <Calendar id="calTo" taborder="0" left="Static00:5" top="0" height="26" popuptype="none" ondropdown="calFrom_ondropdown" dateformat="yyyy-MM-dd" value="20250215" width="46.43%" minwidth="130" maxwidth=""/>
+        <Calendar id="calTo" taborder="0" left="Static00:5" top="0" height="26" popuptype="none" ondropdown="calFrom_ondropdown" dateformat="yyyy-MM-dd" value="20250215" width="46.43%" minwidth="130" maxwidth="" onchanged="calTo_onchanged"/>
         <PopupDateRangePicker id="pdrpDateRange" left="0" top="50" width="530" height="230" useclosebutton="true" displaytype="date" onlbuttonup="pdrpDateRange_onlbuttonup" closebuttontext="OK" displaymonthcount="3" useheadline="false"/>
       </Layout>
     </Layouts>
@@ -162,6 +162,7 @@ this.fnCallback = function(sFromValue, sToValue)
 		}
 	}    
 };
+
 
 ]]></Script>
     <Objects>

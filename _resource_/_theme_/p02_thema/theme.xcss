@@ -3179,13 +3179,13 @@
 }
 .Edit.edit_orange
 {
-	-nexa-border : 1px solid #FFA443;
+	-nexa-border : 1px solid #e9e9e9;
 	border-radius : 5px;
 	
 }
 .Combo.cbo_orange
 {
-	-nexa-border : 1px solid #FFA443;
+	-nexa-border : 1px solid #e9e9e9;
 	border-radius : 5px;
 	
 }
@@ -3226,6 +3226,110 @@
 	background : #F8F3F0;
 	border-radius : 10px;
 	font : bold 12pt "Arial";
+	
+}
+
+.Tab.tab_chart .tabpage
+{
+	border-radius : 0px 10px 10px;
+	-nexa-border : 0px none;
+	background : #FFF6ED;
+	
+}
+.Tab.tab_chart .tabbuttonitem
+{
+	border-radius : 5px 5px 0px 0px;
+	background : #FFFBF7;
+	font : bold 10pt "Arial";
+	-nexa-border : 0px none;
+	-nexa-padding : 10px 30px;	
+}
+
+.Tab.tab_chart .tabbuttonitem[status=mouseover]
+{
+	-nexa-border : 0px none;
+	background : #FFF6ED;
+}
+
+.Tab.tab_chart .tabbuttonitem[status=focused]
+{
+	color : #FFF6ED;
+}
+
+.Tab.tab_chart .tabbuttonitem[userstatus=selected],.Tab.tab_chart .tabbuttonitem[status=focused][userstatus=selected]
+{
+	color : black;
+	background : #FFF6ED;
+	-nexa-border : 0px none;
+}
+
+.Tab.tab_chart .tabbuttonitem[status=disabled]
+{
+	color : black;
+	background : #e7e7e7;
+}
+
+.Tab.tab_chart .tabbuttonitem[status=disabled][userstatus=selected]
+{
+	-nexa-border : 0px none;
+	background : #FFF6ED;
+}
+
+.Tab.tab_chart .tabbuttonitem .tabbuttonitemtext[status=disabled]
+{
+	color : black;
+}
+
+.Calendar,.CalendarControl
+{
+	background : #ffffff;
+	-nexa-border : 1px solid #e9e9e9;
+	border-radius : 5px;
+}
+
+.Calendar[status=mouseover],.CalendarControl[status=mouseover],.Calendar[status=focused],.CalendarControl[status=focused]
+{
+	-nexa-border : 2px solid #FFA443;
+}
+
+.Calendar[status=readonly],.CalendarControl[status=readonly]
+{
+	background : #efefef;
+}
+
+.Calendar[status=disabled],.CalendarControl[status=disabled]
+{
+	color : #999999;
+	background : #efefef;
+}.Edit.edit_orange[status=mouseover],.Edit.edit_orange[status=focused] 
+{
+	-nexa-border : 2px solid #FFA443;
+}
+.Combo.cbo_orange[status=focused],.Combo.cbo_orange[status=mouseover]
+{
+	-nexa-border : 2px solid #FFA443;
+}
+.TextArea.txtA_orange
+{
+	-nexa-border : 1px solid #e9e9e9;
+	border-radius : 5px;
+}
+.TextArea.txtA_orange[status=focused],.TextArea.txtA_orange[status=mouseover]
+{
+	-nexa-border : 2px solid #FFA443;
+}
+.Form.formScroll .vscrollbar
+{
+	-nexa-border : 0px none;
+	background : transparent;
+	-nexa-padding : 10px 10px 10px 0px;
+	
+}
+.Form.formScroll .vscrollbar .trackbar
+{
+	border-radius : 20px;
+	background : #FFA443;
+	-nexa-padding : 10px;
 	
 }
 ]]></CSSData>
