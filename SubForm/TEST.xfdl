@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="TEST" width="1280" height="720" titletext="New Form">
+    <Layouts>
+      <Layout height="720" width="1280">
+        <Button id="Button00" taborder="0" text="Button00" left="64" top="45" width="108" height="31" onclick="Button00_onclick"/>
+        <Combo id="Combo00" taborder="1" text="Combo00" left="64" top="160" width="150" height="20" innerdataset="SUB" codecolumn="ID" datacolumn="CODE"/>
+        <Grid id="Grid00" taborder="2" left="219" top="12" width="251" height="99" binddataset="MAIN">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row band="head" size="24"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="NAME"/>
+                <Cell col="1" text="CODE_ID"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:NAME"/>
+                <Cell col="1" text="bind:CODE_ID"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Grid id="Grid01" taborder="3" left="284" top="145" width="208" height="144" binddataset="SUB">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row band="head" size="24"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="ID"/>
+                <Cell col="1" text="CODE"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:ID"/>
+                <Cell col="1" text="bind:CODE"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="MAIN">
+        <ColumnInfo>
+          <Column id="NAME" type="STRING" size="256"/>
+          <Column id="CODE_ID" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="SUB">
+        <ColumnInfo>
+          <Column id="ID" type="STRING" size="256"/>
+          <Column id="CODE" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="ID">0</Col>
+            <Col id="CODE">이름</Col>
+          </Row>
+          <Row>
+            <Col id="ID">1</Col>
+            <Col id="CODE">안뇽</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[
+this.Button00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	//Combo00 
+	//var nRow = this.MAIN.addRow();
+	//this.MAIN.setColumn(0,"CODE_ID",this.Combo00.setSelectedText(this.SUB.rowposition));
+// 	
+// 	//this.ds_emp.setColumn(rowIdx, "HIRE_DATE", this.fn_today());
+// 	
+	trace(this.MAIN.saveXML()); 
+};
+]]></Script>
+    <Bind>
+      <BindItem id="item0" compid="Combo00" propid="value" datasetid="MAIN" columnid="CODE_ID"/>
+    </Bind>
+  </Form>
+</FDL>

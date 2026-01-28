@@ -1,37 +1,37 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="stock0031" width="322" height="800" titletext="createStock_Tab1" onload="stock0031_onload" background="#FFF6ED">
+  <Form id="stock0031" width="322" height="750" titletext="createStock_Tab1" onload="stock0031_onload" background="#FFF6ED">
     <Layouts>
-      <Layout height="800" width="322">
+      <Layout height="750" width="322">
         <Button id="btnAcor1" taborder="2" left="110" top="22" width="20" height="16" cssclass="btn_WF_BaseB" onclick="btnAcor1_onclick"/>
-        <Div id="divBasic" taborder="0" left="20" top="btnAcor1:5" width="263" height="437" background="#FFF6ED" formscrollbartype="none">
+        <Div id="divBasic" taborder="0" left="20" top="btnAcor1:5" width="263" height="467" background="#FFF6ED" formscrollbartype="none">
           <Layouts>
             <Layout>
-              <Edit id="editTitle" taborder="0" left="20" top="38" width="222" height="37" cssclass="edit_orange" displaynulltext="ex) 삼성전자" oninput="divBasic_editTitle_oninput" onkeyup="divBasic_editTitle_onkeyup"/>
+              <Edit id="editTitle" taborder="0" left="20" top="38" width="222" height="37" cssclass="edit_orange" displaynulltext="ex) 삼성전자" oninput="divBasic_editTitle_oninput" onkeyup="divBasic_editTitle_onkeyup" onchanged="divBasic_editTitle_onchanged"/>
               <Static id="Static00" taborder="1" text="종목 이름" left="20" top="13" width="56" height="21" cssclass="sta_acordian_explain"/>
-              <Edit id="Edit00_00" taborder="2" left="20" top="274" width="222" cssclass="edit_orange" bottom="10"/>
-              <Combo id="Combo00" taborder="3" text="Combo00" left="20" top="182" width="222" height="40" onitemchanged="divBasic_Combo00_onitemchanged" cssclass="cbo_orange" innerdataset="ds_group" codecolumn="ID" datacolumn="GROUP"/>
-              <Static id="Static00_00" taborder="4" text="대상 학급/그룹" left="20" top="154" width="86" height="22" cssclass="sta_acordian_explain"/>
-              <Static id="Static00_00_00" taborder="5" text="카드뉴스" left="20" top="249" width="86" height="22" cssclass="sta_acordian_explain"/>
-              <Button id="Button00" taborder="6" text="이미지 업로드" left="20" top="95" width="130" height="39" cssclass="btn_header_login" font="10pt/normal &quot;Arial&quot;" borderRadius="5px"/>
-              <Button id="Button01" taborder="7" left="179" top="94" width="63" height="40" cssclass="btn_folder"/>
+              <Edit id="Edit00_00" taborder="2" left="20" top="372" width="222" cssclass="edit_orange" bottom="10"/>
+              <Combo id="Combo00" taborder="3" text="Combo00" left="20" top="275" width="222" height="40" onitemchanged="divBasic_Combo00_onitemchanged" cssclass="cbo_orange" innerdataset="ds_group" codecolumn="ID" datacolumn="GROUP"/>
+              <Static id="Static00_00" taborder="4" text="대상 학급/그룹" left="20" top="247" width="86" height="22" cssclass="sta_acordian_explain"/>
+              <Static id="Static00_00_00" taborder="5" text="카드뉴스" left="20" top="342" width="86" height="22" cssclass="sta_acordian_explain"/>
+              <Button id="Button00" taborder="6" text="이미지 업로드" left="20" top="188" width="130" height="39" cssclass="btn_header_login" font="10pt/normal &quot;Arial&quot;" borderRadius="5px"/>
+              <Button id="Button01" taborder="7" left="179" top="187" width="63" height="40" cssclass="btn_folder"/>
+              <Static id="Static00_01" taborder="8" text="주식 기록 종류" left="20" top="96" width="86" height="21" cssclass="sta_acordian_explain" onclick="divBasic00_Static00_onclick"/>
+              <Edit id="editSub" taborder="9" left="20" top="122" width="222" height="37" cssclass="edit_orange" onkeyup="divBasic_editSub_onkeyup"/>
             </Layout>
           </Layouts>
         </Div>
         <Static id="Static00" taborder="1" text="기본 정보 입력" left="20" top="23" width="90" height="18" cssclass="sta_acordian_bold"/>
         <Static id="Static00_00" taborder="3" text="수익 계산 설정" left="20" top="divBasic:20" width="90" height="18" cssclass="sta_acordian_bold"/>
         <Button id="btnAcor2" taborder="4" left="110" top="divBasic:20" width="20" height="16" cssclass="btn_WF_BaseB" onclick="btnAcor2_onclick"/>
-        <Div id="divBasic2" taborder="5" left="20" top="btnAcor2:5" width="263" height="269" background="#FFF6ED" formscrollbartype="none">
+        <Div id="divBasic2" taborder="5" left="20" top="btnAcor2:5" width="263" height="199" background="#FFF6ED" formscrollbartype="none">
           <Layouts>
             <Layout>
-              <Edit id="Edit00" taborder="0" left="20" top="38" width="222" height="37" cssclass="edit_orange"/>
-              <Static id="Static00" taborder="1" text="주식 기록 종류" left="20" top="13" width="86" height="21" cssclass="sta_acordian_explain" onclick="divBasic00_Static00_onclick"/>
-              <Static id="Static00_00" taborder="2" text="단위" left="20" top="90" width="34" height="22" cssclass="sta_acordian_explain" onclick="divBasic2_Static00_00_onclick"/>
-              <Static id="Static00_00_00" taborder="3" text="1 변화당 수익률 (%) " left="20" top="179" width="120" height="22" cssclass="sta_acordian_explain"/>
-              <Combo id="Combo00" taborder="4" text="Combo00" left="20" top="119" width="86" height="37" cssclass="cbo_orange" innerdataset="ds_unit" codecolumn="UNIT" datacolumn="UNIT"/>
-              <Edit id="Edit00_00" taborder="5" left="121" top="119" width="121" height="37" cssclass="edit_orange"/>
-              <Static id="Static00_00_01" taborder="6" text="시작 값" left="121" top="90" width="43" height="22" cssclass="sta_acordian_explain" onclick="divBasic2_Static00_00_onclick"/>
-              <Edit id="Edit00_01" taborder="7" left="20" top="208" width="222" height="37" cssclass="edit_orange"/>
+              <Static id="Static00_00" taborder="0" text="단위" left="20" top="22" width="34" height="22" cssclass="sta_acordian_explain" onclick="divBasic2_Static00_00_onclick"/>
+              <Static id="Static00_00_00" taborder="1" text="1 변화당 수익률 (%) " left="20" top="111" width="120" height="22" cssclass="sta_acordian_explain"/>
+              <Combo id="Combo00" taborder="2" text="Combo00" left="20" top="51" width="86" height="37" cssclass="cbo_orange" innerdataset="ds_unit" codecolumn="ID" datacolumn="UNIT"/>
+              <Edit id="editStart" taborder="3" left="121" top="51" width="121" height="37" cssclass="edit_orange" onkeyup="divBasic2_editStart_onkeyup"/>
+              <Static id="Static00_00_01" taborder="4" text="시작 값" left="121" top="22" width="43" height="22" cssclass="sta_acordian_explain" onclick="divBasic2_Static00_00_onclick"/>
+              <Edit id="Edit00_01" taborder="5" left="20" top="140" width="222" height="37" cssclass="edit_orange"/>
             </Layout>
           </Layouts>
         </Div>
@@ -81,18 +81,69 @@ this.divBasic_editTitle_onkeyup = function(obj:nexacro.Edit,e:nexacro.KeyEventIn
 	
 	if(e.keycode == "13"){
  		this.parent.parent.parent.ds_info.setColumn(0, "TITLE", this.divBasic.form.editTitle.text);
-		this.parent.parent.parent.divChart.form.fnCreateChart();		
-	
-		
-		
+		this.parent.parent.parent.divChart.form.fnCreateChart();	
+	}
+};
+
+this.divBasic_editSub_onkeyup = function(obj:nexacro.Edit,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode == "13"){
+ 		this.parent.parent.parent.ds_info.setColumn(0, "SUBTITLE", this.divBasic.form.editSub.text);
+		this.parent.parent.parent.divChart.form.fnCreateChart();	
+	}
+};
+
+
+this.divBasic2_editStart_onkeyup = function(obj:nexacro.Edit,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode == "13"){
+ 		this.parent.parent.parent.ds_info.setColumn(0, "START_VALUE", this.divBasic2.form.editStart.text);
+		this.parent.parent.parent.divChart.form.fnCreateChart();	 
 	}
 };
 ]]></Script>
-    <Objects/>
+    <Objects>
+      <Dataset id="ds_group">
+        <ColumnInfo>
+          <Column id="ID" type="INT" size="256"/>
+          <Column id="GROUP" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="ID">1</Col>
+            <Col id="GROUP">전체</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_unit">
+        <ColumnInfo>
+          <Column id="ID" type="INT" size="256"/>
+          <Column id="UNIT" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="ID">1</Col>
+            <Col id="UNIT">Kg</Col>
+          </Row>
+          <Row>
+            <Col id="ID">2</Col>
+            <Col id="UNIT">개</Col>
+          </Row>
+          <Row>
+            <Col id="ID">3</Col>
+            <Col id="UNIT">걸음</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
     <Bind>
-      <BindItem id="item0" compid="divBasic.form.Combo00" propid="value" datasetid="ds_group" columnid="GROUP"/>
+      <BindItem id="item0" compid="divBasic.form.Combo00" propid="value" datasetid="ds_info" columnid="GROUP_CODE"/>
       <BindItem id="item1" compid="divBasic.form.editTitle" propid="value" datasetid="ds_info" columnid="TITLE"/>
-      <BindItem id="item2" compid="divBasic2.form.Edit00" propid="value" datasetid="ds_info" columnid="SUBTITLE"/>
+      <BindItem id="item2" compid="divBasic.form.editSub" propid="value" datasetid="ds_info" columnid="SUBTITLE"/>
+      <BindItem id="item3" compid="divBasic.form.Edit00_00" propid="value" datasetid="ds_info" columnid="NEWS"/>
+      <BindItem id="item4" compid="divBasic2.form.editStart" propid="value" datasetid="ds_info" columnid="START_VALUE"/>
+      <BindItem id="item5" compid="divBasic2.form.Edit00_01" propid="value" datasetid="ds_info" columnid="RATE"/>
+      <BindItem id="item6" compid="divBasic2.form.Combo00" propid="value" datasetid="ds_info" columnid="UNIT_CODE"/>
     </Bind>
   </Form>
 </FDL>
