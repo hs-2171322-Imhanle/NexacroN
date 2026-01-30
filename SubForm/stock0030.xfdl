@@ -5,8 +5,19 @@
       <Layout height="728" width="1250">
         <Static id="Static00" taborder="0" text="종목" left="40" top="32" width="50" height="30" font="bold 16pt/normal &quot;Malgun Gothic&quot;" color="black"/>
         <Button id="btnAll" taborder="1" text="전체" left="110" top="30" width="60" height="35" cssclass="btn_group"/>
-        <Button id="btnAdd" taborder="2" text="+" left="180" top="30" width="40" height="35" cssclass="btn_group" font="bold 11pt/normal &quot;Arial&quot;" border="1px solid #888888"/>
+        <Button id="btnAdd" taborder="2" text="+" left="180" top="30" width="40" height="35" cssclass="btn_group" font="bold 11pt/normal &quot;Arial&quot;" border="1px solid #888888" onclick="btnAdd_onclick"/>
       </Layout>
     </Layouts>
+    <Script type="xscript5.1"><![CDATA[
+this.btnAdd_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sPopupId = "popupDept"
+	var sUrl  = "Popup::stock0100pu.xfdl"
+	var oArg ="";
+	var oOption = {title:"모달팝업", titlebar:false};
+	var sPopupCallBack = "fn_callbackPopup";
+	this.gfnOpenPopup( sPopupId,sUrl,oArg,sPopupCallBack,oOption);
+};
+]]></Script>
   </Form>
 </FDL>

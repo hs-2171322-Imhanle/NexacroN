@@ -40,37 +40,10 @@
             </Layout>
           </Layouts>
         </Div>
-        <Grid id="Grid00" taborder="6" left="430" top="166" width="396" height="167" binddataset="dsFile">
-          <Formats>
-            <Format id="default">
-              <Columns>
-                <Column size="80"/>
-                <Column size="80"/>
-                <Column size="80"/>
-                <Column size="80"/>
-              </Columns>
-              <Rows>
-                <Row band="head" size="24"/>
-                <Row size="24"/>
-              </Rows>
-              <Band id="head">
-                <Cell text="file_id"/>
-                <Cell col="1" text="file_name"/>
-                <Cell col="2" text="file_size"/>
-                <Cell col="3" text="file_type"/>
-              </Band>
-              <Band id="body">
-                <Cell text="bind:file_id"/>
-                <Cell col="1" text="bind:file_name"/>
-                <Cell col="2" text="bind:file_size"/>
-                <Cell col="3" text="bind:file_type"/>
-              </Band>
-            </Format>
-          </Formats>
-        </Grid>
       </Layout>
     </Layouts>
-    <Script type="xscript5.1"><![CDATA[
+    <Script type="xscript5.1"><![CDATA[let ds_imageAll = this.parent.parent.parent.ds_imageAll;
+
 this.stock0031_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
 {	
 	this.gfnFormOnLoad(this);
@@ -138,50 +111,48 @@ this.divBasic2_editStart_onkeyup = function(obj:nexacro.Edit,e:nexacro.KeyEventI
 // img 관련
 this.divBasic_btnImg_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
-	this.FileDialog.open("image",3, "%MYDOCUMENT%");
+	this.FileDialog.open("image",1, "%MYDOCUMENT%");
 };
 
 this.FileDialog_onclose = function(obj:nexacro.FileDialog,e:nexacro.FileDialogEventInfo)
 {
+	//파일 정보 추가
 	var objFileList = e.virtualfiles; //파일의 정보를 가짐
-	for(var i = 0; i<objFileList.length;i++){
+	this.FileUpTransfer.clearFileList();
+	for(var i = 0; i<objFileList.length;i++){	
 		var bExist = this.FileUpTransfer.existFile(objFileList[i]);
 		if(!bExist){
 			var sFileName = objFileList[i].filename;
 			var sFileType = sFileName.substring(sFileName.lastIndexOf(".")+1);
-			this.FileUpTransfer.addFile(sFileName, objFileList[i]);
-			
-			
 			if(sFileType == "png" || sFileType == "img") {
-				var nRow = this.dsFile.addRow();
-				this.dsFile.setColumn(nRow, "file_id", sFileName);
-				this.dsFile.setColumn(nRow, "file_name", sFileName);
-				this.dsFile.setColumn(nRow, "file_type", sFileType);
-				this.uploadImg();
+				this.FileUpTransfer.addFile(sFileName, objFileList[i]);
 			}
-			
 		}
 	}
+	
+	this.uploadImg();
 };
 
 this.uploadImg = function()
 {
 	var sUrl = "SvcUrl::stock/uploadImg.do";
 	this.FileUpTransfer.setPostData("userDir","P02\\P025");
-	
-	trace(sUrl);
 	this.FileUpTransfer.upload(sUrl); 
-
-	
 }
 this.FileUpTransfer_onsuccess = function(obj:nexacro.FileUpTransfer,e:nexacro.FileUpTransferEventInfo)
 {
 	var objDs = e.datasets[0]
 	for(var i = 0; i<objDs.rowcount;i++){
-		var nRow = this.dsFile.findRow("file_name",objDs.getColumn(i, "file_name"));
-		this.dsFile.setColumn(nRow,"file_id", objDs.getColumn(i, "file_id"));
-		this.dsFile.setColumn(nRow,"file_size", objDs.getColumn(i, "file_size"));
+		
+		this.parent.parent.parent.ds_imageAll.setColumn(i,"IMG_URL", objDs.getColumn(i, "IMG_URL"));
+		ds_imageAll.setColumn(i,"IMG_DATA", objDs.getColumn(i, "IMG_DATA"));
+		
 	}
+	 
+};
+this.fnCallback = function()
+{
+	
 };
 
 this.divBasic_btnFolder_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
@@ -225,14 +196,6 @@ this.divBasic_btnFolder_onclick = function(obj:nexacro.Button,e:nexacro.ClickEve
       <FileDialog id="FileDialog" onclose="FileDialog_onclose"/>
       <FileDownTransfer id="FileDownTransfer"/>
       <FileUpTransfer id="FileUpTransfer" onsuccess="FileUpTransfer_onsuccess"/>
-      <Dataset id="dsFile">
-        <ColumnInfo>
-          <Column id="file_id" type="STRING" size="256"/>
-          <Column id="file_name" type="STRING" size="256"/>
-          <Column id="file_size" type="STRING" size="256"/>
-          <Column id="file_type" type="STRING" size="256"/>
-        </ColumnInfo>
-      </Dataset>
     </Objects>
     <Bind>
       <BindItem id="item0" compid="divBasic.form.Combo00" propid="value" datasetid="ds_info" columnid="GROUP_CODE"/>

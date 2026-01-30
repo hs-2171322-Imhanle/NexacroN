@@ -7,7 +7,7 @@
         <Static id="Static00" taborder="1" text="&#9;걸음 수, 독서량, 학습 시간, 몸무게 등과 같은 다양한 수치형 기록의 변화를 투자 결과로 연결하는 학습 종목입니다" left="40" top="53" height="54" cssclass="sta_chart_explainSub" right="39"/>
         <Static id="Static00_00" taborder="3" text="&#9;     기록형 종목이란?" left="40" top="20" height="50" cssclass="sta_chart_explainM" right="39"/>
         <Static id="Static01" taborder="2" left="60" top="27" width="38" height="33" background="url('theme://NewFolder/pin.png') no-repeat center center"/>
-        <ImageViewer id="ImageViewer00" taborder="4" left="40" top="134" width="40" height="40" borderRadius="500px" image="url('theme://images/btn_LF_BookmarkS.png')"/>
+        <ImageViewer id="imgView" taborder="4" left="40" top="134" width="40" height="40" borderRadius="500px"/>
         <Static id="staSubTitle" taborder="5" left="615" top="153" width="111" height="14" color="gray" font="12px/normal &quot;Malgun Gothic&quot;" textAlign="right" text="기록형"/>
         <TextArea id="TextArea00" taborder="6" left="28" top="494" width="727" height="166"/>
       </Layout>
@@ -84,7 +84,7 @@ this.fnGetOption = function (canvas, background)
 this.fnGetTitle = function() {
 	let title = this.parent.parent.ds_info.getColumn(0,"TITLE");
 	let tLength = nexacro.getTextSize(title, "bold 18px Malgun Gothic");
-	trace("dddddddddddddddddd"+tLength.nx);
+	//trace("dddddddddddddddddd"+tLength.nx);
 	return {
 		Text : title,	// 중앙 상단 제목
 		Color : "black",							//	제목 색상
@@ -137,10 +137,13 @@ this.fnGetTooltip = function() {
 	}	
 }
 
+
+
 ]]></Script>
     <Objects/>
     <Bind>
       <BindItem id="item0" compid="staSubTitle" propid="text" datasetid="ds_info" columnid="SUBTITLE"/>
+      <BindItem id="item1" compid="imgView" propid="image" datasetid="ds_imageAll" columnid="IMG_DATA"/>
     </Bind>
   </Form>
 </FDL>

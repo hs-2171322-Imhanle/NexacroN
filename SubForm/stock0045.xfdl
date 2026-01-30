@@ -1,12 +1,82 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="stock0046" width="263" height="500" titletext="전체 image">
+  <Form id="stock0046" width="263" height="500" titletext="전체 image" onload="stock0046_onload" cssclass="formScroll" scrollbardecbuttonsize="0" scrollbarincbuttonsize="0">
     <Layouts>
       <Layout height="500" width="263">
-        <ImageViewer id="ImageViewer00" taborder="0" text="ImageViewer00" left="63" top="130" width="127" height="122"/>
-        <Button id="Button00" taborder="1" text="뒤로가기" left="18" top="22" width="84" height="47" onclick="Button00_onclick"/>
+        <Button id="Button00" taborder="0" text="뒤로가기" left="18" top="22" width="84" height="47" onclick="Button00_onclick"/>
       </Layout>
     </Layouts>
-    <Script type="xscript5.1"><![CDATA[]]></Script>
+    <Script type="xscript5.1"><![CDATA[let ds_imageAll = this.parent.parent.parent.ds_imageAll;
+
+this.stock0046_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.loadImage();
+};
+
+this.loadImage = function(){
+		
+		var strSvcId    = "getImage";
+		var strSvcUrl   = "stock/getFileList.do";
+		var inData      = "";
+		var outData     = "ds_imageAll=ds_imageAll";
+		var sParam      = "userDir=P02\\P025";
+		var callBackFnc = "fnCallback";
+		var isAsync   	= true;
+
+		this.gfnTransaction(strSvcId , 		// transaction을 구분하기 위한 svc id값
+							strSvcUrl , 	// trabsaction을 요청할 주소
+							inData , 		// 입력값으로 보낼 dataset id , a=b형태로 실제이름과 입력이름을 매칭
+							outData , 		// 처리결과값으로 받을 dataset id, a=b형태로 실제이름과 입력이름을 매칭
+							sParam, 		// 입력값으로 보낼 arguments, strFormData="20120607"
+							callBackFnc, 	// transaction의 결과를 받을 Function 이름
+							isAsync); 		// 비동기통신 여부 [생략가능]
+};
+this.fnCallback = function (id, code, msg)
+{
+	if(id =="getImage"){
+		this.drawImage();
+	}
+};
+this.drawImage = function ()
+{	
+	let imgCnt = ds_imageAll.getRowCount();
+	
+	// 디자인
+    var nCardW   = 110;   // 카드 가로
+    var nCardH   = 110;   // 카드 세로
+    var nGapX    = 20;    // 가로 간격
+    var nGapY    = 25;    // 세로 간격
+    var nStartX  = 35;   // 시작 위치
+    var nStartY  = 70;    // 시작 위치
+    var nColCnt  = 2;     // 한 줄에 2개
+	
+	for(let i=0; i<imgCnt; i++){
+		// 좌표 계산
+        var nRow = Math.floor(i / nColCnt); 
+        var nCol = i % nColCnt;             
+        
+        var nLeft = nStartX + (nCol * (nCardW + nGapX));
+        var nTop  = nStartY + (nRow * (nCardH + nGapY));
+        
+        // 카드 Div 생성
+        var sDivId = "divCard" + i;
+        var objDiv = new Div();
+        objDiv.init(sDivId, nLeft, nTop, nCardW, nCardH);
+		
+        this.addChild(sDivId, objDiv);
+        objDiv.show();
+		
+		// 이미지 뷰어
+        var objImg = new ImageViewer();
+        // Left:10, Top:10, Width:280, Height:180
+        objImg.init("imgView",3 , 3, 100, 100); 
+        objImg.set_image(ds_imageAll.getColumn(i, "IMG_DATA"));
+		objImg.cssclass = "imgView_folder";
+		objDiv.form.addChild("imgView", objImg);
+        objImg.show();
+	}
+};
+]]></Script>
+    <Objects/>
   </Form>
 </FDL>

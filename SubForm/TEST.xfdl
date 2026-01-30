@@ -89,6 +89,234 @@ this.Button00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 // 	
 	trace(this.MAIN.saveXML()); 
 };
+
+
+
+this.fn_drawCards = function ()
+{
+	// 기존 카드 삭제 (최대 8개니까 8번 돔)
+    for(var i=0; i<8; i++) 
+    {
+        var sDivId = "divCard" + i;
+        if(this.isValidObject(sDivId))
+        {
+            var objDel = this.removeChild(sDivId);
+            objDel.destroy();
+            objDel = null;
+        }
+    }
+
+    var objDs = this.dsCurrentItem;
+    // 데이터 없으면 중단
+    if (objDs == null || objDs.getRowCount() == 0) return;
+    
+
+    // 디자인
+    var nCardW   = 300;   // 카드 가로
+    var nCardH   = 300;   // 카드 세로
+    var nGapX    = 25;    // 가로 간격
+    var nGapY    = 25;    // 세로 간격
+    var nStartX  = 140;   // 시작 위치
+    var nStartY  = 20;    // 시작 위치
+    var nColCnt  = 4;     // 한 줄에 4개
+    
+    var nCnt = objDs.getRowCount();
+
+    for(var i=0; i < nCnt; i++)
+    {
+        // 좌표 계산
+        var nRow = Math.floor(i / nColCnt); 
+        var nCol = i % nColCnt;             
+        
+        var nLeft = nStartX + (nCol * (nCardW + nGapX));
+        var nTop  = nStartY + (nRow * (nCardH + nGapY));
+        
+        // 카드 Div 생성
+        var sDivId = "divCard" + i;
+        var objDiv = new Div();
+        objDiv.init(sDivId, nLeft, nTop, nCardW, nCardH);
+        
+        //디자인
+        objDiv.set_borderRadius("20px");  // 모서리 둥글게
+        objDiv.set_border("1px solid #e5e5e5"); // 테두리
+        objDiv.set_boxShadow("2px 2px 10px rgba(0,0,0,0.1)"); //그림자
+        objDiv.set_background("#ffffff");
+        
+        this.addChild(sDivId, objDiv);
+        objDiv.show();
+        
+
+        // 이미지 뷰어
+        var objImg = new ImageViewer();
+        // Left:10, Top:10, Width:280, Height:180
+        objImg.init("imgView", 10, 10, 280, 180); 
+        
+        objImg.set_image(objDs.getColumn(i, "PHOTO_URL"));
+        objImg.set_stretch("fit");
+        objImg.set_borderRadius("15px 15px 0px 0px"); // 이미지 윗부분도 살짝 둥글게
+        objImg.set_border("0px none"); // 이미지는 테두리 없는 게 깔끔함
+        
+        objDiv.form.addChild("imgView", objImg);
+        objImg.show();
+        
+        // 상품명
+        var objStName = new Static();
+        // 이미지 바로 밑
+        objStName.init("stName", 10, 200, 280, 35);
+        
+        objStName.set_text(objDs.getColumn(i, "TITLE"));
+        objStName.set_font("bold 14px 'Malgun Gothic'");
+        objStName.set_color("#333333");
+        objStName.set_verticalAlign("top");
+        objStName.set_wordWrap("char");
+        
+        objDiv.form.addChild("stName", objStName);
+        objStName.show();
+        
+
+        // 가격
+        var objStPrice = new Static();
+        objStPrice.init("stPrice", 10, 250, 280, 30);
+        
+        var nPrice = objDs.getColumn(i, "PRICE");
+        objStPrice.set_text(nexacro.toNumber(nPrice).toLocaleString() + "원");
+        objStPrice.set_textAlign("right");
+        objStPrice.set_font("bold 16px 'Arial'");
+        objStPrice.set_color("#ff5500"); // 주황색 포인트
+        
+        objDiv.form.addChild("stPrice", objStPrice);
+        objStPrice.show();
+		
+		//추천, 비추천 sta
+        var objGB = new Static();
+        // 이미지 바로 밑
+        objGB.init("staGB", 60, 250, 80, 40);
+        
+        objGB.set_text(objDs.getColumn(i, "LIKE_CNT")+" / "+objDs.getColumn(i, "UNLIKE_CNT"));
+        objGB.set_font("bold 14px 'Malgun Gothic'");
+        objGB.set_color("balck");
+        objGB.set_verticalAlign("top");
+        objGB.set_wordWrap("char");
+		objGB.set_background("white");
+		objGB.set_textAlign("center");         // 가로 중앙 정렬
+		objGB.set_verticalAlign("middle");
+        
+        objDiv.form.addChild("staGB", objGB);
+        objGB.show();
+		
+        // 투명 클릭 버튼으로 덮기
+        var objBtn = new Button();
+        objBtn.init("btnClick", 0, 0, null, null, 0, 0);
+        objBtn.set_background("transparent");
+        objBtn.set_border("0px none");
+        objBtn.set_borderRadius("20px"); // 버튼도 둥글게 해야 클릭 범위 일치
+        objBtn.set_cursor("pointer");    // 마우스 손가락 모양
+        objBtn.u_Row = i; 
+        
+        objBtn.addEventHandler("onclick", this.fn_divClick, this);
+        
+        objDiv.form.addChild("btnClick", objBtn);
+        objBtn.show();
+        objBtn.bringToFront();
+		
+		//=======================찜버튼==============================
+ 		var btnZzim = new Button();
+
+		// btnZzim 본인이 직접 init 
+		btnZzim.init("btnZzim", 250, 10, 40, 40); 
+
+		// 배경색 설정
+		btnZzim.set_background("white");//#f5a623
+		
+		//이벤트 추가
+		btnZzim.addEventHandler("onclick", this.fn_ZzimClick, this);
+		
+		//css추가
+		btnZzim.set_borderRadius("10px"); // 버튼도 둥글게 해야 클릭 범위 일치
+        btnZzim.set_cursor("pointer");    // 마우스 손가락 모양
+        btnZzim.u_Row = i; 
+		if(this.dsCurrentItem.getColumn(i, "IS_WISH") == "1")
+		{
+			btnZzim.set_icon("imagerc::Select.png");
+		}
+		else 
+		{
+			btnZzim.set_icon("imagerc::NoSelect.png");
+		}
+		// 카드(objDiv)의 form에 추가
+		objDiv.form.addChild("btnZzim", btnZzim);
+
+		// 화면에 보여주기
+		btnZzim.show();
+		btnZzim.bringToFront();
+		
+		//=======================추천 비추천버튼 추가==============================
+		var btnGood = new Button();
+		var btnBad = new Button();
+
+		// 추천 비추천 버튼init 
+		btnGood.init("btnZzim", 10, 250, 40, 40);
+		btnBad.init("btnZzim", 150, 250, 40, 40);
+		
+		//이벤트 추가 수정필요
+		btnGood.addEventHandler("onclick", this.fn_GoodClick, this);
+		btnBad.addEventHandler("onclick", this.fn_BadClick, this);
+		
+		// 메소드로 배경색 설정
+		
+		if(objDs.getColumn(i,"MY_LIKE_STATE")=="B") //비추 누른 상태
+		{
+			//비추 눌리고
+			btnBad.set_icon("imagerc::btnNGoods.png");
+			//추천 안눌린
+			btnGood.set_icon("imagerc::btnGoodns.png");
+			
+		}
+		else if(objDs.getColumn(i,"MY_LIKE_STATE")=="G") //추천 누른 상태
+		{
+			//추천 눌리고
+			btnGood.set_icon("imagerc::btnGoods.png");
+			//비추 안눌린
+			btnBad.set_icon("imagerc::btnNGoodns.png");
+		}
+		else //둘다 안누른 상태
+		{
+			//둘 다 안눌린
+			btnGood.set_icon("imagerc::btnGoodns.png");
+			btnBad.set_icon("imagerc::btnNGoodns.png");
+		}
+		
+		//css추가
+		btnGood.set_borderRadius("10px"); // 버튼도 둥글게 해야 클릭 범위 일치
+        btnGood.set_cursor("pointer");    // 마우스 손가락 모양
+        btnGood.u_Row = i; 
+		
+		btnBad.set_borderRadius("10px"); // 버튼도 둥글게 해야 클릭 범위 일치
+        btnBad.set_cursor("pointer");    // 마우스 손가락 모양
+        btnBad.u_Row = i; 
+		// 카드(objDiv)의 form에 추가
+		objDiv.form.addChild("btnGood", btnGood);
+		objDiv.form.addChild("btnBad", btnBad);
+
+		// 화면에 보여주기
+		btnGood.show();
+		btnGood.bringToFront();
+		
+		btnBad.show();
+		btnBad.bringToFront();
+    }
+    
+    // 페이징 버튼 위치 자동 조정
+    var nPageTop = nStartY + (2 * (nCardH + nGapY)) + 10;
+    
+    if (this.isValidObject("divPage")) {
+        this.divPage.set_top(nPageTop);
+        this.divPage.bringToFront();
+    }
+	
+	this.resetScroll();//마술
+};
+
 ]]></Script>
     <Bind>
       <BindItem id="item0" compid="Combo00" propid="value" datasetid="MAIN" columnid="CODE_ID"/>

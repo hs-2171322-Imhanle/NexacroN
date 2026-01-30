@@ -44,7 +44,7 @@ pForm.gfnOpenPopup = function (sPopupId, sUrl, oArg, sPopupCallback, oOption)
 	var bShowTitle = true;	
 	var bShowStatus = false;	
 	var sPopupType = "modal";
-	var bLayered = false;
+	var bLayered = true;
 	var nOpacity = 100;
 	var bAutoSize = false;
 	var bResizable = false;
@@ -157,7 +157,7 @@ pForm.gfnOpenPopup = function (sPopupId, sUrl, oArg, sPopupCallback, oOption)
 		newChild.set_showstatusbar(bShowStatus);    //statusbar는 안보임
 		newChild.set_openalign(sOpenalign);
 		newChild.set_layered(bLayered);
-		newChild.set_overlaycolor("RGBA(0, 0, 0, 0.2)");
+		newChild.set_overlaycolor("RGBA(0, 0, 0, 0.2)"); // 뒤에 배경 화면
 		newChild.set_titlebarheight(30);
 
 

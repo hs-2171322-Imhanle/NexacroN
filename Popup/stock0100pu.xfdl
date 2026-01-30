@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="stock0100pu" width="450" height="470" titletext="addGroup" background="transParent" border="0px none">
+    <Layouts>
+      <Layout height="470" width="450">
+        <Div id="divPopup" taborder="0" left="30" top="30" width="340" height="405" cssclass="div_popup">
+          <Layouts>
+            <Layout>
+              <Static id="Static00" taborder="0" text="그룹 추가" left="117" top="53" width="120" height="60"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+  </Form>
+</FDL>
