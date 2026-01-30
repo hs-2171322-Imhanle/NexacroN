@@ -1,14 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="stock0030" width="1250" height="728" titletext="dashboard" background="#FFFBF7">
+  <Form id="stock0030" width="1250" height="728" titletext="dashboard" background="#FFFBF7" onload="stock0030_onload">
     <Layouts>
       <Layout height="728" width="1250">
         <Static id="Static00" taborder="0" text="종목" left="40" top="32" width="50" height="30" font="bold 16pt/normal &quot;Malgun Gothic&quot;" color="black"/>
-        <Button id="btnAll" taborder="1" text="전체" left="110" top="30" width="60" height="35" cssclass="btn_group"/>
-        <Button id="btnAdd" taborder="2" text="+" left="180" top="30" width="40" height="35" cssclass="btn_group" font="bold 11pt/normal &quot;Arial&quot;" border="1px solid #888888" onclick="btnAdd_onclick"/>
+        <Button id="btnAll" taborder="1" text="전체" left="120" top="30" width="60" height="35" cssclass="btn_group"/>
+        <Button id="btnAdd" taborder="2" text="+" left="120" top="103" width="40" height="35" cssclass="btn_group" font="bold 11pt/normal &quot;Arial&quot;" onclick="btnAdd_onclick"/>
+        <Button id="btnDeleteStu" taborder="3" text="전체 종목" left="1020" top="31" width="80" height="33" cssclass="btn_work_select" onclick="btnDeleteStu_onclick"/>
+        <Button id="btnDeleteStu00" taborder="4" text="종목 생성" left="919" top="31" width="80" height="33" cssclass="btn_work_select" onclick="btnDeleteStu_onclick" background="white" color="black"/>
       </Layout>
     </Layouts>
     <Script type="xscript5.1"><![CDATA[
+this.stock0030_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.groupLoad();
+};
 this.btnAdd_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
 	var sPopupId = "popupDept"
@@ -18,6 +24,90 @@ this.btnAdd_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 	var sPopupCallBack = "fn_callbackPopup";
 	this.gfnOpenPopup( sPopupId,sUrl,oArg,sPopupCallBack,oOption);
 };
+
+this.groupLoad = function ()
+{
+	this.ds_group.clearData();
+	
+ 	var strSvcId    = "search";
+	var strSvcUrl   = "stock/loadGroup.do";
+	var inData      = "";
+	var outData     = "ds_group=ds_group";
+	var sParam      = "USER_ID=1";
+	var callBackFnc = "fnCallback";
+	var isAsync   	= true;
+	
+	this.gfnTransaction(strSvcId , 		// transaction을 구분하기 위한 svc id값
+						strSvcUrl , 	// trabsaction을 요청할 주소
+						inData , 		// 입력값으로 보낼 dataset id , a=b형태로 실제이름과 입력이름을 매칭
+						outData , 		// 처리결과값으로 받을 dataset id, a=b형태로 실제이름과 입력이름을 매칭
+						sParam, 		// 입력값으로 보낼 arguments, strFormData="20120607"
+						callBackFnc, 	// transaction의 결과를 받을 Function 이름
+						isAsync); 		// 비동기통신 여부 [생략가능]
+};
+this.fnCallback = function ()
+{
+	this.drawGroup();
+};
+this.drawGroup = function ()
+{	
+	let cnt = this.ds_group.getRowCount();
+	// 디자인
+	var nCardW   = 60
+    var nCardH   = 35;   // 카드 세로
+    var nGapX    = 20;    // 가로 간격
+	var nGapY    = 25;    // 세로 간격
+    var nStartX  = 200;   // 시작 위치
+    var nStartY  = 30;    // 시작 위치
+	var nColCnt  = 5;     // 한 줄에 2개
+	
+	var CurrentX = 0;
+	var bCardW = 0; //이전 카드 width 기록
+	for(let i=0; i<cnt; i++){
+		
+		let dsGet = this.ds_group.getColumn(i, "GROUP_NAME");
+		let dsLength = nexacro.getTextSize(dsGet, "bold 10pt Arial");
+		nCardW = (dsLength.nx < 60) ? 60 : (dsLength.nx + 34);
+		
+		if(i!=0){
+			nStartX = nStartX +20;
+		}
+		
+		//버튼 생성
+		var btn = new Button();
+        var btnId = "btnGroup" + i;
+		
+        btn.cssclass = "btn_group";
+		btn.text= dsGet;
+        
+		btn.init(btnId, nStartX, nStartY, nCardW, nCardH);
+		nStartX +=nCardW;
+		
+		this.addChild(btnId, btn);
+        btn.show();
+	}
+};
+
 ]]></Script>
+    <Objects>
+      <Dataset id="ds_stockInfo">
+        <ColumnInfo>
+          <Column id="TITLE" type="STRING" size="256"/>
+          <Column id="IMAGE_FILE" type="STRING" size="256"/>
+          <Column id="NEWS" type="STRING" size="256"/>
+          <Column id="SUBTITLE" type="STRING" size="256"/>
+          <Column id="NEW_VALUE" type="INT" size="256"/>
+          <Column id="PERCENT" type="STRING" size="256"/>
+          <Column id="GROUP_CODE" type="INT" size="256"/>
+          <Column id="UNIT_CODE" type="INT" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_group">
+        <ColumnInfo>
+          <Column id="GROUP_NAME" type="STRING" size="256"/>
+          <Column id="GROUP_ID" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
   </Form>
 </FDL>

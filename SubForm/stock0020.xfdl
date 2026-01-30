@@ -103,10 +103,6 @@ this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
 
 this.fnSearch = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
-	
-	// 조회조건 설정
-	//데이터를 넘길 경우 데이터셋에 추가해서 넘기는 방식과
-	//아규먼트를 추가해서 넘기는 방식 모두 사용가능
 	this.dsSearch.clearData();
 	var nRow = this.dsSearch.addRow();
 	

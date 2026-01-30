@@ -161,18 +161,6 @@ this.divBasic_btnFolder_onclick = function(obj:nexacro.Button,e:nexacro.ClickEve
 };
 ]]></Script>
     <Objects>
-      <Dataset id="ds_group">
-        <ColumnInfo>
-          <Column id="ID" type="INT" size="256"/>
-          <Column id="GROUP" type="STRING" size="256"/>
-        </ColumnInfo>
-        <Rows>
-          <Row>
-            <Col id="ID">1</Col>
-            <Col id="GROUP">전체</Col>
-          </Row>
-        </Rows>
-      </Dataset>
       <Dataset id="ds_unit">
         <ColumnInfo>
           <Column id="ID" type="INT" size="256"/>

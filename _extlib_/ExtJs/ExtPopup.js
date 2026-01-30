@@ -159,13 +159,10 @@ pForm.gfnOpenPopup = function (sPopupId, sUrl, oArg, sPopupCallback, oOption)
 		newChild.set_layered(bLayered);
 		newChild.set_overlaycolor("RGBA(0, 0, 0, 0.2)"); // 뒤에 배경 화면
 		newChild.set_titlebarheight(30);
-
-
+		newChild.set_border("0px none transparent");
+		newChild.set_background("transparent");
 		//newChild.titlebar.closebutton.set_visible(false);	//close버튼 visible false 처리
-		//newChild.style.set_border("2 solid #24322b");
-		//newChild.style.set_bordertype("round 10 10");
-		//newChild.style.set_background("white");    
-		//newChild.style.set_opacity(nOpacity);
+		
 			
 		if (sPopupType == "modalsync")
 		{			

@@ -3343,7 +3343,77 @@
 {
 	background : white;
 	border-radius : 16px;
-	box-shadow : 20px 20px 20px 0px #d0d0d0;
+	box-shadow : 20px 20px 20px 0px #646464;
+	
+}
+.Button.btn_work_select[status=mouseover],.Button.btn_work_select[status=focused]
+{
+	-nexa-border : 1px solid #efefef;
+	background : #FFA443;
+	font : 9pt "Arial";
+	color : white;
+	border-radius : 5px;
+	box-shadow : 0px 2px 4px 0px #d3d3d3;
+}
+
+.Button.btn_group[status=mouseover],.Button.btn_group[status=focused]
+{	
+	
+	background : #5b5b5b;
+	color : white;
+}
+.Static.sta_puHead
+{
+	color : black;
+	font : bold 17pt "Malgun Gothic";
+}
+.Static.sta_puExplain
+{
+	color : #828282;
+	font :  12pt "Malgun Gothic";
+}
+.Static.sta_puSub
+{
+	color : black;
+	font :  bold 12pt "Malgun Gothic";	
+}
+.Edit.edit_pu,
+.Edit.edit_pu[status=mouseover],
+.Edit.edit_pu[status=focused]
+{
+	-nexa-border : 1px solid black;
+	border-radius : 8px;
+}
+.Button.btn_puSave
+{
+	background : gray;
+	border-radius : 8px;
+	color : white;
+	font : bold 12pt "Malgun Gothic";
+	
+}
+.Button.btn_puSave[status=mouseover],
+.Button.btn_puSave[status=focused],
+.Button.btn_puSave[userstatus=pushed],
+.Button.btn_puSave[userstatus=selected]
+{
+	background : black;
+}
+.Button.btn_puClose
+{
+	background : url('theme://images/btn_TITLE_CloseP.png') no-repeat center center #e5e5e5;
+	border-radius : 100px;
+	-nexa-border : 0px none;
+	
+}
+.Button.btn_puClose[status=mouseover],
+.Button.btn_puClose[status=focused],
+.Button.btn_puClose[userstatus=pushed],
+.Button.btn_puClose[userstatus=selected]
+{
+	-nexa-border : 1px solid #efefef;
+	background : url('theme://images/btn_TITLE_CloseP.png') no-repeat center center #e5e5e5;
+	border-radius : 100px;
 	
 }
 ]]></CSSData>
