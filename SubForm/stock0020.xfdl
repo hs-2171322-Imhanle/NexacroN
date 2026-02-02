@@ -174,7 +174,7 @@ this.btnSearch_onlbuttonup = function(obj:nexacro.Button,e:nexacro.MouseEventInf
 
 this.btnDeleteStu_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
-	let deleteRow = this.ds_student.extractRows("CHK_DEL=='1'")
+	let deleteRow = this.ds_student.extractRows("CHK_DEL=='1'");
 	this.ds_student.deleteMultiRows(deleteRow);
 	
 	this.saveTransaction();

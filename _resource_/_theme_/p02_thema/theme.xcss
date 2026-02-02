@@ -3416,6 +3416,29 @@
 	border-radius : 100px;
 	
 }
+.ListView.listV_list
+{
+	-nexa-border : ;
+	-nexa-edge : ;
+	-nexa-rtl-background-image : ;
+	background : ;
+	border-radius : ;
+	color : ;
+	cursor : ;
+	font : ;
+	letter-spacing : ;
+	opacity : ;
+	word-spacing : ;
+}
+.ListView.listV_list .body
+{
+}
+.ListView.listV_list .detail
+{
+}
+.ListView.listV_list .body .cell
+{
+}
 ]]></CSSData>
   <CSSData type="mobile_large"><![CDATA[]]></CSSData>
   <CSSData type="mobile_small"><![CDATA[]]></CSSData>
