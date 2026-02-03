@@ -15,32 +15,43 @@
             <Tabpage id="Tabpage2" text="주식형 종목"/>
           </Tabpages>
         </Tab>
-        <Div id="divChart" taborder="2" left="tabStock:60" top="70" width="780" bottom="30" background="white" border="1px solid #e9e9e9" url="SubForm::stock0043.xfdl" text=""/>
+        <Div id="divChart" taborder="2" left="tabStock:60" top="70" width="780" bottom="30" background="white" border="1px solid #e9e9e9" url="SubForm::stock0043.xfdl" text="">
+          <Layouts>
+            <Layout/>
+          </Layouts>
+        </Div>
         <Button id="btnSave" taborder="4" text="저장" left="1250" top="30" width="80" height="28" onclick="btnSave_onclick" cssclass="btn_work_select"/>
       </Layout>
     </Layouts>
     <Script type="xscript5.1"><![CDATA[this.stock0040_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
 {
- 	this.ds_info.clearData();
- 	this.ds_info.addRow();
+		this.ds_stock.clearData(); 
+		this.ds_stock.addRow();
+		this.ds_news.clearData();
+		this.ds_news.addRow();	
 };
-
-
 this.btnSave_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {		
-		var strSvcId    = "save";
-		var strSvcUrl   = "stock/saveBasic.do";
-		var inData      = "ds_info=ds_info:U";
-		var outData     = "";
-		var sParam      = "";
-		var callBackFnc = "fnCallback";
+		let cnt = this.ds_news.findRow("CONTENT", "");
+		if(cnt == "-1"){
+			this.ds_news.setColumn(0,"NEWS_ORDER", 1);
+		}
 		
 		if(this.tabStock.tabindex == 0){
-			sParam = "TYPE=RECORD"
+			this.ds_stock.setColumn(0,"TYPE","RECORD");
 		}
 		else{
-			sParam = "TYPE=STOCK"
+			this.ds_stock.setColumn(0,"TYPE","STOCK");
 		}
+		
+		var strSvcId    = "save";
+		var strSvcUrl   = "stock/saveStock.do";
+		var inData      = "ds_stock=ds_stock:U ds_news=ds_news:U";
+		var outData     = "";
+		var sParam      = "USER_ID=1";
+		var callBackFnc = "fnCallback";
+		
+		
 				
 		this.gfnTransaction(strSvcId ,
 							strSvcUrl ,
@@ -48,13 +59,11 @@ this.btnSave_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 							outData ,
 							sParam,
 							callBackFnc);
-							
-
 };
 
 this.fnCallback = function (svcID, errorCode, errorMsg)
 {
-	//alert("성공" + errorMsg); 
+
 };	
 
 
@@ -82,6 +91,25 @@ this.fnCallback = function (svcID, errorCode, errorMsg)
         <Rows>
           <Row/>
         </Rows>
+      </Dataset>
+      <Dataset id="ds_stock">
+        <ColumnInfo>
+          <Column id="TITLE" type="STRING" size="256"/>
+          <Column id="SUBTITLE" type="STRING" size="256"/>
+          <Column id="GROUP_ID" type="INT" size="256"/>
+          <Column id="IMAGE_FILE" type="STRING" size="256"/>
+          <Column id="DAY_SEQ" type="DATE" size="256"/>
+          <Column id="UNIT_NAME" type="STRING" size="256"/>
+          <Column id="START_VALUE" type="BIGDECIMAL" size="256"/>
+          <Column id="RATE" type="BIGDECIMAL" size="256"/>
+          <Column id="TYPE" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_news">
+        <ColumnInfo>
+          <Column id="NEWS_ORDER" type="INT" size="256"/>
+          <Column id="CONTENT" type="STRING" size="256"/>
+        </ColumnInfo>
       </Dataset>
     </Objects>
   </Form>

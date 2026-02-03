@@ -97,8 +97,6 @@ this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
 	this.fvPageCount = 10;							 //실제표출페이지갯수
 	
 	this.fnSearch(); //조회함수호출
-	this.gridCheckBox();
-	
  };
 
 this.fnSearch = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)

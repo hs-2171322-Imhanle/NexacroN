@@ -8,27 +8,15 @@
         <Button id="btnAdd" taborder="2" text="+" left="200" top="30" width="40" height="35" cssclass="btn_group" font="bold 11pt/normal &quot;Arial&quot;" onclick="btnAdd_onclick"/>
         <Button id="btnDeleteStu" taborder="3" text="전체 종목" top="31" width="80" height="33" cssclass="btn_work_select" onclick="btnDeleteStu_onclick" right="110"/>
         <Button id="btnDeleteStu00" taborder="4" text="종목 생성" top="31" width="80" height="33" cssclass="btn_work_select" onclick="btnDeleteStu_onclick" background="white" color="black" right="211"/>
-        <ListView id="ListView00" taborder="5" left="40" top="90" width="1100" height="190" binddataset="ds_stockInfo" background="transParent" scrolltype="none" scrollbarsize="0" border="0px none">
+        <ListView id="ListView00_00" taborder="5" left="40" top="105" width="1100" height="190" binddataset="ds_stock" scrolltype="none" border="0px none" scrollbarsize="0">
           <Formats>
             <Format id="default">
-              <Band id="body" width="23%" height="190" expandbartype="true" borderRadius="10px">
-                <Cell id="Cell00" left="100" top="26" width="120" height="24" text="TITLE"/>
-                <Cell id="Cell01" left="135" top="256" width="180" height="24" text="bind:TITLE"/>
-                <Cell id="Cell02" left="325" top="256" width="120" height="24" text="IMAGE_FILE"/>
-                <Cell id="Cell03" left="450" top="258" width="180" height="24" text="bind:IMAGE_FILE"/>
-                <Cell id="Cell04" left="640" top="256" width="120" height="24" text="NEWS"/>
-                <Cell id="Cell05" left="765" top="256" width="180" height="24" text="bind:NEWS"/>
-                <Cell id="Cell06" left="10" top="140" width="80" height="22" text="SUBTITLE"/>
-                <Cell id="Cell07" left="135" top="285" width="180" height="24" text="bind:SUBTITLE"/>
-                <Cell id="Cell08" left="325" top="285" width="120" height="24" text="NEW_VALUE"/>
-                <Cell id="Cell09" left="450" top="285" width="180" height="24" text="bind:NEW_VALUE"/>
-                <Cell id="Cell10" left="640" top="285" width="120" height="24" text="PERCENT"/>
-                <Cell id="Cell11" left="765" top="285" width="180" height="24" text="bind:PERCENT"/>
-                <Cell id="Cell12" left="10" top="314" width="120" height="24" text="GROUP_CODE"/>
-                <Cell id="Cell13" left="135" top="314" width="180" height="24" text="bind:GROUP_CODE"/>
-                <Cell id="Cell14" left="325" top="314" width="120" height="24" text="UNIT_CODE"/>
-                <Cell id="Cell15" left="450" top="314" width="180" height="24" text="bind:UNIT_CODE"/>
-                <Cell id="Cell16" left="10" top="15" width="83" height="90" displaytype="imagecontrol" color="transparent" border="0px none" background="pink" borderRadius="10px" text="bind:IMAGE_FILE"/>
+              <Band id="body" width="250" height="190" background="pink">
+                <Cell id="Cell01" left="135" top="30" width="105" height="22" text="bind:TITLE"/>
+                <Cell id="Cell03" left="22" top="140" width="50" height="22" text="bind:SUBTITLE"/>
+                <Cell id="Cell11" left="142" top="140" width="50" height="24" text="bind:RATE"/>
+                <Cell id="Cell13" left="82" top="140" width="50" height="24" text="bind:CURRENT_VALUE"/>
+                <Cell id="Cell14" left="22" top="25" width="95" height="93" displaytype="imagecontrol" text="bind:IMAGE_FILE" background="pink"/>
               </Band>
             </Format>
           </Formats>
@@ -39,6 +27,7 @@
 this.stock0030_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
 {
 	this.groupLoad();
+	this.fnPageInit();
 };
 //팝업 생성
 this.btnAdd_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
@@ -54,13 +43,12 @@ this.fn_callbackPopup = function(id, rtn)
 { 
 	this.groupLoad();	
 }
-
 //dataset load
 this.groupLoad = function ()
 {
 	this.ds_group.clearData();
 	
- 	var strSvcId    = "search";
+ 	var strSvcId    = "searchGroup";
 	var strSvcUrl   = "stock/loadGroup.do";
 	var inData      = "";
 	var outData     = "ds_group=ds_group";
@@ -75,11 +63,51 @@ this.groupLoad = function ()
 						sParam, 		// 입력값으로 보낼 arguments, strFormData="20120607"
 						callBackFnc, 	// transaction의 결과를 받을 Function 이름
 						isAsync); 		// 비동기통신 여부 [생략가능]
-};
-this.fnCallback = function ()
-{
-	this.drawGroup();
-};
+}
+ this.fnPageInit = function ()
+ {
+ 	//pagin info init setting
+	this.fvRecords=4;								 //목록갯수
+	this.fvPage=0;	 								 //페이지번호
+	this.fvRecordsOffset=0;							 //시작rownum
+	
+	this.stockLoad();
+ };
+ 
+this.stockLoad = function(){
+	
+	this.ds_search.clearData();
+	var nRow = this.ds_search.addRow();
+	
+	this.ds_search.setColumn(nRow, "records", this.fvRecords);
+	this.ds_search.setColumn(nRow, "recordsOffset", this.fvRecordsOffset); 
+
+	
+ 	var strSvcId    = "searchStock";
+	var strSvcUrl   = "stock/loadStock.do";
+	var inData      = "ds_search=ds_search";
+	var outData     = "ds_stock=ds_stock ds_pagingInfo=ds_pagingInfo";
+	var sParam      = "USER_ID=1";
+	var callBackFnc = "fnCallback";
+	var isAsync   	= true;
+	
+	this.gfnTransaction(strSvcId , 		// transaction을 구분하기 위한 svc id값
+						strSvcUrl , 	// trabsaction을 요청할 주소
+						inData , 		// 입력값으로 보낼 dataset id , a=b형태로 실제이름과 입력이름을 매칭
+						outData , 		// 처리결과값으로 받을 dataset id, a=b형태로 실제이름과 입력이름을 매칭
+						sParam, 		// 입력값으로 보낼 arguments, strFormData="20120607"
+						callBackFnc, 	// transaction의 결과를 받을 Function 이름
+						isAsync); 		// 비동기통신 여부 [생략가능]
+}
+
+this.fnCallback = function (svcID, errorCode, errorMsg)
+{	
+	if(svcID == "searchGroup"){
+		this.drawGroup();
+	}
+	else if(svcID == "searchStock"){
+	}
+};	
 
 this.drawGroup = function ()
 {	let cnt = this.ds_group.getRowCount();
@@ -138,56 +166,42 @@ this.drawGroup = function ()
 
 ]]></Script>
     <Objects>
-      <Dataset id="ds_stockInfo">
-        <ColumnInfo>
-          <Column id="TITLE" type="STRING" size="256"/>
-          <Column id="IMAGE_FILE" type="STRING" size="256"/>
-          <Column id="NEWS" type="STRING" size="256"/>
-          <Column id="SUBTITLE" type="STRING" size="256"/>
-          <Column id="NEW_VALUE" type="INT" size="256"/>
-          <Column id="PERCENT" type="STRING" size="256"/>
-          <Column id="GROUP_CODE" type="INT" size="256"/>
-          <Column id="UNIT_CODE" type="INT" size="256"/>
-        </ColumnInfo>
-        <Rows>
-          <Row>
-            <Col id="TITLE">삼성주식</Col>
-            <Col id="IMAGE_FILE">아무거나</Col>
-            <Col id="SUBTITLE">기록형</Col>
-            <Col id="NEW_VALUE">20</Col>
-          </Row>
-          <Row/>
-          <Row/>
-          <Row/>
-        </Rows>
-      </Dataset>
       <Dataset id="ds_group">
         <ColumnInfo>
-          <Column id="GROUP_NAME" type="STRING" size="256"/>
           <Column id="GROUP_ID" type="STRING" size="256"/>
+          <Column id="GROUP_NAME" type="STRING" size="256"/>
         </ColumnInfo>
       </Dataset>
-      <Dataset id="Dataset00">
+      <Dataset id="ds_stock">
         <ColumnInfo>
           <Column id="TITLE" type="STRING" size="256"/>
-          <Column id="IMAGE_FILE" type="STRING" size="256"/>
-          <Column id="NEWS" type="STRING" size="256"/>
           <Column id="SUBTITLE" type="STRING" size="256"/>
-          <Column id="NEW_VALUE" type="INT" size="256"/>
-          <Column id="GROUP_CODE" type="INT" size="256"/>
-          <Column id="UNIT_CODE" type="INT" size="256"/>
+          <Column id="GROUP_ID" type="INT" size="256"/>
+          <Column id="IMAGE_FILE" type="STRING" size="256"/>
+          <Column id="UNIT_NAME" type="STRING" size="256"/>
+          <Column id="RATE" type="BIGDECIMAL" size="256"/>
+          <Column id="CURRENT_VALUE" type="BIGDECIMAL" size="256"/>
         </ColumnInfo>
-        <Rows>
-          <Row>
-            <Col id="TITLE">주식</Col>
-          </Row>
-          <Row>
-            <Col id="TITLE">안ㄴㅇ</Col>
-          </Row>
-          <Row/>
-          <Row/>
-          <Row/>
-        </Rows>
+      </Dataset>
+      <Dataset id="ds_news">
+        <ColumnInfo>
+          <Column id="NEWS_ORDER" type="INT" size="256"/>
+          <Column id="CONTENT" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_value"/>
+      <Dataset id="ds_search">
+        <ColumnInfo>
+          <Column id="records" type="INT" size="256"/>
+          <Column id="page" type="INT" size="256"/>
+          <Column id="recordsOffset" type="INT" size="256"/>
+          <Column id="pageCount" type="INT" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_pagingInfo">
+        <ColumnInfo>
+          <Column id="totalCount" type="STRING" size="256"/>
+        </ColumnInfo>
       </Dataset>
     </Objects>
   </Form>

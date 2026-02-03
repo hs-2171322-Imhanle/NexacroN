@@ -9,7 +9,7 @@
             <Layout>
               <Edit id="editTitle" taborder="0" left="20" top="44" width="222" height="37" cssclass="edit_orange" displaynulltext="ex) 삼성전자" oninput="divBasic_editTitle_oninput" onkeyup="divBasic_editTitle_onkeyup" onchanged="divBasic_editTitle_onchanged"/>
               <Static id="Static00" taborder="1" text="종목 이름" left="20" top="20" width="56" height="21" cssclass="sta_acordian_explain"/>
-              <Combo id="Combo00" taborder="2" left="20" top="266" width="222" height="40" onitemchanged="divBasic_Combo00_onitemchanged" cssclass="cbo_orange" innerdataset="ds_group" codecolumn="ID" datacolumn="GROUP" value="" index="-1" displaynulltext="전체"/>
+              <Combo id="cboGroup" taborder="2" left="20" top="266" width="222" height="40" onitemchanged="divBasic_Combo00_onitemchanged" cssclass="cbo_orange" innerdataset="ds_group" codecolumn="GROUP_ID" datacolumn="GROUP_NAME" value="" index="-1"/>
               <Static id="Static00_00" taborder="3" text="대상 학급/그룹" left="20" top="241" width="86" height="22" cssclass="sta_acordian_explain"/>
               <Static id="Static00_00_00" taborder="4" text="카드뉴스" left="20" top="326" width="86" height="22" cssclass="sta_acordian_explain"/>
               <Button id="btnImg" taborder="5" text="이미지 업로드" left="20" top="182" width="130" height="39" cssclass="btn_header_login" font="10pt/normal &quot;Arial&quot;" borderRadius="5px" onclick="divBasic_btnImg_onclick"/>
@@ -36,7 +36,7 @@
               <Static id="Static00_00_01" taborder="4" text="시작 값" left="121" top="97" width="43" height="22" cssclass="sta_acordian_explain" onclick="divBasic2_Static00_00_onclick"/>
               <Edit id="Edit00_01" taborder="5" left="20" top="204" width="222" height="37" cssclass="edit_orange"/>
               <Static id="Static00_00_02" taborder="6" text="X축 날짜" left="20" top="20" width="52" height="22" cssclass="sta_acordian_explain" onclick="divBasic2_Static00_00_onclick"/>
-              <Div id="divCal" taborder="7" left="20" top="45" width="222" height="32" url="Cmm::CmmCalendarFromTo_v2.xfdl"/>
+              <DateField id="DateField07" taborder="7" left="20" top="43" width="222" height="37" displayformat="&quot;MM-dd&quot;" format="&quot;MM-dd&quot;"/>
             </Layout>
           </Layouts>
         </Div>
@@ -52,6 +52,41 @@ this.stock0031_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
 	
 	this.btnAcor1_onclick(this.btnAcor1);
 	this.btnAcor2_onclick(this.btnAcor2);
+	
+	this.groupLoad(); //dataset load
+};
+
+//dataset load
+this.groupLoad = function ()
+{
+	this.ds_group.clearData();
+	
+ 	var strSvcId    = "search";
+	var strSvcUrl   = "stock/loadGroup.do";
+	var inData      = "";
+	var outData     = "ds_group=ds_group";
+	var sParam      = "USER_ID=1";
+	var callBackFnc = "fnCallback";
+	var isAsync   	= true;
+	
+	this.gfnTransaction(strSvcId , 		// transaction을 구분하기 위한 svc id값
+						strSvcUrl , 	// trabsaction을 요청할 주소
+						inData , 		// 입력값으로 보낼 dataset id , a=b형태로 실제이름과 입력이름을 매칭
+						outData , 		// 처리결과값으로 받을 dataset id, a=b형태로 실제이름과 입력이름을 매칭
+						sParam, 		// 입력값으로 보낼 arguments, strFormData="20120607"
+						callBackFnc, 	// transaction의 결과를 받을 Function 이름
+						isAsync); 		// 비동기통신 여부 [생략가능]
+};
+this.fnCallback = function(svcId, errCode, errMsg)
+{	
+	//ds_group add '전체'
+	if(svcId == "search"){	
+		this.ds_group.insertRow(0);
+        this.ds_group.setColumn(0, "GROUP_ID", 0);
+        this.ds_group.setColumn(0, "GROUP_NAME", "전체");
+      
+		this.divBasic.form.cboGroup.index = 0;
+	}
 };
 
 this.btnAcor1_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
@@ -84,7 +119,6 @@ this.btnAcor2_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 //Chart 관련
 this.divBasic_editTitle_onkeyup = function(obj:nexacro.Edit,e:nexacro.KeyEventInfo)
 {
-	
 	if(e.keycode == "13"){
  		this.parent.parent.parent.ds_info.setColumn(0, "TITLE", this.divBasic.form.editTitle.text);
 		this.parent.parent.parent.divChart.form.fnCreateChart();	
@@ -150,10 +184,7 @@ this.FileUpTransfer_onsuccess = function(obj:nexacro.FileUpTransfer,e:nexacro.Fi
 	}
 	 
 };
-this.fnCallback = function()
-{
-	
-};
+
 
 this.divBasic_btnFolder_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
@@ -184,14 +215,22 @@ this.divBasic_btnFolder_onclick = function(obj:nexacro.Button,e:nexacro.ClickEve
       <FileDialog id="FileDialog" onclose="FileDialog_onclose"/>
       <FileDownTransfer id="FileDownTransfer"/>
       <FileUpTransfer id="FileUpTransfer" onsuccess="FileUpTransfer_onsuccess"/>
+      <Dataset id="ds_group">
+        <ColumnInfo>
+          <Column id="GROUP_ID" type="STRING" size="256"/>
+          <Column id="GROUP_NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
     </Objects>
     <Bind>
-      <BindItem id="item0" compid="divBasic.form.Combo00" propid="value" datasetid="ds_info" columnid="GROUP_CODE"/>
-      <BindItem id="item1" compid="divBasic.form.editTitle" propid="value" datasetid="ds_info" columnid="TITLE"/>
-      <BindItem id="item2" compid="divBasic.form.editSub" propid="value" datasetid="ds_info" columnid="SUBTITLE"/>
-      <BindItem id="item4" compid="divBasic2.form.editStart" propid="value" datasetid="ds_info" columnid="START_VALUE"/>
-      <BindItem id="item5" compid="divBasic2.form.Edit00_01" propid="value" datasetid="ds_info" columnid="RATE"/>
-      <BindItem id="item6" compid="divBasic2.form.Combo00" propid="value" datasetid="ds_info" columnid="UNIT_CODE"/>
+      <BindItem id="item0" compid="divBasic.form.editTitle" propid="value" datasetid="ds_stock" columnid="TITLE"/>
+      <BindItem id="item1" compid="divBasic.form.editSub" propid="value" datasetid="ds_stock" columnid="SUBTITLE"/>
+      <BindItem id="item2" compid="divBasic.form.cboGroup" propid="value" datasetid="ds_stock" columnid="GROUP_ID"/>
+      <BindItem id="item3" compid="divBasic.form.TextArea00" propid="value" datasetid="ds_news" columnid="CONTENT"/>
+      <BindItem id="item5" compid="divBasic2.form.editStart" propid="value" datasetid="ds_stock" columnid="START_VALUE"/>
+      <BindItem id="item6" compid="divBasic2.form.Edit00_01" propid="value" datasetid="ds_stock" columnid="RATE"/>
+      <BindItem id="item7" compid="divBasic2.form.Combo00" propid="value" datasetid="ds_stock" columnid="UNIT_NAME"/>
+      <BindItem id="item4" compid="divBasic2.form.DateField07" propid="value" datasetid="ds_stock" columnid="DAY_SEQ"/>
     </Bind>
   </Form>
 </FDL>

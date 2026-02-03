@@ -56,7 +56,7 @@ this.fnInitPage = function()
 /**
  * @description  nCreatePage page갯수에 맞게 버튼 생성
 */
-this.fnCreatePage = function(sFnCallback, nTotalCount, nRecords, nPage, nPageCount)
+this.fnCreatePage = function(sFnCallback, nTotalCount, nRecords, nPage)
 {
 	this.fvRecords = nRecords;		// 목록수
 	this.fvFnCallback = sFnCallback;	// 조회함수
