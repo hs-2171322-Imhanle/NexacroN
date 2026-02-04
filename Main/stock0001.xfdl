@@ -23,14 +23,14 @@ this.btnLogin_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 this.btnStudent_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {	
 	this.parent.parent.divLeft.width = 0; 
-	this.parent.parent.divMain.left = "divLeft: -1";
+	this.parent.parent.divMain.left = "divLeft: -2";
 	this.parent.parent.divMain.url = "SubForm::stock0020.xfdl";
 };
 
 this.btnStock_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
 	this.parent.parent.divLeft.width = 285; 
-	this.parent.parent.divMain.left = "divLeft: -1";
+	this.parent.parent.divMain.left = "divLeft: -2";
 	this.parent.parent.divMain.url = "SubForm::stock0030.xfdl";
 	this.parent.parent.divLeft.url = "SubForm::stock0010.xfdl";
 };

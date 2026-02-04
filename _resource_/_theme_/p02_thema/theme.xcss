@@ -3439,6 +3439,58 @@
 .ListView.listV_list .body .cell
 {
 }
+.Div.div_box
+{
+	-nexa-border : 1px solid #f8f8f8;
+	background : white;
+	border-radius : 10px;
+	box-shadow : 2px 2px 4px 0px #e0e0e0;
+}
+.Button.btn_transParent
+{
+	-nexa-border : 0px none;
+	background : transParent; 
+	
+}
+.Div.div_groupBox
+{
+	-nexa-border : 1px solid #f8f8f8;
+	background : white;
+	border-radius : 10px;
+	box-shadow : 2px 2px 4px 0px #e0e0e0;
+}
+.Button.btn_transParent[status=mouseover],.Button.btn_transParent[status=focused]
+{
+	-nexa-border : 2px solid #FFA443;
+	background : transParent;
+	border-radius : 10px;
+	box-shadow : 2px 2px 4px 0px #e0e0e0;
+}
+.Button.btn_addValue
+{
+	background : #FFD1A0;
+	border-radius : 15px 3px 3px 15px;
+	color : white;
+	-nexa-border : 0px none;
+	-nexa-icon : url('theme://NewFolder/retouch.png');
+	-nexa-icon-position : left;
+	font : bold 10pt "Arial";
+	-nexa-text-align : left;
+	-nexa-padding : 0px 0px 0px 20px;
+	
+}
+.Button.btn_addValue[status=mouseover],.Button.btn_addValue[status=focused]
+{
+	background : #FFA443;
+	border-radius : 15px 3px 3px 15px;
+	color : white;
+	-nexa-border : 0px none;
+	-nexa-icon : url('theme://NewFolder/retouch.png');
+	-nexa-icon-position : left;
+	font : bold 10pt "Arial";
+	-nexa-text-align : left;
+	-nexa-padding : 0px 0px 0px 20px;
+}
 ]]></CSSData>
   <CSSData type="mobile_large"><![CDATA[]]></CSSData>
   <CSSData type="mobile_small"><![CDATA[]]></CSSData>

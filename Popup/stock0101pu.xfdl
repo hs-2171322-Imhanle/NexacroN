@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="stock0101pu" width="590" height="590" titletext="addValue" background="transParent" border="0px none" onload="stock0101pu_onload">
+    <Layouts>
+      <Layout height="590" width="590">
+        <Div id="divPopup" taborder="0" left="30" top="30" width="500" height="500" cssclass="div_popup">
+          <Layouts>
+            <Layout>
+              <Static id="Static00" taborder="0" text="주식 종목 이름" left="173" top="30" width="167" height="30" cssclass="sta_puHead" onclick="divPopup_Static00_onclick"/>
+              <Static id="Static01" taborder="1" text="새로운 데이터 값 입력" left="170" top="70" width="170" height="20" cssclass="sta_puExplain" onclick="divPopup_Static01_onclick"/>
+              <Static id="Static02" taborder="2" text="그룹 삭제" left="38" top="129" width="85" height="21" cssclass="sta_puSub"/>
+              <Static id="Static02_00" taborder="3" text="그룹 추가" left="38" top="319" width="85" height="21" cssclass="sta_puSub"/>
+              <Static id="Static01_00" taborder="4" text="해당 그룹의 주식 종목도 삭제됩니다." left="125" top="130" width="225" height="20" cssclass="sta_puExplain" font="10pt/normal &quot;Malgun Gothic&quot;"/>
+              <Edit id="editGroup" taborder="5" left="38" top="352" width="425" height="52" cssclass="edit_pu" displaynulltext="그룹명을 작성해주세요" oninput="divPopup_editGroup_oninput" onkillfocus="divPopup_editGroup_onkillfocus"/>
+              <Button id="btnSave" taborder="6" text="저장" left="181" top="425" width="138" height="51" cssclass="btn_puSave" onclick="divPopup_btnSave_onclick"/>
+              <Button id="btnClose" taborder="7" left="444" top="20" width="33" height="34" cssclass="btn_puClose" text="" onclick="divPopup_btnClose_onclick"/>
+              <Div id="divCheckbox" taborder="8" left="38" top="161" width="425" height="139" border="1px solid black" color="black" borderRadius="8px" onclick="divPopup_divCheckbox_onclick">
+                <Layouts>
+                  <Layout/>
+                </Layouts>
+              </Div>
+              <Static id="staWarn" taborder="9" text="그룹은 최대 5개만 추가 됩니다." left="290" top="326" width="180" height="14" color="red" font="9pt/normal &quot;Malgun Gothic&quot;" visible="false"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_CopyStock">
+        <ColumnInfo>
+          <Column id="TITLE" type="STRING" size="256"/>
+          <Column id="SUBTITLE" type="STRING" size="256"/>
+          <Column id="GROUP_ID" type="INT" size="256"/>
+          <Column id="IMAGE_DATA" type="STRING" size="256"/>
+          <Column id="UNIT_NAME" type="STRING" size="256"/>
+          <Column id="CURRENT_VALUE" type="BIGDECIMAL" size="256"/>
+          <Column id="CALCULATED_RATE" type="STRING" size="256"/>
+          <Column id="VALUE_ADD_UNIT" type="STRING" size="256"/>
+          <Column id="IMAGE_FILE" type="STRING" size="256"/>
+          <Column id="ROWNUM" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[
+this.stock0101pu_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.ds_CopyStock.clearData(); // 현
+	var objParam = this.parent.param1;
+	this.ds_gpUpload.copyData(objParam); 
+	this.ds_gpUpload.addColumn("CHK", "STRING");
+	this.drawCheckBox();
+};
+
+
+this.drawCheckBox = function ()
+{
+	var cnt = this.ds_gpUpload.getRowCount();
+	// 디자인
+    var nCardW   = 170;   // 카드 가로
+    var nCardH   = 30;   // 카드 세로
+    var nGapX    = 20;    // 가로 간격
+    var nGapY    = 10;    // 세로 간격
+    var nStartX  = 40;   // 시작 위치
+    var nStartY  = 10;    // 시작 위치
+    var nColCnt  = 2;     // 한 줄에 2개
+	
+	for(var i =0; i<cnt; i++){
+		var nRow = Math.floor(i / nColCnt); 
+        var nCol = i % nColCnt;  
+		var nLeft = nStartX + (nCol * (nCardW + nGapX));
+        var nTop  = nStartY + (nRow * (nCardH + nGapY));
+	
+		var objCheckBox = new CheckBox();
+		
+		var objCheckBoxId = "chkBox" + i ;
+		objCheckBox.init(objCheckBoxId, nLeft, nTop, nCardW, nCardH);
+		objCheckBox.font = "bold 14px 'Malgun Gothic";
+		objCheckBox.text = this.ds_gpUpload.getColumn(i,"GROUP_NAME");
+		this.divPopup.form.divCheckbox.addChild(objCheckBoxId, objCheckBox);
+		objCheckBox.setEventHandler("onchanged", this.CheckBox_onchanged, this);
+        objCheckBox.show();
+	}
+}
+//저장
+this.divPopup_btnSave_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{		
+		let dsCnt = this.ds_gpUpload.getRowCount();
+		if(dsCnt<5){
+			if(this.divPopup.form.editGroup.text != ""){ 
+				this.ds_gpUpload.addRow();
+				this.ds_gpUpload.setColumn(dsCnt, "GROUP_NAME", this.divPopup.form.editGroup.text);	
+			}
+		}
+		else{
+			this.divPopup.form.staWarn.visible = true;
+		}
+		this.ds_gpUpload.deleteMultiRows(this.deleteRow);
+		this.saveTransaction();
+		 
+};
+//팝업 닫기
+this.divPopup_btnClose_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+		this.close();
+};
+
+this.saveTransaction = function ()
+{
+		var strSvcId    = "save";
+		var strSvcUrl   = "stock/saveGroup.do";
+		var inData      = "ds_gpUpload=ds_gpUpload:u";
+		var outData     = "";
+		var sParam      = "USER_ID=1";
+		var callBackFnc = "fn_callback";
+
+		this.gfnTransaction(strSvcId ,
+							strSvcUrl ,
+							inData ,
+							outData ,
+							sParam,
+							callBackFnc);
+};
+
+
+this.fn_callback = function(svcID, errCode, errMsg) {
+	this.close();
+}
+
+this.CheckBox_onchanged = function(obj:nexacro.CheckBox,e:nexacro.CheckBoxChangedEventInfo)
+{	
+	var nRow = this.ds_gpUpload.findRow("GROUP_NAME",  obj.text );
+	this.ds_gpUpload.setColumn(nRow, "CHK",  e.postvalue);
+
+	this.deleteRow = this.ds_gpUpload.extractRows("CHK=='true'");
+
+	if(this.deleteRow == 0){
+		this.divPopup.form.editGroup.enable = true;
+		this.divPopup.form.btnSave.text = "저장"
+	}
+	else{
+		this.divPopup.form.editGroup.enable = false;
+		this.divPopup.form.btnSave.text = "삭제"
+	}
+};
+
+this.divPopup_editGroup_oninput = function(obj:nexacro.Edit,e:nexacro.InputEventInfo)
+{
+	if(this.divPopup.form.editGroup.text !=""){
+		this.divPopup.form.divCheckbox.enable = false;
+	}
+	else{
+		this.divPopup.form.divCheckbox.enable = true;
+	}
+};
+
+]]></Script>
+  </Form>
+</FDL>

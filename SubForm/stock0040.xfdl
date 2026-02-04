@@ -29,9 +29,12 @@
 		this.ds_stock.addRow();
 		this.ds_news.clearData();
 		this.ds_news.addRow();	
+		
 };
 this.btnSave_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {		
+
+		trace(this.ds_image.getRowCount());
 		let cnt = this.ds_news.findRow("CONTENT", "");
 		if(cnt == "-1"){
 			this.ds_news.setColumn(0,"NEWS_ORDER", 1);
@@ -51,8 +54,6 @@ this.btnSave_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 		var sParam      = "USER_ID=1";
 		var callBackFnc = "fnCallback";
 		
-		
-				
 		this.gfnTransaction(strSvcId ,
 							strSvcUrl ,
 							inData ,
@@ -69,24 +70,10 @@ this.fnCallback = function (svcID, errorCode, errorMsg)
 
 ]]></Script>
     <Objects>
-      <Dataset id="ds_info">
+      <Dataset id="ds_image" onload="ds_imageAll_onload">
         <ColumnInfo>
-          <Column id="TITLE" type="STRING" size="256"/>
-          <Column id="IMAGE_FILE" type="STRING" size="256"/>
-          <Column id="NEWS" type="STRING" size="256"/>
-          <Column id="SUBTITLE" type="STRING" size="256"/>
-          <Column id="START_VALUE" type="INT" size="256"/>
-          <Column id="RATE" type="INT" size="256"/>
-          <Column id="DATE" type="DATE" size="256"/>
-          <Column id="GROUP_CODE" type="INT" size="256"/>
-          <Column id="UNIT_CODE" type="INT" size="256"/>
-        </ColumnInfo>
-      </Dataset>
-      <Dataset id="ds_imageAll" onload="ds_imageAll_onload">
-        <ColumnInfo>
-          <Column id="ID" type="INT" size="256"/>
-          <Column id="IMG_URL" type="STRING" size="256"/>
           <Column id="IMG_DATA" type="BLOB" size="256"/>
+          <Column id="IMG_URL" type="STRING" size="256"/>
         </ColumnInfo>
         <Rows>
           <Row/>

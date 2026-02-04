@@ -6,7 +6,7 @@
         <Button id="Button00" taborder="0" text="뒤로가기" left="18" top="22" width="84" height="47" onclick="Button00_onclick"/>
       </Layout>
     </Layouts>
-    <Script type="xscript5.1"><![CDATA[let ds_imageAll = this.parent.parent.parent.ds_imageAll;
+    <Script type="xscript5.1"><![CDATA[let ds_image = this.parent.parent.parent.ds_image;
 
 this.stock0046_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
 {
@@ -18,7 +18,7 @@ this.loadImage = function(){
 		var strSvcId    = "getImage";
 		var strSvcUrl   = "stock/getFileList.do";
 		var inData      = "";
-		var outData     = "ds_imageAll=ds_imageAll";
+		var outData     = "ds_image=ds_image";
 		var sParam      = "userDir=P02\\P025";
 		var callBackFnc = "fnCallback";
 		var isAsync   	= true;
@@ -39,7 +39,7 @@ this.fnCallback = function (id, code, msg)
 };
 this.drawImage = function ()
 {	
-	let imgCnt = ds_imageAll.getRowCount();
+	let imgCnt = ds_image.getRowCount();
 	
 	// 디자인
     var nCardW   = 110;   // 카드 가로
@@ -70,7 +70,7 @@ this.drawImage = function ()
         var objImg = new ImageViewer();
         // Left:10, Top:10, Width:280, Height:180
         objImg.init("imgView",3 , 3, 100, 100); 
-        objImg.set_image(ds_imageAll.getColumn(i, "IMG_DATA"));
+        objImg.set_image(ds_image.getColumn(i, "IMG_DATA"));
 		objImg.cssclass = "imgView_folder";
 		objDiv.form.addChild("imgView", objImg);
         objImg.show();

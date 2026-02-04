@@ -1,26 +1,84 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="stock0030" width="1250" height="728" titletext="dashboard" background="#FFFBF7" onload="stock0030_onload">
+  <Form id="stock0030" width="1249" height="728" titletext="dashboard" background="#FFFBF7" onload="stock0030_onload">
     <Layouts>
-      <Layout height="728" width="1250">
+      <Layout height="728" width="1249">
         <Static id="Static00" taborder="0" text="종목" left="40" top="32" width="50" height="30" font="bold 16pt/normal &quot;Malgun Gothic&quot;" color="black"/>
         <Button id="btnAll" taborder="1" text="전체" left="120" top="30" width="60" height="35" cssclass="btn_group"/>
         <Button id="btnAdd" taborder="2" text="+" left="200" top="30" width="40" height="35" cssclass="btn_group" font="bold 11pt/normal &quot;Arial&quot;" onclick="btnAdd_onclick"/>
         <Button id="btnDeleteStu" taborder="3" text="전체 종목" top="31" width="80" height="33" cssclass="btn_work_select" onclick="btnDeleteStu_onclick" right="110"/>
         <Button id="btnDeleteStu00" taborder="4" text="종목 생성" top="31" width="80" height="33" cssclass="btn_work_select" onclick="btnDeleteStu_onclick" background="white" color="black" right="211"/>
-        <ListView id="ListView00_00" taborder="5" left="40" top="105" width="1100" height="190" binddataset="ds_stock" scrolltype="none" border="0px none" scrollbarsize="0">
+        <Grid id="Grid00" taborder="5" left="749" top="395" width="390" height="150" binddataset="ds_stock" autofittype="col">
           <Formats>
             <Format id="default">
-              <Band id="body" width="250" height="190" background="pink">
-                <Cell id="Cell01" left="135" top="30" width="105" height="22" text="bind:TITLE"/>
-                <Cell id="Cell03" left="22" top="140" width="50" height="22" text="bind:SUBTITLE"/>
-                <Cell id="Cell11" left="142" top="140" width="50" height="24" text="bind:RATE"/>
-                <Cell id="Cell13" left="82" top="140" width="50" height="24" text="bind:CURRENT_VALUE"/>
-                <Cell id="Cell14" left="22" top="25" width="95" height="93" displaytype="imagecontrol" text="bind:IMAGE_FILE" background="pink"/>
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="RATE"/>
+                <Cell col="1" text="CURRENT_VALUE"/>
+                <Cell col="2" text="CALCULATED_RATE"/>
+                <Cell col="3" text="VALUE_ADD_UNIT"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:RATE"/>
+                <Cell col="1" text="bind:CURRENT_VALUE"/>
+                <Cell col="2" text="bind:CALCULATED_RATE"/>
+                <Cell col="3" text="bind:VALUE_ADD_UNIT"/>
               </Band>
             </Format>
           </Formats>
-        </ListView>
+        </Grid>
+        <Div id="Div00" taborder="6" left="40" top="260" width="687" height="440" cssclass="div_box" text="" formscrollbarsize="0">
+          <Layouts>
+            <Layout>
+              <ChartJS id="ChartJS00" taborder="0" text="ChartJS00" left="21" top="119" width="645" height="300" background="pink"/>
+              <Static id="Static01" taborder="1" left="21" top="94" width="645" height="1" border="1px solid #CFCFCF"/>
+              <ImageViewer id="ImageViewer00" taborder="2" left="24" top="19" width="85" height="60" borderRadius="10px" border="2px solid #efefef" fittocontents="none" stretch="fit"/>
+              <Static id="Static02" taborder="3" left="119" top="19" width="120" height="32" font="bold 11pt Malgun Gothic" color="black" text="Static02"/>
+              <Static id="Static03" taborder="4" text="Static03" left="119" top="52" width="60" height="22" color="#b6b6b6" font="10pt Malgun Gothic"/>
+              <Static id="Static02_00" taborder="5" left="394" top="20" width="90" height="32" font="bold 15pt Malgun Gothic" color="black" text="Static02"/>
+              <Static id="Static00" taborder="6" text="Rate of Value" left="394" top="49" width="79" height="30" color="#919499"/>
+              <Static id="Static04" taborder="7" text="Static04" left="479" top="50" width="67" height="28"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Button id="btnAddValue" taborder="7" text="주가 업데이트" left="590" top="290" width="145" height="37" cssclass="btn_addValue" onmouseenter="btnAddValue_onmouseenter" onmouseleave="btnAddValue_onmouseleave" onclick="btnAddValue_onclick"/>
+        <Grid id="Grid01" taborder="8" left="756" top="573" width="384" height="130" binddataset="ds_value">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row band="head" size="24"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="VALUE_ID"/>
+                <Cell col="1" text="STOCK_ID"/>
+                <Cell col="2" text="DAY_SEQ"/>
+                <Cell col="3" text="CURRENT_VALUE"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:VALUE_ID"/>
+                <Cell col="1" text="bind:STOCK_ID"/>
+                <Cell col="2" text="bind:DAY_SEQ"/>
+                <Cell col="3" text="bind:CURRENT_VALUE"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
       </Layout>
     </Layouts>
     <Script type="xscript5.1"><![CDATA[
@@ -32,16 +90,31 @@ this.stock0030_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
 //팝업 생성
 this.btnAdd_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
-	var sPopupId = "popupDept"
+	var sPopupId = "popupGroup"
 	var sUrl  = "Popup::stock0100pu.xfdl"
 	var oArg ={param1:this.ds_group};
 	var oOption = {title:"모달팝업", titlebar:false};
 	var sPopupCallBack = "fn_callbackPopup"; //close 할때, 호출
 	this.gfnOpenPopup( sPopupId,sUrl,oArg,sPopupCallBack,oOption);
 };
-this.fn_callbackPopup = function(id, rtn)
+this.btnAddValue_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sPopupId = "popupValue"
+	var sUrl  = "Popup::stock0101pu.xfdl"
+	var oArg ={param1:this.ds_value};
+	var oOption = {title:"모달팝업", titlebar:false};
+	var sPopupCallBack = "fn_callbackPopup"; //close 할때, 호출
+	this.gfnOpenPopup( sPopupId,sUrl,oArg,sPopupCallBack,oOption);
+};
+this.fn_callbackPopup = function(svcId, rtn)
 { 
-	this.groupLoad();	
+	if(svcId == "popupGroup"){
+		this.groupLoad();	
+	}
+	else if (svcId == "popupValue")
+	{
+		
+	}
 }
 //dataset load
 this.groupLoad = function ()
@@ -73,7 +146,7 @@ this.groupLoad = function ()
 	
 	this.stockLoad();
  };
- 
+//ds_stock, ds_pagingInfo load
 this.stockLoad = function(){
 	
 	this.ds_search.clearData();
@@ -86,7 +159,7 @@ this.stockLoad = function(){
  	var strSvcId    = "searchStock";
 	var strSvcUrl   = "stock/loadStock.do";
 	var inData      = "ds_search=ds_search";
-	var outData     = "ds_stock=ds_stock ds_pagingInfo=ds_pagingInfo";
+	var outData     = "ds_stock=ds_stock ds_pagingInfo=ds_pagingInfo ds_value=ds_value";
 	var sParam      = "USER_ID=1";
 	var callBackFnc = "fnCallback";
 	var isAsync   	= true;
@@ -106,6 +179,8 @@ this.fnCallback = function (svcID, errorCode, errorMsg)
 		this.drawGroup();
 	}
 	else if(svcID == "searchStock"){
+		this.fn_setUnitName();
+		this.drawCard();	
 	}
 };	
 
@@ -162,6 +237,202 @@ this.drawGroup = function ()
 	}
 };
 
+this.drawCard = function ()
+{
+    for(var i=0; i<4; i++) 
+    {
+        var sDivId = "divCard" + i;
+        if(this.isValidObject(sDivId))
+        {
+            var objDel = this.removeChild(sDivId);
+            objDel.destroy();
+            objDel = null;
+        }
+    }
+
+    var objDs = this.ds_stock;
+    if (objDs == null || objDs.getRowCount() == 0) return;
+    
+
+    // 디자인
+    var nCardW   = 250;   // 카드 가로
+    var nCardH   = 150;   // 카드 세로
+    var nGapX    = 25;    // 가로 간격
+    var nGapY    = 25;    // 세로 간격
+    var nStartX  = 40;   // 시작 위치
+    var nStartY  = 90;    // 시작 위치
+    var nColCnt  = 4;     // 한 줄에 4개
+    
+    var nCnt = objDs.getRowCount();
+
+    for(var i=0; i < nCnt; i++)
+    {
+        // 좌표 계산
+        var nRow = Math.floor(i / nColCnt); 
+        var nCol = i % nColCnt;             
+        
+        var nLeft = nStartX + (nCol * (nCardW + nGapX));
+        var nTop  = nStartY + (nRow * (nCardH + nGapY));
+        
+        // 카드 Div 생성
+        var sDivId = "divCard" + i;
+        var objDiv = new Div();
+        objDiv.init(sDivId, nLeft, nTop, nCardW, nCardH);
+        objDiv.cssclass = "div_groupBox";
+        this.addChild(sDivId, objDiv);
+        objDiv.show();
+		
+		// 이미지 뷰어
+        var objImg = new ImageViewer();
+        // Left:10, Top:10, Width:280, Height:180
+        objImg.init("imgView",24 , 20, 65, 65); 
+        
+        objImg.set_image(objDs.getColumn(i, "IMAGE_DATA"));
+        
+		objImg.set_stretch("fit");
+        objImg.borderRadius = "10px";
+        objImg.border="2px solid #efefef";
+        
+        objDiv.form.addChild("imgView", objImg);
+        objImg.show();
+		
+		//STATIC
+		//Title
+		var objStaTitle = new Static();
+		objStaTitle.init("staTitle", 105, 32, 116, 40);
+		objStaTitle.text = objDs.getColumn(i, "TITLE");
+		
+		objStaTitle.color = "black"; 
+		objStaTitle.font = "bold 13pt Malgun Gothic"
+		objStaTitle.textAlign = "left"
+		
+		objDiv.form.addChild("staTitle", objStaTitle);
+        objStaTitle.show();
+		
+		//SubTitle
+		var objStaSubTitle = new Static();
+		objStaSubTitle.init("staSub", 20, 105, 55, 22);
+		objStaSubTitle.text = objDs.getColumn(i, "SUBTITLE");
+		
+		objStaSubTitle.color = "#b6b6b6"; 
+		objStaSubTitle.font = "12px Malgun Gothic"
+		objStaSubTitle.textAlign = "center"
+		
+		objDiv.form.addChild("staSub", objStaSubTitle);
+        objStaSubTitle.show();
+		
+		//VALUE_ADD_UNIT
+		var objStaValue = new Static();
+		objStaValue.init("staValue", 96, 105, 68, 22);
+		objStaValue.text = objDs.getColumn(i, "VALUE_ADD_UNIT");
+		
+		objStaValue.color = "black"; 
+		objStaValue.font = "bold 14px Malgun Gothic"
+		objStaValue.textAlign = "center"
+		
+		objDiv.form.addChild("staValue", objStaValue);
+        objStaValue.show();
+		
+		//CALCULATED_RATE
+		var objStaRate = new Static();
+		objStaRate.init("staRate", 177, 105, 55, 22);
+		objStaRate.text = objDs.getColumn(i, "CALCULATED_RATE");
+		
+		objStaRate.color = "black"; 
+		objStaRate.font = "bold 14px Malgun Gothic"
+		objStaRate.textAlign = "center"
+		
+		objDiv.form.addChild("staRate", objStaRate);
+        objStaRate.show();
+		
+		 // button 
+        var objBtn = new Button();
+        objBtn.init("btnClick", 0, 0, null, null,0,0);
+        objBtn.u_Row = i; 
+        
+		objBtn.cssclass = "btn_transParent"
+        objBtn.bringToFront();
+	
+        objBtn.addEventHandler("onclick", this.fn_divClick, this);
+		
+        objDiv.form.addChild("btnClick", objBtn);
+        objBtn.show();
+		if(i==0){
+			objBtn.setFocus();
+		}
+       
+		//  ||
+		var objGuard1 = new Static();
+		objGuard1.init("staGuard1", 85, 106, 1, 20);
+		
+		objGuard1.border = "2px solid #dbdee2"
+		
+		objDiv.form.addChild("staGuard1", objGuard1);
+        objGuard1.show();
+		
+		//  ||
+		var objGuard2 = new Static();
+		objGuard2.init("staGuard2", 170, 106, 1, 20);
+		
+		objGuard2.border = "2px solid #dbdee2"
+		
+		objDiv.form.addChild("staGuard2", objGuard2);
+        objGuard2.show();
+	}
+}
+
+
+  
+this.btnAddValue_onmouseenter = function(obj:nexacro.Button, e:nexacro.MouseEventInfo)
+{
+    var objAni = this.all["ani00"];
+    if (!objAni) {
+        objAni = new nexacro.Animation("ani00", this);
+        this.addChild("ani00", objAni);
+        objAni.set_duration(300);
+        objAni.set_easing("easeOutCubic"); 
+    }
+
+    objAni.removeTarget("targetBtn");    
+    objAni.addTarget("targetBtn", obj, "left:500, width:235");
+    objAni.play();
+};
+
+this.btnAddValue_onmouseleave = function(obj:nexacro.Button, e:nexacro.MouseEventInfo)
+{
+    var objAni = this.all["ani00"];
+    if (objAni) {
+        objAni.removeTarget("targetBtn");
+        objAni.addTarget("targetBtn", obj, "left:590, width:145");
+        objAni.play();
+    }
+};
+
+this.fn_setUnitName = function()
+{	
+    this.ds_stock.set_enableevent(false); 
+    this.ds_stock.addColumn("VALUE_ADD_UNIT","string")
+    
+	for(var i=0; i<this.ds_stock.rowcount; i++)
+    {
+        var nValue = this.ds_stock.getColumn(i, "CURRENT_VALUE");
+        
+        var unitId = this.ds_stock.getColumn(i, "UNIT_NAME");
+        var unitText = this.ds_unit.lookup("ID", unitId, "UNIT");
+        
+        if(!unitText) unitText = "";         
+        var combinedText = nValue + unitText;
+        this.ds_stock.setColumn(i, "VALUE_ADD_UNIT", combinedText);
+    }
+	trace(this.ds_stock.saveXML());
+    this.ds_stock.set_enableevent(true);
+};
+
+this.fn_divClick = function(obj:nexacro.Button, e:nexacro.ClickEventInfo)//카드 클릭
+{
+   var nRow = obj.u_Row; 
+   this.ds_stock.rowposition = nRow;
+};
 
 
 ]]></Script>
@@ -177,10 +448,13 @@ this.drawGroup = function ()
           <Column id="TITLE" type="STRING" size="256"/>
           <Column id="SUBTITLE" type="STRING" size="256"/>
           <Column id="GROUP_ID" type="INT" size="256"/>
-          <Column id="IMAGE_FILE" type="STRING" size="256"/>
+          <Column id="IMAGE_DATA" type="STRING" size="256"/>
           <Column id="UNIT_NAME" type="STRING" size="256"/>
-          <Column id="RATE" type="BIGDECIMAL" size="256"/>
           <Column id="CURRENT_VALUE" type="BIGDECIMAL" size="256"/>
+          <Column id="CALCULATED_RATE" type="STRING" size="256"/>
+          <Column id="VALUE_ADD_UNIT" type="STRING" size="256"/>
+          <Column id="IMAGE_FILE" type="STRING" size="256"/>
+          <Column id="ROWNUM" type="STRING" size="256"/>
         </ColumnInfo>
       </Dataset>
       <Dataset id="ds_news">
@@ -189,7 +463,14 @@ this.drawGroup = function ()
           <Column id="CONTENT" type="STRING" size="256"/>
         </ColumnInfo>
       </Dataset>
-      <Dataset id="ds_value"/>
+      <Dataset id="ds_value">
+        <ColumnInfo>
+          <Column id="VALUE_ID" type="INT" size="256"/>
+          <Column id="STOCK_ID" type="INT" size="256"/>
+          <Column id="DAY_SEQ" type="DATE" size="256"/>
+          <Column id="CURRENT_VALUE" type="BIGDECIMAL" size="256"/>
+        </ColumnInfo>
+      </Dataset>
       <Dataset id="ds_search">
         <ColumnInfo>
           <Column id="records" type="INT" size="256"/>
@@ -203,6 +484,32 @@ this.drawGroup = function ()
           <Column id="totalCount" type="STRING" size="256"/>
         </ColumnInfo>
       </Dataset>
+      <Dataset id="ds_unit">
+        <ColumnInfo>
+          <Column id="ID" type="INT" size="256"/>
+          <Column id="UNIT" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="ID">1</Col>
+            <Col id="UNIT">Kg</Col>
+          </Row>
+          <Row>
+            <Col id="ID">2</Col>
+            <Col id="UNIT">개</Col>
+          </Row>
+          <Row>
+            <Col id="ID">3</Col>
+            <Col id="UNIT">걸음</Col>
+          </Row>
+        </Rows>
+      </Dataset>
     </Objects>
+    <Bind>
+      <BindItem id="item0" compid="Div00.form.Static02" propid="text" datasetid="ds_stock" columnid="TITLE"/>
+      <BindItem id="item1" compid="Div00.form.Static03" propid="text" datasetid="ds_stock" columnid="SUBTITLE"/>
+      <BindItem id="item2" compid="Div00.form.ImageViewer00" propid="image" datasetid="ds_stock" columnid="IMAGE_DATA"/>
+      <BindItem id="item3" compid="Div00.form.Static02_00" propid="text" datasetid="ds_stock" columnid="VALUE_ADD_UNIT"/>
+    </Bind>
   </Form>
 </FDL>

@@ -42,7 +42,8 @@
         </Div>
       </Layout>
     </Layouts>
-    <Script type="xscript5.1"><![CDATA[let ds_imageAll = this.parent.parent.parent.ds_imageAll;
+    <Script type="xscript5.1"><![CDATA[let ds_image = this.parent.parent.parent.ds_image;
+let ds_stock = this.parent.parent.parent.ds_stock;
 
 this.stock0031_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
 {	
@@ -176,11 +177,11 @@ this.uploadImg = function()
 this.FileUpTransfer_onsuccess = function(obj:nexacro.FileUpTransfer,e:nexacro.FileUpTransferEventInfo)
 {
 	var objDs = e.datasets[0]
-	for(var i = 0; i<objDs.rowcount;i++){
+	//하나씩만 등록 된다.
+	for(var i = 0; i<objDs.rowcount;i++){	
 		
-		this.parent.parent.parent.ds_imageAll.setColumn(i,"IMG_URL", objDs.getColumn(i, "IMG_URL"));
-		ds_imageAll.setColumn(i,"IMG_DATA", objDs.getColumn(i, "IMG_DATA"));
-		
+		ds_stock.setColumn(i,"IMAGE_FILE", objDs.getColumn(i, "IMG_URL"));
+		ds_image.setColumn(i,"IMG_DATA", objDs.getColumn(i, "IMG_DATA"));
 	}
 	 
 };
