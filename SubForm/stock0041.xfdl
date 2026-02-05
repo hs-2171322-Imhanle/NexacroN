@@ -228,7 +228,7 @@ this.divBasic_btnFolder_onclick = function(obj:nexacro.Button,e:nexacro.ClickEve
       <BindItem id="item1" compid="divBasic.form.editSub" propid="value" datasetid="ds_stock" columnid="SUBTITLE"/>
       <BindItem id="item2" compid="divBasic.form.cboGroup" propid="value" datasetid="ds_stock" columnid="GROUP_ID"/>
       <BindItem id="item3" compid="divBasic.form.TextArea00" propid="value" datasetid="ds_news" columnid="CONTENT"/>
-      <BindItem id="item5" compid="divBasic2.form.editStart" propid="value" datasetid="ds_stock" columnid="START_VALUE"/>
+      <BindItem id="item5" compid="divBasic2.form.editStart" propid="value" datasetid="ds_stock" columnid="CURRENT_VALUE"/>
       <BindItem id="item6" compid="divBasic2.form.Edit00_01" propid="value" datasetid="ds_stock" columnid="RATE"/>
       <BindItem id="item7" compid="divBasic2.form.Combo00" propid="value" datasetid="ds_stock" columnid="UNIT_NAME"/>
       <BindItem id="item4" compid="divBasic2.form.DateField07" propid="value" datasetid="ds_stock" columnid="DAY_SEQ"/>

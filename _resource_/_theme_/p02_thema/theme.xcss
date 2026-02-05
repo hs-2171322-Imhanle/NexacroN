@@ -3334,9 +3334,9 @@
 }
 .ImageViewer.imgView_folder
 {
-	-nexa-border : 0px none;
-	box-shadow : 0px 2px 4px 0px #dddddd;
-	border-radius : 15px;
+	-nexa-border : 1px solid #f9f9f9;
+	box-shadow : 0px 2px 2px 0px #dddddd;
+	border-radius : 10px;
 }
 
 .Div.div_popup
@@ -3444,7 +3444,7 @@
 	-nexa-border : 1px solid #f8f8f8;
 	background : white;
 	border-radius : 10px;
-	box-shadow : 2px 2px 4px 0px #e0e0e0;
+	box-shadow : 0px 2px 4px 0px #e0e0e0;
 }
 .Button.btn_transParent
 {
@@ -3457,7 +3457,7 @@
 	-nexa-border : 1px solid #f8f8f8;
 	background : white;
 	border-radius : 10px;
-	box-shadow : 2px 2px 4px 0px #e0e0e0;
+	box-shadow : 0px 4px 4px 0px #b2b2b2;
 }
 .Button.btn_transParent[status=mouseover],.Button.btn_transParent[status=focused]
 {
@@ -3469,7 +3469,7 @@
 .Button.btn_addValue
 {
 	background : #FFD1A0;
-	border-radius : 15px 3px 3px 15px;
+	border-radius : 15px 5px 5px 15px;
 	color : white;
 	-nexa-border : 0px none;
 	-nexa-icon : url('theme://NewFolder/retouch.png');
@@ -3482,7 +3482,7 @@
 .Button.btn_addValue[status=mouseover],.Button.btn_addValue[status=focused]
 {
 	background : #FFA443;
-	border-radius : 15px 3px 3px 15px;
+	border-radius : 15px 5px 5px 15px;
 	color : white;
 	-nexa-border : 0px none;
 	-nexa-icon : url('theme://NewFolder/retouch.png');
@@ -3490,6 +3490,41 @@
 	font : bold 10pt "Arial";
 	-nexa-text-align : left;
 	-nexa-padding : 0px 0px 0px 20px;
+}
+.MaskEdit.mEdit_pu,.MaskEdit.mEdit_pu[status=mouseover],.MaskEdit.mEdit_pu[status=focused]
+{
+	-nexa-border : 1px solid black;
+	border-radius : 8px;
+}
+.Static.sta_puBoldExplain
+{
+	color : #747474;
+	font : bold 10pt "Arial";
+}
+.Static.sta_upValue
+{
+	color : #3f9a5a;
+	font : bold 10pt "Arial";
+	
+}
+.Static.sta_puBoldExplain2
+{
+	color : #747474;
+	font : bold 14pt "Arial";
+}
+.Button.btn_next
+{
+	-nexa-border : 0px none;
+	border-radius : 100px;
+	background : url('theme://NewFolder/arrow.png') no-repeat center center white;
+	box-shadow : 0px 4px 4px 0px #b2b2b2;
+}
+.Button.btn_prev
+{
+	-nexa-border : 0px none;
+	border-radius : 100px;
+	background : url('theme://NewFolder/arrow2.png') no-repeat center center white;
+	box-shadow : 0px 4px 4px 0px #b2b2b2;
 }
 ]]></CSSData>
   <CSSData type="mobile_large"><![CDATA[]]></CSSData>

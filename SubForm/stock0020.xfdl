@@ -76,7 +76,7 @@
     </Objects>
     <Script type="xscript5.1"><![CDATA[
 this.fvRecords=0; 			//목록갯수
-this.fvPage=0;	 			//페이지번호
+this.=0;	 			//페이지번호
 this.fvRecordsOffset=0;		//시작rownum
 this.fvTotalCount=0;		//전체데이터갯수
 this.fvPageCount=0; 		//실제표출페이지갯수
@@ -153,8 +153,7 @@ this.fnPagingSetting = function ()
 	this.divPage.form.fnCreatePage("fnPagingCallback",
 									this.fvTotalCount,
 									this.fvRecords,
-									this.fvPage,
-									this.fvPageCount);									
+									this.fvPage);									
 };
 
 

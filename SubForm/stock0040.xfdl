@@ -87,7 +87,7 @@ this.fnCallback = function (svcID, errorCode, errorMsg)
           <Column id="IMAGE_FILE" type="STRING" size="256"/>
           <Column id="DAY_SEQ" type="DATE" size="256"/>
           <Column id="UNIT_NAME" type="STRING" size="256"/>
-          <Column id="START_VALUE" type="BIGDECIMAL" size="256"/>
+          <Column id="CURRENT_VALUE" type="BIGDECIMAL" size="256"/>
           <Column id="RATE" type="BIGDECIMAL" size="256"/>
           <Column id="TYPE" type="STRING" size="256"/>
         </ColumnInfo>
