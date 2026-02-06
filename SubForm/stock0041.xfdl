@@ -7,7 +7,7 @@
         <Div id="divBasic" taborder="0" left="20" top="btnAcor1:5" width="263" formscrollbartype="none" text="" height="487">
           <Layouts>
             <Layout>
-              <Edit id="editTitle" taborder="0" left="20" top="44" width="222" height="37" cssclass="edit_orange" displaynulltext="ex) 삼성전자" oninput="divBasic_editTitle_oninput" onkeyup="divBasic_editTitle_onkeyup" onchanged="divBasic_editTitle_onchanged"/>
+              <Edit id="editTitle" taborder="0" left="20" top="44" width="222" height="37" cssclass="edit_orange" displaynulltext="ex) 삼성전자"/>
               <Static id="Static00" taborder="1" text="종목 이름" left="20" top="20" width="56" height="21" cssclass="sta_acordian_explain"/>
               <Combo id="cboGroup" taborder="2" left="20" top="266" width="222" height="40" onitemchanged="divBasic_Combo00_onitemchanged" cssclass="cbo_orange" innerdataset="ds_group" codecolumn="GROUP_ID" datacolumn="GROUP_NAME" value="" index="-1"/>
               <Static id="Static00_00" taborder="3" text="대상 학급/그룹" left="20" top="241" width="86" height="22" cssclass="sta_acordian_explain"/>
@@ -15,7 +15,7 @@
               <Button id="btnImg" taborder="5" text="이미지 업로드" left="20" top="182" width="130" height="39" cssclass="btn_header_login" font="10pt/normal &quot;Arial&quot;" borderRadius="5px" onclick="divBasic_btnImg_onclick"/>
               <Button id="btnFolder" taborder="6" left="179" top="182" width="63" height="40" cssclass="btn_folder" onclick="divBasic_btnFolder_onclick"/>
               <Static id="Static00_01" taborder="7" text="주식 기록 종류" left="20" top="101" width="86" height="21" cssclass="sta_acordian_explain" onclick="divBasic00_Static00_onclick"/>
-              <Edit id="editSub" taborder="8" left="20" top="125" width="222" height="37" cssclass="edit_orange" onkeyup="divBasic_editSub_onkeyup" displaynulltext="ex) 걸음 수"/>
+              <Edit id="editSub" taborder="8" left="20" top="125" width="222" height="37" cssclass="edit_orange" displaynulltext="ex) 걸음 수"/>
               <TextArea id="TextArea00" taborder="9" left="20" top="351" width="222" height="115" cssclass="txtA_orange" autoskip="true"/>
             </Layout>
           </Layouts>
@@ -117,22 +117,6 @@ this.btnAcor2_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 	this.resetScroll();
 };
 
-//Chart 관련
-this.divBasic_editTitle_onkeyup = function(obj:nexacro.Edit,e:nexacro.KeyEventInfo)
-{
-	if(e.keycode == "13"){
- 		this.parent.parent.parent.ds_info.setColumn(0, "TITLE", this.divBasic.form.editTitle.text);
-		this.parent.parent.parent.divChart.form.fnCreateChart();	
-	}
-};
-
-this.divBasic_editSub_onkeyup = function(obj:nexacro.Edit,e:nexacro.KeyEventInfo)
-{
-	if(e.keycode == "13"){
- 		this.parent.parent.parent.ds_info.setColumn(0, "SUBTITLE", this.divBasic.form.editSub.text);
-		this.parent.parent.parent.divChart.form.fnCreateChart();	
-	}
-};
 
 
 this.divBasic2_editStart_onkeyup = function(obj:nexacro.Edit,e:nexacro.KeyEventInfo)
@@ -179,11 +163,9 @@ this.FileUpTransfer_onsuccess = function(obj:nexacro.FileUpTransfer,e:nexacro.Fi
 	var objDs = e.datasets[0]
 	//하나씩만 등록 된다.
 	for(var i = 0; i<objDs.rowcount;i++){	
-		
 		ds_stock.setColumn(i,"IMAGE_FILE", objDs.getColumn(i, "IMG_URL"));
 		ds_image.setColumn(i,"IMG_DATA", objDs.getColumn(i, "IMG_DATA"));
 	}
-	 
 };
 
 

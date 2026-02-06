@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="stock0030" width="1249" height="728" titletext="dashboard" background="#FFFBF7" onload="stock0030_onload">
+  <Form id="stock0030" width="1249" height="728" titletext="dashboard" background="#FFFBF7" onload="stock0030_onload" onlbuttonup="form_onlbuttonup" ondragmove="form_ondragmove">
     <Layouts>
       <Layout height="728" width="1249">
         <Static id="Static00" taborder="0" text="종목" left="40" top="32" width="50" height="30" font="bold 18pt/normal &quot;Malgun Gothic&quot;" color="black"/>
-        <Button id="btnAll" taborder="1" text="전체" left="120" top="30" width="60" height="35" cssclass="btn_group"/>
+        <Button id="btnAll" taborder="1" text="전체" left="120" top="30" width="60" height="35" cssclass="btn_group" onclick="btnAll_onclick"/>
         <Button id="btnAdd" taborder="2" text="+" left="200" top="30" width="40" height="35" cssclass="btn_group" font="bold 11pt/normal &quot;Arial&quot;" onclick="btnAdd_onclick"/>
         <Button id="btnDeleteStu" taborder="3" text="전체 종목" top="31" width="80" height="33" cssclass="btn_work_select" onclick="btnDeleteStu_onclick" right="110"/>
         <Button id="btnDeleteStu00" taborder="4" text="종목 생성" top="31" width="80" height="33" cssclass="btn_work_select" onclick="btnDeleteStu_onclick" background="white" color="black" right="211"/>
@@ -13,9 +13,9 @@
             <Layout>
               <ChartJS id="ChartJS00" taborder="0" text="ChartJS00" left="21" top="119" width="588" height="300" background="pink"/>
               <Static id="Static01" taborder="1" left="21" top="94" width="645" height="1" border="1px solid #CFCFCF"/>
-              <ImageViewer id="ImageViewer00" taborder="2" left="29" top="19" width="70" height="60" fittocontents="none" stretch="fit" cssclass="imgView_folder"/>
-              <Static id="Static02" taborder="3" left="119" top="19" width="120" height="32" font="bold 12pt Malgun Gothic" color="black" text="Static02"/>
-              <Static id="Static03" taborder="4" text="Static03" left="119" top="52" width="60" height="22" color="#b6b6b6" font="9pt Malgun Gothic"/>
+              <ImageViewer id="ImageViewer00" taborder="2" left="29" top="19" width="100" height="60" fittocontents="none" stretch="fit" cssclass="imgView_folder"/>
+              <Static id="Static02" taborder="3" left="149" top="19" width="120" height="32" font="bold 12pt Malgun Gothic" color="black" text="Static02"/>
+              <Static id="Static03" taborder="4" text="Static03" left="149" top="52" width="60" height="22" color="#b6b6b6" font="9pt Malgun Gothic"/>
               <Static id="Static02_00" taborder="5" left="344" top="20" width="90" height="32" font="bold 15pt Malgun Gothic" color="black" text="Static02"/>
               <Static id="Static00" taborder="6" text="Rate of Value" left="343" top="52" width="79" height="22" color="#919499"/>
               <Static id="staDivValue" taborder="7" text="Static04" left="429" top="52" width="77" height="22" font=" bold 11pt &quot;Arial&quot;" textAlign="left"/>
@@ -23,18 +23,44 @@
           </Layouts>
         </Div>
         <Button id="btnAddValue" taborder="6" text="주가 업데이트" left="580" top="290" width="145" height="30" cssclass="btn_addValue" onmouseenter="btnAddValue_onmouseenter" onmouseleave="btnAddValue_onmouseleave" onclick="btnAddValue_onclick"/>
-        <Div id="Div00" taborder="7" left="770" top="280" width="350" height="438" cssclass="div_box"/>
+        <Div id="Div00" taborder="7" left="770" top="280" width="350" height="438" cssclass="div_box">
+          <Layouts>
+            <Layout>
+              <Static id="Static02_00_00" taborder="0" left="29" top="19" width="90" height="32" font="bold 15pt Malgun Gothic" color="black" text="카드뉴스"/>
+              <Button id="Button00" taborder="1" text="Edit" left="289" top="30" width="40" height="23" cssclass="btn_login_choose"/>
+              <TextArea id="TextArea00" taborder="2" left="29" top="79" width="290" height="70"/>
+              <TextArea id="TextArea00_00" taborder="3" left="29" top="164" width="290" height="70"/>
+              <TextArea id="TextArea00_01" taborder="4" left="29" top="249" width="290" height="70"/>
+              <TextArea id="TextArea00_02" taborder="5" left="29" top="334" width="290" height="70"/>
+            </Layout>
+          </Layouts>
+        </Div>
         <Button id="btnNext" taborder="8" left="1134" top="140" width="36" height="40" cssclass="btn_next" onclick="btnNext_onclick"/>
         <Button id="btnPrev" taborder="9" left="24" top="140" width="36" height="40" cssclass="btn_prev" onclick="btnPrev_onclick"/>
+        <Div id="div_move" taborder="10" left="1287" top="24" width="230" height="150" background="pink" visible="false">
+          <Layouts>
+            <Layout>
+              <ImageViewer id="imgView" taborder="0" left="20" top="20" width="65" height="65" background="transPatent" stretch="fit"/>
+              <Static id="staTitle" taborder="1" text="Static00" left="100" top="35" width="120" height="40" color="black" font="bold 11pt Malgun Gothic" textAlign="left"/>
+              <Static id="staSub" taborder="2" text="Static00" left="20" top="105" width="55" height="20" color="#b6b6b6" font="bold 9pt Malgun Gothic" textAlign="center"/>
+              <Static id="staValue" taborder="3" text="Static00" left="93" top="105" width="55" height="20" color="black" font="bold 13px Malgun Gothic" textAlign="center"/>
+              <Static id="staRate" taborder="4" text="Static00" left="170" top="105" width="55" height="20" color="black" font="bold 13px Malgun Gothic" textAlign="left"/>
+              <Static id="staGuard1" taborder="5" left="81" top="107" width="1" height="18" border="2px solid #dbdee2"/>
+              <Static id="staGuard2" taborder="6" left="158" top="107" width="1" height="18" border="2px solid #dbdee2"/>
+            </Layout>
+          </Layouts>
+        </Div>
       </Layout>
     </Layouts>
-    <Script type="xscript5.1"><![CDATA[this.buttonRow = 0;
+    <Script type="xscript5.1"><![CDATA[this.fvObjDrag = false;  // 드래그` 중 여부
+this.buttonRow = 0;
 
 //onload
 this.stock0030_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
 {
 	this.groupLoad();
 	this.fnPageInit();
+	
 };
 /****************** popup *******************/
 //group popup
@@ -96,15 +122,13 @@ this.groupLoad = function ()
 						isAsync); 		
 }
 
-
 //ds_stock, ds_pagingInfo load
 this.stockLoad = function(){
 	
 	this.ds_search.clearData();
 	var nRow = this.ds_search.addRow();
 	
-	//filter 처리할때 하쟈
-	//this.dsSearch.setColumn(nRow, "pName", this.editSearch.text); 
+	this.ds_search.setColumn(0,"groupId", this.selectGroup);
 	this.ds_search.setColumn(nRow, "records", this.fvRecords);
 	this.ds_search.setColumn(nRow, "recordsOffset", this.fvRecordsOffset); 
 
@@ -125,7 +149,22 @@ this.stockLoad = function(){
 						callBackFnc, 	
 						isAsync); 		
 }
-
+this.stockSave = function()
+{		
+		var strSvcId    = "saveStock";
+		var strSvcUrl   = "stock/saveStock.do";
+		var inData      = "ds_stock=ds_stock:U";
+		var outData     = "";
+		var sParam      = "USER_ID=1";
+		var callBackFnc = "fnCallback";
+		
+		this.gfnTransaction(strSvcId ,
+							strSvcUrl ,
+							inData ,
+							outData ,
+							sParam,
+							callBackFnc);
+};
 
 /*********transactionCallback***********************/
 
@@ -139,6 +178,10 @@ this.fnCallback = function (svcID, errorCode, errorMsg)
 		this.fn_setUnitName();
 		this.drawCard();
 		this.setColor()
+	}
+	else if(svcID == "saveStock"){
+		trace(">>>>>>되는중?");
+		this.fnPageInit();
 	}
 };	
 
@@ -218,7 +261,7 @@ this.fn_setUnitName = function()
 //drawGroup
 this.drawGroup = function ()
 {	let cnt = this.ds_group.getRowCount();
-	//어차피 5개 삭제
+	//그려놓은 컴포넌트 삭제 
     for(var i=0; i<5; i++) 
     {
         var btnId = "btnGroup" + i;
@@ -251,6 +294,11 @@ this.drawGroup = function ()
 		//버튼 생성
 		var btn = new Button();
         var btnId = "btnGroup" + i;
+		btn.u_Row = i; 
+		
+		btn.addEventHandler( "onclick", this.fn_buttonClick, this );
+		btn.addEventHandler("ondrop", this.fn_comOnDrop, this);
+		
 		
         btn.cssclass = "btn_group";
 		btn.text= dsGet;
@@ -312,7 +360,8 @@ this.drawCard = function ()
         var objDiv = new Div();
         objDiv.init(sDivId, nLeft, nTop, nCardW, nCardH);
         objDiv.cssclass = "div_groupBox";
-        this.addChild(sDivId, objDiv);
+		
+		this.addChild(sDivId, objDiv);
         objDiv.show();
 		
 		// 이미지 뷰어
@@ -323,8 +372,6 @@ this.drawCard = function ()
         objImg.set_image(objDs.getColumn(i, "IMAGE_DATA"));
         
 		objImg.set_stretch("fit");
-//         objImg.borderRadius = "10px";
-//         objImg.border="2px solid #efefef";
 		objImg.cssclass = "imgView_folder";
         
         objDiv.form.addChild("imgView", objImg);
@@ -389,7 +436,7 @@ this.drawCard = function ()
 		
 		
 		
-		 // button 
+		//transParent button 
         var objBtn = new Button();
         objBtn.init("btnClick", 0, 0, null, null,0,0);
         objBtn.u_Row = i; 
@@ -398,8 +445,10 @@ this.drawCard = function ()
         objBtn.bringToFront();
 	
         objBtn.addEventHandler("onclick", this.fn_divClick, this);
+		objBtn.addEventHandler("ondrag", this.fn_comOnDrag, this);
+        
 		
-        objDiv.form.addChild("btnClick", objBtn);
+		objDiv.form.addChild("btnClick", objBtn);
         objBtn.show();
 		if(i==0){
 			objBtn.setFocus();
@@ -439,7 +488,7 @@ this.btnAddValue_onmouseenter = function(obj:nexacro.Button, e:nexacro.MouseEven
     }
 
     objAni.removeTarget("targetBtn");    
-    objAni.addTarget("targetBtn", obj, "left:500, width:225");
+    objAni.addTarget("targetBtn", obj, "left:510, width:215");
     objAni.play();
 };
 
@@ -485,6 +534,98 @@ this.btnPrev_onclick = function(obj:nexacro.Button, e:nexacro.ClickEventInfo)
     this.stockLoad();
 };
 
+this.fn_buttonClick = function(obj:nexacro.Button, e:nexacro.ClickEventInfo)
+{
+	var groupRow = obj.u_Row; 
+	
+	this.selectGroup= this.ds_group.getColumn(groupRow,"GROUP_ID");
+	this.fnPageInit();
+};
+
+
+this.btnAll_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.selectGroup= null;
+	this.fnPageInit();
+};
+
+/******drag and drop *********/
+
+// 드래그 시작 시점
+this.fn_comOnDrag = function(obj:nexacro.Button, e:nexacro.DragEventInfo)
+{
+    if(obj.u_Row != null){
+        this.fvObjDrag = true;	
+        e.userdata = obj.u_Row; // 이동할 종목의 index를 넘김
+        
+		this.div_move.bringToFront();
+       
+		for(var i=0; i<this.ds_group.rowcount; i++) {
+            var targetBtn = this.components["btnGroup" + i];
+            if(targetBtn) targetBtn.bringToFront();
+        }
+        this.btnAdd.bringToFront();
+		this.btnAll.enable = false;
+		this.btnAdd.enable = false;
+		this.fnMakeDragObj(obj.parent); 
+        return true;	
+	}
+};
+
+// 드롭 시점 (그룹 버튼 위에서 호출)
+this.fn_comOnDrop = function(obj:nexacro.Button, e:nexacro.DragEventInfo)
+{
+    var nSrcRow = e.userdata;
+    var nDestRow = obj.u_Row; 
+    
+    if (nSrcRow == null || nDestRow == null) return;
+
+    var sNewGroupId = this.ds_group.getColumn(nDestRow, "GROUP_ID");
+    this.ds_stock.setColumn(nSrcRow, "GROUP_ID", sNewGroupId);
+    
+    
+    this.stockSave();
+    
+	this.btnAll.enable = true;
+	this.btnAdd.enable = true;
+    this.fvObjDrag = false;
+    this.div_move.visible = false;
+};
+
+this.form_ondragmove = function(obj:nexacro.Form, e:nexacro.DragEventInfo)
+{
+    // 마우스 우하단 10px 위치에 드래그용 div_move가 따라다님
+    this.div_move.move(e.clientx - 110, e.clienty - 30);
+};
+this.form_onlbuttonup = function(obj:nexacro.Form, e:nexacro.MouseEventInfo)
+{
+    if (this.fvObjDrag == true) {
+        this.fvObjDrag = false;
+        this.div_move.visible = false;
+    }	
+	this.btnAll.enable = true;
+	this.btnAdd.enable = true;
+}
+
+this.fnMakeDragObj = function(objDiv)
+{
+	this.div_move.width = objDiv.getOffsetWidth();
+    this.div_move.height = objDiv.getOffsetHeight();
+    
+	this.div_move.cssclass = objDiv.parent.cssclass;
+	this.div_move.background = objDiv.parent.background;
+	this.div_move.form.staTitle.text = objDiv.staTitle.text;
+	this.div_move.form.imgView.cssclass = objDiv.imgView.cssclass
+	this.div_move.form.imgView.image = objDiv.imgView.image;
+	this.div_move.form.staSub.text = objDiv.staSub.text;
+	this.div_move.form.staValue.text = objDiv.staValue.text;
+	this.div_move.form.staRate.text = objDiv.staRate.text;
+
+
+    // 3. 투명도 등을 조절해 "잔상" 느낌을 줌 (선택사항)
+    this.div_move.set_opacity(0.7);	
+    this.div_move.visible = true;
+};
 ]]></Script>
     <Objects>
       <Dataset id="ds_group">
@@ -529,7 +670,7 @@ this.btnPrev_onclick = function(obj:nexacro.Button, e:nexacro.ClickEventInfo)
           <Column id="page" type="INT" size="256"/>
           <Column id="recordsOffset" type="INT" size="256"/>
           <Column id="pageCount" type="INT" size="256"/>
-          <Column id="groudName" type="STRING" size="256"/>
+          <Column id="groupId" type="STRING" size="256"/>
         </ColumnInfo>
       </Dataset>
       <Dataset id="ds_pagingInfo">
