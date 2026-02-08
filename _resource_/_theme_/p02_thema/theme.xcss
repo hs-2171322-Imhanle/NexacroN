@@ -3526,6 +3526,21 @@
 	background : url('theme://NewFolder/arrow2.png') no-repeat center center white;
 	box-shadow : 0px 4px 4px 0px #b2b2b2;
 }
+.Button.btn_home
+{
+	-nexa-border : 1px solid white;
+	color : white;
+	font : 16px "Arial";
+	background : transParent;
+
+}
+.Button.btn_home[status=mouseover],.Button.btn_home[status=focused]
+{
+	-nexa-border : 1px solid white;
+	color : black;
+	font : 16px "Arial";
+	background : white;
+}
 ]]></CSSData>
   <CSSData type="mobile_large"><![CDATA[]]></CSSData>
   <CSSData type="mobile_small"><![CDATA[]]></CSSData>

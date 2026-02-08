@@ -119,14 +119,6 @@ this.btnAcor2_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 
 
 
-this.divBasic2_editStart_onkeyup = function(obj:nexacro.Edit,e:nexacro.KeyEventInfo)
-{
-	if(e.keycode == "13"){
- 		this.parent.parent.parent.ds_info.setColumn(0, "START_VALUE", this.divBasic2.form.editStart.text);
-		this.parent.parent.parent.divChart.form.fnCreateChart();	 
-	}
-};
-
 // img 관련
 this.divBasic_btnImg_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {

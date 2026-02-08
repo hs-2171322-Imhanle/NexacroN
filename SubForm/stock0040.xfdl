@@ -15,7 +15,7 @@
             <Tabpage id="Tabpage2" text="주식형 종목"/>
           </Tabpages>
         </Tab>
-        <Div id="divChart" taborder="2" left="tabStock:60" top="110" width="780" bottom="30" background="white" url="SubForm::stock0043.xfdl" text="" border="2px solid #ffe8d1" borderRadius="10px" cssclass="div_box">
+        <Div id="divChart" taborder="2" left="tabStock:60" top="110" width="780" background="white" url="SubForm::stock0043.xfdl" text="" border="2px solid #FFCE99" borderRadius="10px" cssclass="div_box" height="588">
           <Layouts>
             <Layout/>
           </Layouts>
@@ -23,50 +23,7 @@
         <Static id="Static00_00" taborder="5" text="&#9;걸음 수, 독서량, 학습 시간, 몸무게 등과 같은 다양한 수치형 기록의 변화를 투자 결과로 연결하는 학습 종목입니다" left="590" top="90" height="54" cssclass="sta_chart_explainSub" right="244"/>
         <Static id="Static00_00_00" taborder="6" text="&#9;     기록형 종목이란?" left="590" top="57" height="50" cssclass="sta_chart_explainM" right="244"/>
         <Button id="btnSave" taborder="4" text="저장" left="1261" top="20" width="80" height="28" onclick="btnSave_onclick" cssclass="btn_work_select"/>
-        <Static id="Static01_00" taborder="7" left="610" top="64" width="38" height="33" background="url('theme://NewFolder/pin.png') no-repeat center center"/>
-        <Grid id="Grid00" taborder="8" left="1067" top="357" width="430" height="173" binddataset="ds_stock">
-          <Formats>
-            <Format id="default">
-              <Columns>
-                <Column size="80"/>
-                <Column size="80"/>
-                <Column size="80"/>
-                <Column size="80"/>
-                <Column size="80"/>
-                <Column size="80"/>
-                <Column size="80"/>
-                <Column size="80"/>
-                <Column size="80"/>
-              </Columns>
-              <Rows>
-                <Row band="head" size="24"/>
-                <Row size="24"/>
-              </Rows>
-              <Band id="head">
-                <Cell text="TITLE"/>
-                <Cell col="1" text="SUBTITLE"/>
-                <Cell col="2" text="GROUP_ID"/>
-                <Cell col="3" text="IMAGE_FILE"/>
-                <Cell col="4" text="DAY_SEQ"/>
-                <Cell col="5" text="UNIT_NAME"/>
-                <Cell col="6" text="CURRENT_VALUE"/>
-                <Cell col="7" text="RATE"/>
-                <Cell col="8" text="TYPE"/>
-              </Band>
-              <Band id="body">
-                <Cell text="bind:TITLE"/>
-                <Cell col="1" text="bind:SUBTITLE"/>
-                <Cell col="2" text="bind:GROUP_ID"/>
-                <Cell col="3" text="bind:IMAGE_FILE"/>
-                <Cell col="4" text="bind:DAY_SEQ"/>
-                <Cell col="5" text="bind:UNIT_NAME"/>
-                <Cell col="6" text="bind:CURRENT_VALUE"/>
-                <Cell col="7" text="bind:RATE"/>
-                <Cell col="8" text="bind:TYPE"/>
-              </Band>
-            </Format>
-          </Formats>
-        </Grid>
+        <Static id="Static01_00" taborder="7" left="610" top="64" width="38" height="33" background="url('theme::p02_thema/NewFolder/Pin.png') no-repeat center center"/>
       </Layout>
     </Layouts>
     <Script type="xscript5.1"><![CDATA[this.stock0040_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
@@ -119,10 +76,14 @@ this.ds_stock_oncolumnchanged = function(obj:nexacro.NormalDataset,e:nexacro.DSC
 	let title = this.ds_stock.getColumn(0,"TITLE");
 	let tLength = nexacro.getTextSize(title, "bold 14pt/normal Malgun Gothic");
 	this.divChart.form.staTitle.width = tLength.nx + 10
-
-	trace("dddddddddddddddddd"+tLength.nx);
+	
 	this.divChart.form.resetScroll();
+	this.divChart.form.fnCreateChart();	
+	
+	
 };
+
+
 ]]></Script>
     <Objects>
       <Dataset id="ds_image" onload="ds_imageAll_onload">

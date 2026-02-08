@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="stock0002" width="1535" height="2040" titletext="home">
+    <Layouts>
+      <Layout height="2040" width="1535">
+        <Div id="Div00" taborder="0" left="0" top="0" height="671" right="0" url="SubForm::stock0200.xfdl"/>
+        <Static id="Static00" taborder="1" text="주니어 스탁 모의 주식 교실" left="469" top="217" width="596" height="60" color="white" font="bold 48px/normal &quot;Malgun Gothic&quot;"/>
+        <Static id="Static00_00" taborder="2" text="선생님과 함께 실제 시장 그래프를 보며 쉽고 재미있게 &#13;&#10;주식 기초를 배우고, 가상 투자로 연습해요" left="532" top="305" width="470" height="60" color="white" font="16px/normal &quot;Malgun Gothic&quot;" textAlign="center"/>
+        <Button id="btnStart" taborder="3" text="시작" left="690" top="398" width="154" height="51" cssclass="btn_home" onclick="btnStart_onclick"/>
+        <ImageViewer id="ImageViewer00" taborder="4" left="0" top="Div00:0" height="464" right="0" image="url('theme::p02_thema/NewFolder/home1.png')" stretch="fit" border="0px none"/>
+        <ImageViewer id="ImageViewer01" taborder="5" text="ImageViewer01" left="0" top="ImageViewer00:-2" height="650" border="0px none" right="0" image="url('theme::p02_thema/NewFolder/home2.png')" stretch="fit"/>
+        <ImageViewer id="ImageViewer01_00" taborder="6" left="0" top="ImageViewer01:-1" border="0px none" right="0" image="url('theme::p02_thema/NewFolder/home3.png')" stretch="fit" height="257"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[
+this.btnStart_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.parent.parent.divLeft.width = 0; 
+	this.parent.parent.divMain.left = "divLeft: -1";
+	this.parent.parent.divMain.url = "Login::stock0010.xfdl";
+
+};
+]]></Script>
+  </Form>
+</FDL>
