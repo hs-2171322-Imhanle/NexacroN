@@ -2942,21 +2942,18 @@
 {	
 	color : #b00020;
 }	
+
+
+
 ]]></CSSData>
   <CSSData type="desktop"><![CDATA[.Button.btn_header_noLine
 {
 	-nexa-border : 0px none;
 	background : transParent;
-	font : 600 11pt "Arial";
+	font : 600 13pt "Arial";
 	color : #383838;
 }
-.Button.btn_header_noLine[status=mouseover]
-{
-	-nexa-border : 0px none;
-	color : #ffa443;
-	background : transParent;
-}
-.Button.btn_header_noLine[status=focused][userstatus=selected]
+.Button.btn_header_noLine[status=focused],.Button.btn_header_noLine[status=mouseover],.Button.btn_header_noLine[userstatus=selected]
 {
 	-nexa-border : 0px none;
 	color : #ffa443;
@@ -2964,7 +2961,7 @@
 }
 .Static.sta_header_logo
 {
-	font : 800 13pt "Arial";
+	font : 800 18pt "Arial";
 	color : black;
 	-nexa-text-align : center;
 }
@@ -2974,7 +2971,6 @@
 	background : #FFA443;
 	font : 600 11pt "Arial";
 	color : white;
-	border-radius : 10px;
 }
 .Static.sta_login_head
 {
@@ -2998,10 +2994,12 @@
 }
 .Edit.edit_search
 {
-	-nexa-border : 1px solid #e2e2e2;
+	
 	border-radius : 10px;
-	box-shadow : 0px 1px 2px 0px #e2e2e2;
+	
 	-nexa-padding : 0px 0px 0px 40px;
+	background : #fcf9f7;
+	-nexa-border : 0px none;
 	
 }
 .Button.btn_filter
@@ -3022,22 +3020,27 @@
 }
 .Grid.grid_basic
 {
-	-nexa-border : 0px none;
+	
 	background : white;
+	-nexa-border : 0px none;
+	
+	
+	
 }
 .Grid.grid_basic .head .row .cell
 {
-	-nexa-border : 0px none,0px none,2px solid #e2e2e2;
+	-nexa-border : 0px none,0px none,2px solid #EEEEEE;
 	background : white;
-	color : #919191;
-	font : 600 12pt "Arial";
+	color : #B5B7C0;
+	font : normal 700 12px/normal "Malgun Gothic"
 	
-}
+;}
 .Grid.grid_basic .body .row .cell
 {
-	-nexa-border : 0px none,0px none,1px solid #e2e2e2;
+	-nexa-border : 0px none,0px none,1px solid #EEEEEE;
 	-nexa-text-align : center;
-	font :  13pt "Arial";
+	font : normal 12px/normal "Malgun Gothic";
+	color : black;
 }
 
 
@@ -3144,23 +3147,23 @@
 }
 .Static.sta_acordian_bold
 {
-	font : bold 10pt "Arial";
+	font : bold 11pt "Arial";
 	
 }
 
-.Button.btn_WF_BaseT,
 .Button.btn_WF_BaseT[userstatus=selected],
 .Button.btn_WF_BaseT[status=mouseover],
 .Button.btn_WF_BaseT[status=focused],
-.Button.btn_WF_BaseT[userstatus=pushed],
-.Button.btn_WF_BaseT[status=disabled]
+.Button.btn_WF_BaseT[userstatus=pushed]
 {
 	-nexa-border : 0px none;
-	background : transparent;
+	background : white;
 	-nexa-icon : URL("theme://images/btn_WF_BaseT.png");
 	-nexa-padding : 0px;
+	border-radius : 50px;
+	
 }
-.Button.btn_WF_BaseB,
+
 .Button.btn_WF_BaseB[userstatus=selected],
 .Button.btn_WF_BaseB[status=mouseover],
 .Button.btn_WF_BaseB[status=focused],
@@ -3168,9 +3171,10 @@
 .Button.btn_WF_BaseB[status=disabled]
 {
 	-nexa-border : 0px none;
-	background : transparent;
+	background : white;
 	-nexa-icon : URL("theme://images/btn_WF_BaseB.png");
 	-nexa-padding : 0px;
+	border-radius : 50px;
 }
 .Static.sta_acordian_explain
 {
@@ -3200,15 +3204,16 @@
 {
 	-nexa-border : 0px none;
 	background : transparent;
-	font : bold 14pt "Arial";
+	font : 18px/normal "Arial";
+	color : white;
  
 }
 .Button.btn_group
 {
 	-nexa-border : 1px solid #f8f8f8;
 	background : white;
-	border-radius : 20px;
-	box-shadow : 0px 2px 4px 0px #e0e0e0;
+	border-radius : 15px;
+	box-shadow : 0px 2px 2px 0px #e0e0e0;
 	color : black;
 	font :  bold 10pt "Arial";
 	
@@ -3334,9 +3339,8 @@
 }
 .ImageViewer.imgView_folder
 {
-	-nexa-border : 1px solid #f9f9f9;
-	box-shadow : 0px 2px 2px 0px #dddddd;
-	border-radius : 10px;
+	-nexa-border : 0px none;
+	
 }
 
 .Div.div_popup
@@ -3444,7 +3448,7 @@
 	-nexa-border : 1px solid #f8f8f8;
 	background : white;
 	border-radius : 10px;
-	box-shadow : 0px 2px 4px 0px #e0e0e0;
+	box-shadow : 0px 2px 10px 0px #ffebdd;
 }
 .Button.btn_transParent
 {
@@ -3454,10 +3458,9 @@
 }
 .Div.div_groupBox
 {
-	-nexa-border : 1px solid #f8f8f8;
-	background : white;
-	border-radius : 10px;
-	box-shadow : 0px 4px 4px 0px #b2b2b2;
+	-nexa-border : 0px none;
+	background : transParent;
+	border-radius : 8px;
 }
 .Button.btn_transParent[status=mouseover],.Button.btn_transParent[status=focused]
 {
@@ -3515,16 +3518,13 @@
 .Button.btn_next
 {
 	-nexa-border : 0px none;
-	border-radius : 100px;
-	background : url('theme://NewFolder/arrow.png') no-repeat center center white;
-	box-shadow : 0px 4px 4px 0px #b2b2b2;
+	background : url('theme://NewFolder/arrow.png') no-repeat center center transParent;
+	
 }
 .Button.btn_prev
 {
 	-nexa-border : 0px none;
-	border-radius : 100px;
-	background : url('theme://NewFolder/arrow2.png') no-repeat center center white;
-	box-shadow : 0px 4px 4px 0px #b2b2b2;
+	background : url('theme://NewFolder/arrow2.png') no-repeat center center transParent;	
 }
 .Button.btn_home
 {
@@ -3540,6 +3540,101 @@
 	color : black;
 	font : 16px "Arial";
 	background : white;
+}
+.Form.form_DefalutScroll .vscrollbar .trackbar
+{
+	background : #878787;
+	border-radius : 5px;
+}
+.Form.form_DefalutScroll .vscrollbar
+{
+	-nexa-border : 0px none;
+	background : white;
+	
+}
+.Button.btn_menu[status=mouseover],.Button.btn_menu[status=focused]
+{
+	-nexa-border : 0px none;
+	background : #d87e07;
+	font : 18px/normal "Arial";
+	color : white;
+	border-radius : 5px;
+}
+.Button.btn_prev[status=mouseover],.Button.btn_prev[status=focused]
+{
+	-nexa-border : 0px none;
+	background : url('theme://NewFolder/arrow2.png') no-repeat center center transParent;	
+}
+.Button.btn_next[status=mouseover],.Button.btn_next[status=focused]
+{
+	-nexa-border : 0px none;
+	background : url('theme://NewFolder/arrow.png') no-repeat center center transParent;
+	
+}
+.Button.btn_WF_BaseB
+{
+	-nexa-border : 0px none;
+	background : transparent;
+	-nexa-icon : URL("theme://images/btn_WF_BaseB.png");
+	-nexa-padding : 0px;
+}
+.Button.btn_WF_BaseT
+{
+	-nexa-border : 0px none;
+	background : transParent;
+	-nexa-icon : URL("theme://images/btn_WF_BaseT.png");
+	-nexa-padding : 0px;
+}
+
+
+.CheckBox.chk_WF_Toggle[status=mouseover]
+{
+	-nexa-icon : url('theme://images/chk_WF_ToggleOff.png');
+	-nexa-border : 2px solid #FFA443;
+	border-radius : 22px;
+	
+}
+.CheckBox.chk_WF_Toggle[userstatus=selected],
+.CheckBox.chk_WF_Toggle[status=mouseover][userstatus=selected]
+{
+	-nexa-icon : url('theme://images/chk_WF_ToggleOn.png');
+}
+.CheckBox.chk_WF_Toggle
+{
+	-nexa-icon : url('theme://images/chk_WF_ToggleOff.png');
+	
+}
+.Grid.grid_chkBox
+{
+}
+.Grid.grid_chkBox .body .row .cell .cellcheckbox
+{
+	-nexa-border : 2px solid red;
+	border-radius : 4px;
+	
+}
+.Div.div_dashBoard
+{
+	-nexa-border : 0px none;
+	border-radius : 8px;
+	background : white;
+	
+}
+.Button.btn_dashboardYear
+{
+	-nexa-border : 0px none;
+	font : 12px/normal "Malgun Gothic";
+	color : #838383;
+	background : transParent;
+	
+}
+.Button.btn_dashboardYear[status=mouseover],.Button.btn_dashboardYear[status=focused]
+{
+	-nexa-border : 0px none;
+	font : bold 12px/normal "Malgun Gothic";
+	color : #FF6F00;
+	background : transParent;
+	-nexa-text-decoration : underline;
 }
 ]]></CSSData>
   <CSSData type="mobile_large"><![CDATA[]]></CSSData>
