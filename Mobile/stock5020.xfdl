@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="stock5020" width="1280" height="800" titletext="주식방">
+    <Layouts>
+      <Layout height="800" width="1280">
+        <ImageViewer id="ImageViewer00" taborder="1" left="160" top="30" width="60" height="40" image="url('theme::p02_thema/NewFolder/chart3.png')" stretch="fit" border="0px none" imagealign="center middle"/>
+        <Static id="Static00" taborder="0" text="오늘의 주가를 확인해봐요!" left="60" top="60" width="361" height="60" font="bold 30px/normal &quot;Malgun Gothic&quot;" color="black"/>
+        <Div id="Div00" taborder="2" text="Div00" left="60" top="150" width="390" height="255" cssclass="div_stockRoom"/>
+        <Button id="Button00" taborder="3" text="Button00" left="1047" top="92" width="194" height="80" cssclass="btn_addRoom_account"/>
+        <ImageViewer id="ImageViewer01" taborder="4" left="1056" top="111" width="48" height="43" image="url('theme::p02_thema/NewFolder/coins_3877053.png')" stretch="fit" border="0px none"/>
+      </Layout>
+    </Layouts>
+  </Form>
+</FDL>
