@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="stoc5021" width="1220" height="800" titletext="방추가" background="url('theme::p02_thema/NewFolder/4981779.jpg') no-repeat center center /contain">
+  <Form id="stoc5021" width="1280" height="800" titletext="방추가" background="url('theme::p02_thema/NewFolder/4981779.jpg') no-repeat center center /contain">
     <Layouts>
-      <Layout height="800" width="1220">
-        <Static id="Static01" taborder="5" top="0" background="RGBA(253,219,139,0.54)" width="1200" height="800" right="10"/>
+      <Layout height="800" width="1280">
+        <Static id="Static01" taborder="5" top="0" background="RGBA(253,219,139,0.54)" width="1200" height="800" right="40"/>
         <ImageViewer id="ImageViewer00" taborder="0" left="550" top="117" width="180" height="166" image="url('theme://NewFolder/home.png')" stretch="fit" borderRadius="30px" border="0px none"/>
         <Static id="Static00" taborder="1" text="선생님과 함께하기" left="515" top="306" width="251" height="60" color="black" font="bold 30px/normal &quot;Malgun Gothic&quot;"/>
         <Static id="Static00_00" taborder="2" text="선생님에게 받은 코드를 입력하세요!" left="444" top="360" width="393" height="60" font="24px/normal &quot;Malgun Gothic&quot;"/>

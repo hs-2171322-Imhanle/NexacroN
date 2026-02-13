@@ -1,0 +1,221 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="stock5003" width="489" height="690" titletext="signUp" onload="stock5003_onload" onclick="stock5003_onclick">
+    <Layouts>
+      <Layout height="690" width="489">
+        <Static id="Static00" taborder="0" text="클래스탁" left="184" top="130" width="120" height="60" color="black" font="bold 30px/normal &quot;Malgun Gothic&quot;"/>
+        <Static id="Static01" taborder="5" text="재미있게 배우는 경제 공부!" left="145" top="180" width="210" height="40" font="16px/normal &quot;Malgun Gothic&quot;" color="#828282"/>
+        <TextField id="TextFieldEmail" taborder="2" labeltext="이메일" left="83" top="310" width="323" height="60" inputtype="email" color="black" font="bold 12px/normal &quot;Malgun Gothic&quot;" onkillfocus="TextFieldEmail_onkillfocus"/>
+        <TextField id="TextFieldPW" taborder="3" labeltext="비밀번호" left="83" top="390" width="323" height="60" inputtype="password" color="black" font="bold 12px/normal &quot;Malgun Gothic&quot;" onkillfocus="TextFieldPW_onkillfocus"/>
+        <Static id="Static01_00" taborder="6" text="계정이 있으시나요?" left="150" top="635" width="115" height="15" cssclass="sta_login_explan" visible="true"/>
+        <Button id="btnLogin" taborder="7" text="로그인" left="263" top="633" width="64" height="17" cssclass="btn_signUp_next" visible="true" onclick="btnLogin_onclick"/>
+        <Button id="btnAccount" taborder="8" text="회원가입" left="83" top="558" width="323" height="64" cssclass="btn_login" tabstop="false" onclick="btnAccount_onclick"/>
+        <ImageViewer id="ImageViewer00" taborder="9" left="188" top="26" width="113" height="104" background="#fbe8c0" borderRadius="100px" border="0px none"/>
+        <TextField id="TextFieldName" taborder="1" labeltext="이름" left="83" top="230" width="323" height="60" inputtype="text" color="black" font="bold 12px/normal &quot;Malgun Gothic&quot;" onkillfocus="TextFieldName_onkillfocus"/>
+        <TextField id="TextFieldPWConfirm" taborder="4" labeltext="비밀번호 확인" left="83" top="470" width="323" height="60" inputtype="password" color="black" font="bold 12px/normal &quot;Malgun Gothic&quot;" onkillfocus="TextFieldPWConfirm_onkillfocus"/>
+        <Grid id="Grid00" taborder="10" left="523" top="411" width="237" height="119" binddataset="ds_user">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row band="head" size="24"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="EMAIL"/>
+                <Cell col="1" text="NAME"/>
+                <Cell col="2" text="PASSWORD"/>
+                <Cell col="3" text="ROLE"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:EMAIL"/>
+                <Cell col="1" text="bind:NAME"/>
+                <Cell col="2" text="bind:PASSWORD"/>
+                <Cell col="3" text="bind:ROLE"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="staEmailWarn" taborder="11" text="이메일 형식으로 입력해주세요." left="236" top="303" width="168" height="14" color="red" visible="false"/>
+        <Static id="staNameWarn" taborder="12" text="이름을 입력해 주세요." left="280" top="223" width="120" height="14" color="red" visible="false"/>
+        <Static id="staPwWarn" taborder="13" text="패스워드는 7자 이상이어야 합니다." left="214" top="383" width="190" height="14" color="red" visible="false"/>
+        <Static id="staPwCWarn" taborder="14" text="패스워드가 일치하지 않습니다." left="236" top="460" width="168" color="red" visible="false" height="14"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[
+
+this.stock5003_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.ds_user.clearData();
+	this.ds_user.addRow();
+};
+
+this.btnLogin_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.go("Mobile::stock5002.xfdl");
+};
+
+this.btnAccount_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	//정합성 체크
+	if (this.TextFieldEmail.getValidStatus() != "valid") {
+		this.staEmailWarn.visible= true;
+		this.TextFieldEmail.setFocus();
+		return;
+	} else {
+		this.staEmailWarn.visible= false;
+	}
+	
+	var sPw = this.TextFieldPW.text;
+	if (sPw.length < 7) {
+		this.staPwWarn.visible=true;
+		this.TextFieldPW.setFocus();
+		return;
+	} else {
+		this.staPwWarn.visible=false;
+	}
+	if(this.TextFieldName == null){
+		this.staNameWarn.visible = true;
+		this.TextFieldName.setFocus();
+		return;
+	}
+	else{
+		this.staNameWarn.visible = false;
+	}
+	var sPwConfirm = this.TextFieldPWConfirm.value || "";
+	if (sPw != sPwConfirm) {
+		this.staPwCWarn.visible = true;
+		this.TextFieldPWConfirm.setFocus();
+		return;
+	}
+	else{
+		this.staPwCWarn.visible = false;
+	}
+	
+	this.ds_user.setColumn(0,"ROLE", "STUDENT");
+	
+	var strSvcId    = "save";
+		var strSvcUrl   = "user/saveUser.do";
+		var inData      = "ds_user=ds_user:u";
+		var outData     = "";
+		var sParam      = "";
+		var callBackFnc = "fnCallback";
+
+		this.gfnTransaction(strSvcId ,
+							strSvcUrl ,
+							inData ,
+							outData ,
+							sParam,
+							callBackFnc);
+	
+};
+
+this.fnCallback = function (svcId, errCode, errMsg)
+{
+
+	// 서버에서 에러(중복 포함) 발생 시
+    if (errCode < 0) {
+        if (svcId == "checkEmail") {
+            this.staEmailWarn.text = "이미 사용 중인 이메일입니다.";
+            this.staEmailWarn.visible = true;
+			this.TextFieldEmail.setFocus();
+        } else {
+            this.alert(errMsg);
+        }
+        return;
+    }
+
+	if(svcId == "save"){
+		this.go("Mobile::stock5002.xfdl");
+	}
+	else if (svcId == "checkEmail") {
+        this.staEmailWarn.visible = false;
+    }
+};
+
+
+//정합성 체크
+this.TextFieldName_onkillfocus = function(obj:nexacro.TextField,e:nexacro.KillFocusEventInfo)
+{
+	if(this.TextFieldName.text == ""){
+		this.staNameWarn.visible = true;
+		this.TextFieldName.setFocus();
+		return;
+	}
+	else{
+		this.staNameWarn.visible = false;
+	}
+};
+
+this.TextFieldEmail_onkillfocus = function(obj:nexacro.TextField,e:nexacro.KillFocusEventInfo)
+{	
+	if (this.TextFieldEmail.getValidStatus() != "valid") {
+		this.staEmailWarn.text = "이메일 형식으로 입력해주세요.";
+		this.staEmailWarn.visible= true;
+		this.TextFieldEmail.setFocus();
+		return;
+	} else {
+		this.staEmailWarn.visible= false;
+	}
+
+    var sEmail = this.TextFieldEmail.value;
+    var strSvcId    = "checkEmail";
+    var strSvcUrl   = "user/checkEmail.do";
+    var inData      = "";
+    var outData     = "";
+    var sParam      = "email=" + nexacro.wrapQuote(sEmail); 
+    var callBackFnc = "fnCallback";
+
+    this.gfnTransaction(strSvcId, strSvcUrl, inData, outData, sParam, callBackFnc);
+};
+
+this.TextFieldPW_onkillfocus = function(obj:nexacro.TextField,e:nexacro.KillFocusEventInfo)
+{	
+	this.sPw = this.TextFieldPW.text;
+	if (this.sPw.length < 7) {
+		this.staPwWarn.visible=true;
+		this.TextFieldPW.setFocus();
+		return;
+	} else {
+		this.staPwWarn.visible=false;
+	}
+};
+
+this.TextFieldPWConfirm_onkillfocus = function(obj:nexacro.TextField,e:nexacro.KillFocusEventInfo)
+{
+	var sPwConfirm = this.TextFieldPWConfirm.value || "";
+	if (this.sPw != sPwConfirm) {
+		this.staPwCWarn.visible = true;
+		this.TextFieldPWConfirm.setFocus();
+		return;
+	}
+	else{
+		this.staPwCWarn.visible = false;
+	}
+};
+]]></Script>
+    <Objects>
+      <Dataset id="ds_user">
+        <ColumnInfo>
+          <Column id="EMAIL" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+          <Column id="PASSWORD" type="STRING" size="256"/>
+          <Column id="ROLE" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="TextFieldName" propid="value" datasetid="ds_user" columnid="NAME"/>
+      <BindItem id="item1" compid="TextFieldEmail" propid="value" datasetid="ds_user" columnid="EMAIL"/>
+      <BindItem id="item2" compid="TextFieldPW" propid="value" datasetid="ds_user" columnid="PASSWORD"/>
+    </Bind>
+  </Form>
+</FDL>

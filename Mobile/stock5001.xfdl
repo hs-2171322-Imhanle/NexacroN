@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="stock5001" width="1280" height="800" titletext="login" background="#FFC419">
+  <Form id="stock5001" width="1280" height="800" titletext="user" background="#FFC419">
     <Layouts>
       <Layout height="800" width="1280">
-        <Button id="Button00" taborder="0" text="Button00" left="451" top="544" width="366" height="93"/>
+        <Div id="divUser" taborder="0" left="396" top="133" width="489" height="534" background="white" border="0px none" borderRadius="50px" url="Mobile::stock5002.xfdl" boxShadow="0px 2px 20px 0px #a3a3a3" text=""/>
       </Layout>
     </Layouts>
   </Form>

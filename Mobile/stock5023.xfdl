@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="stock5023" width="1280" height="800" titletext="계좌" background="#fcf9f7">
+    <Layouts>
+      <Layout height="800" width="1280">
+        <Div id="Div00" taborder="6" left="95" top="322" width="1090" height="432" background="transParent">
+          <Layouts>
+            <Layout/>
+          </Layouts>
+        </Div>
+        <Div id="Div00_00_01_00_00" taborder="0" left="100" top="60" width="1080" height="170" background="white" borderRadius="50px" boxShadow="0px 5px 0px 0px #ffb1af" border="2px solid #ffb1af">
+          <Layouts>
+            <Layout>
+              <Static id="Static01_03" taborder="0" text="내 계좌 금액" left="48" top="36" width="92" height="27" color="#9b9b9b" font="bold 16px/normal &quot;Malgun Gothic&quot;"/>
+              <Static id="Static01_00" taborder="1" text="₩" left="48" top="74" width="44" height="42" color="black" font="bold 40px/normal &quot;Malgun Gothic&quot;"/>
+              <ImageViewer id="ImageViewer01" taborder="2" left="893" top="18" width="130" height="119" image="url('theme::p02_thema/NewFolder/finance.png')" stretch="fit" border="0px none"/>
+              <Static id="Static00" taborder="3" text="0" left="98" top="71" width="248" height="47" color="black" font="bold 40px/normal &quot;Malgun Gothic&quot;"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="Static00" taborder="1" text="돈이 어떻게 움직였나요?" left="143" top="265" width="224" height="60" color="black" font="bold 20px/normal &quot;Malgun Gothic&quot;"/>
+        <ImageViewer id="ImageViewer00" taborder="2" left="100" top="280" width="30" height="30" image="url('theme::p02_thema/NewFolder/Update.png')" background="transParent" border="0px none" stretch="fit"/>
+        <Div id="Div00_00_01_00_00_00" taborder="3" left="100" top="331" width="1080" height="89" background="white" borderRadius="20px" boxShadow="0px 2px 0px 0px #cecece">
+          <Layouts>
+            <Layout>
+              <ImageViewer id="ImageViewer01" taborder="0" left="20" top="20" width="48" height="48" image="url('theme::p02_thema/NewFolder/money-bag_8996194.png')" stretch="fit" border="0px none" borderRadius="18px" padding="15px" background="#d5faee"/>
+              <Static id="Static00" taborder="1" text="입금" left="80" top="15" width="40" height="35" color="black" font="bold 16px/normal &quot;Malgun Gothic&quot;"/>
+              <Static id="Static00_00" taborder="2" text="2026.06.23" left="80" top="39" width="120" height="35" font="bold 12px/normal &quot;Malgun Gothic&quot;" color="#a8a8a8"/>
+              <Static id="Static01" taborder="3" text="50,005" left="940" top="20" width="120" height="49" font="bold 18px/normal &quot;Malgun Gothic&quot;" color="#49b569" textAlign="right"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <ImageViewer id="ImageViewer01" taborder="4" left="1320" top="350" width="48" height="48" image="url('theme::p02_thema/NewFolder/money-bag_8996194.png')" stretch="fit" border="0px none" borderRadius="18px" padding="15px" background="#e3fbf4" visible="false"/>
+        <ImageViewer id="ImageViewer01_00" taborder="5" left="1320" top="416" width="48" height="48" image="url('theme::p02_thema/NewFolder/money_wing.png')" stretch="fit" border="0px none" borderRadius="18px" padding="15px" background="#fdfde6" visible="false"/>
+        <ImageViewer id="ImageViewer01_00_00" taborder="7" left="1320" top="480" width="48" height="48" image="url('theme::p02_thema/NewFolder/box.png')" stretch="fit" border="0px none" borderRadius="18px" padding="13px" background="#e0ebff" visible="false"/>
+        <ImageViewer id="ImageViewer01_00_00_00" taborder="8" left="1320" top="536" width="48" height="48" image="url('theme::p02_thema/NewFolder/inbox.png')" stretch="fit" border="0px none" borderRadius="18px" padding="15px" background="#ffe5e9" visible="false"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="Dataset00">
+        <ColumnInfo>
+          <Column id="jkk" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="jkk">505000</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[
+this.Button00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.Div00_00_01_00_00.form.Static00.text = this.gfnAppendComma(50000000, 0);
+};
+]]></Script>
+  </Form>
+</FDL>

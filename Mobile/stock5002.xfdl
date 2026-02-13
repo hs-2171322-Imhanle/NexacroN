@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="stock5002" width="489" height="534" titletext="login">
+    <Layouts>
+      <Layout height="534" width="489">
+        <Static id="Static00" taborder="0" text="클래스탁" left="184" top="130" width="120" height="60" color="black" font="bold 30px/normal &quot;Malgun Gothic&quot;"/>
+        <Static id="Static01" taborder="1" text="재미있게 배우는 경제 공부!" left="145" top="180" width="210" height="40" font="16px/normal &quot;Malgun Gothic&quot;" color="#828282"/>
+        <TextField id="TextField00" taborder="2" labeltext="Email" left="83" top="230" width="323" height="60" inputtype="email" color="black" font="bold 12px/normal &quot;Malgun Gothic&quot;"/>
+        <TextField id="TextField00_00" taborder="3" labeltext="Password" left="83" top="310" width="323" height="60" inputtype="password" color="black" font="bold 12px/normal &quot;Malgun Gothic&quot;"/>
+        <Static id="Static01_00" taborder="4" text="계정이 없으시나요?" left="150" top="475" width="115" height="15" cssclass="sta_login_explan" visible="true"/>
+        <Button id="btnSignUp" taborder="5" text="회원가입" left="263" top="473" width="64" height="17" cssclass="btn_signUp_next" onclick="btnSignUp_onclick" visible="true"/>
+        <Button id="Button00" taborder="6" text="로그인" left="83" top="398" width="323" height="64" cssclass="btn_login"/>
+        <ImageViewer id="ImageViewer00" taborder="7" left="188" top="26" width="113" height="104" background="#fbe8c0" borderRadius="100px" border="0px none"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[this.btnSignUp_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+		this.go("Mobile::stock5003.xfdl");
+		this.parent.parent.divUser.height = "690"; 
+		this.parent.parent.divUser.top = "60";
+};
+]]></Script>
+  </Form>
+</FDL>
