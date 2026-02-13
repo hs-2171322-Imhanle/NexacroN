@@ -1,0 +1,449 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="stock0020" width="1310" height="721" titletext="stockList" onload="form_onload">
+    <Layouts>
+      <Layout height="721" width="1310">
+        <Div id="Div00" taborder="1" text="Div00" left="68" top="50" width="842" height="630" background="white" borderRadius="12px" border="1px solid #f7f1ec" boxShadow="0px 2px 2px 0px #e0e0e0">
+          <Layouts>
+            <Layout>
+              <Edit id="editSearch" taborder="3" left="611" top="30" width="199" height="35" cssclass="edit_search" displaynulltext="Search..." onkeyup="editSearch_onkeyup"/>
+              <Grid id="gridStudent" taborder="0" left="27" top="84" width="774" height="495" binddataset="ds_stock" autofittype="col" cssclass="grid_basic" background="white" oncellclick="Div00_gridStudent_oncellclick">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="30"/>
+                      <Column size="45"/>
+                      <Column size="50"/>
+                      <Column size="95"/>
+                      <Column size="95"/>
+                      <Column size="95"/>
+                      <Column size="95"/>
+                      <Column size="95"/>
+                      <Column size="95"/>
+                      <Column size="95"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="52" band="head"/>
+                      <Row size="52"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell displaytype="checkboxcontrol" text="bind:CHK_DEL" checkboxsize="20" cssclass="grid_chkBox"/>
+                      <Cell col="1" colspan="2" text="종목이름"/>
+                      <Cell col="3" text="방 번호"/>
+                      <Cell col="4" text="현재 금액"/>
+                      <Cell col="5" text="1 변화당 수익률"/>
+                      <Cell col="6" text="변동률"/>
+                      <Cell col="7" text="기록 항목"/>
+                      <Cell col="8" text="그룹"/>
+                      <Cell col="9" text="AI 모드"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell edittype="checkbox" displaytype="checkboxcontrol" checkboxsize="20" cssclass="grid_chkBox"/>
+                      <Cell col="1" displaytype="imagecontrol" text="bind:IMAGE_DATA"/>
+                      <Cell col="2" text="bind:TITLE"/>
+                      <Cell col="3" text="bind:ROOM_NUMBER"/>
+                      <Cell col="4" text="bind:CURRENT_VALUE"/>
+                      <Cell col="5" text="bind:RATE"/>
+                      <Cell col="6" text="bind:CALCULATED_RATE"/>
+                      <Cell col="7" text="bind:SUBTITLE"/>
+                      <Cell col="8" text="bind:GROUP_ID"/>
+                      <Cell col="9" displaytype="checkboxcontrol" edittype="checkbox" cssclass="chk_WF_Toggle" text="bind:AI"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+              <Static id="Static00" taborder="1" text="All Stocks" left="34" top="35" width="106" font="bold 21px/normal &quot;Malgun Gothic&quot;" color="black" height="30"/>
+              <Button id="btnSearch" taborder="2" left="621" top="34" width="25" height="26" cssclass="btn_search" onlbuttonup="btnSearch_onlbuttonup"/>
+              <Div id="divPage" taborder="4" text="Div00" left="28" top="561" width="773" height="50" url="Cmm::CmmPaging.xfdl" background="pink"/>
+              <Grid id="Grid01" taborder="5" left="602" top="332" width="259" height="269" binddataset="ds_news">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                    </Columns>
+                    <Rows>
+                      <Row band="head" size="24"/>
+                      <Row size="24"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell text="NEWS_ORDER"/>
+                      <Cell col="1" text="CONTENT"/>
+                      <Cell col="2" text="STOCK_ID"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell text="bind:NEWS_ORDER"/>
+                      <Cell col="1" text="bind:CONTENT"/>
+                      <Cell col="2" text="bind:STOCK_ID"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Button id="btnDelete" taborder="0" text="회원삭제" left="1155" top="50" width="91" height="33" cssclass="btn_work_select" onclick="btnDeleteStu_onclick"/>
+        <Grid id="Grid00" taborder="2" left="1420" top="314" width="744" height="233" binddataset="ds_stock">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row band="head" size="24"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="IMAGE_DATA"/>
+                <Cell col="1" text="TITLE"/>
+                <Cell col="2" text="ROOM_NUMBER"/>
+                <Cell col="3" text="CURRENT_VALUE"/>
+                <Cell col="4" text="RATE"/>
+                <Cell col="5" text="CALCULATED_RATE"/>
+                <Cell col="6" text="SUBTITLE"/>
+                <Cell col="7" text="GROUP_ID"/>
+                <Cell col="8" text="STOCK_ID"/>
+                <Cell col="9" text="AI_MODE"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:IMAGE_DATA"/>
+                <Cell col="1" text="bind:TITLE"/>
+                <Cell col="2" text="bind:ROOM_NUMBER"/>
+                <Cell col="3" text="bind:CURRENT_VALUE"/>
+                <Cell col="4" text="bind:RATE"/>
+                <Cell col="5" text="bind:CALCULATED_RATE"/>
+                <Cell col="6" text="bind:SUBTITLE"/>
+                <Cell col="7" text="bind:GROUP_ID"/>
+                <Cell col="8" text="bind:STOCK_ID"/>
+                <Cell col="9" text="bind:AI_MODE"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Div id="divChart" taborder="3" left="940" top="108" width="306" height="132" text="" formscrollbarsize="0" cssclass="div_dashBoard" boxShadow="0px 2px 2px 0px #e0e0e0">
+          <Layouts>
+            <Layout>
+              <Div id="Div03" taborder="5" left="5" top="5" url="SubForm::stock0047.xfdl" right="5" bottom="5"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="divNews" taborder="4" left="940" top="270" width="306" height="170" cssclass="div_dashBoard" boxShadow="0px 2px 2px 0px #e0e0e0">
+          <Layouts>
+            <Layout>
+              <Button id="btnEdit" taborder="0" text="Edit / Add" left="217" top="20" width="65" height="17" cssclass="btn_login_choose" onclick="divNews_btnEdit_onclick"/>
+              <Static id="Static02_00_00" taborder="1" left="20" top="19" width="90" height="18" font="bold 16px Malgun Gothic" color="black" text="Card News"/>
+              <Button id="btnNewsAdd" taborder="2" left="131" top="110" width="40" height="40" boxShadow="0px 4px 17px 0px #d6d6d6" borderRadius="100px" border="0px none" background="#FFE8E8" text="+" color="#ff6a00" font="bold 28px/normal &quot;Malgun Gothic&quot;" textAlign="center" visible="false" onclick="divNews_btnNewsAdd_onclick"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Button id="btnSave" taborder="5" text="save" left="1167" top="456" width="81" height="45" onclick="btnSave_onclick"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_stock">
+        <ColumnInfo>
+          <Column id="IMAGE_DATA" type="STRING" size="256" description="이미지"/>
+          <Column id="TITLE" type="STRING" size="256" description="종목 이름"/>
+          <Column id="ROOM_NUMBER" type="STRING" size="256" description="방번호"/>
+          <Column id="CURRENT_VALUE" type="BIGDECIMAL" size="256" description="최신 금액(현재금액)"/>
+          <Column id="RATE" type="STRING" size="256" description="1 변화당 수익률"/>
+          <Column id="CALCULATED_RATE" type="STRING" size="256" description="변동률"/>
+          <Column id="SUBTITLE" type="STRING" size="256" description="기록항목"/>
+          <Column id="GROUP_ID" type="INT" size="256" description="그룹종목의 아이디"/>
+          <Column id="STOCK_ID" type="INT" size="256" description="주식종목의 아이디"/>
+          <Column id="AI_MODE" type="INT" size="256" description="AI on/off"/>
+          <Column id="UNIT_ID" type="INT" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_news">
+        <ColumnInfo>
+          <Column id="NEWS_ORDER" type="INT" size="256"/>
+          <Column id="CONTENT" type="STRING" size="256"/>
+          <Column id="STOCK_ID" type="INT" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_value">
+        <ColumnInfo>
+          <Column id="VALUE_ID" type="INT" size="256"/>
+          <Column id="STOCK_ID" type="INT" size="256"/>
+          <Column id="DAY_SEQ" type="DATE" size="256"/>
+          <Column id="CURRENT_VALUE" type="BIGDECIMAL" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_search">
+        <ColumnInfo>
+          <Column id="records" type="INT" size="256"/>
+          <Column id="page" type="INT" size="256"/>
+          <Column id="recordsOffset" type="INT" size="256"/>
+          <Column id="pageCount" type="INT" size="256"/>
+          <Column id="groupId" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_pagingInfo">
+        <ColumnInfo>
+          <Column id="totalCount" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_group">
+        <ColumnInfo>
+          <Column id="GROUP_ID" type="INT" size="256"/>
+          <Column id="GROUP_NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_unit">
+        <ColumnInfo>
+          <Column id="ID" type="INT" size="256"/>
+          <Column id="UNIT" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="ID">1</Col>
+            <Col id="UNIT">Kg</Col>
+          </Row>
+          <Row>
+            <Col id="ID">2</Col>
+            <Col id="UNIT">개</Col>
+          </Row>
+          <Row>
+            <Col id="ID">3</Col>
+            <Col id="UNIT">걸음</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[
+this.fvRecords=0; 			//목록갯수
+this.fvRecords=0;	 			//페이지번호
+this.fvRecordsOffset=0;		//시작rownum
+this.fvTotalCount=0;		//전체데이터갯수
+this.fvPageCount=0; 		//실제표출페이지갯수
+
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{	
+	this.gfnFormOnLoad(this);
+	this.fnPageInit(); 
+};
+
+ this.fnPageInit = function ()
+ {
+ 	//pagin info init setting
+	this.fvRecords=8;								 //목록갯수
+	this.fvPage=0;	 								 //페이지번호
+	this.fvRecordsOffset=0;							 //시작rownum
+	this.fvPageCount = 10;							 //실제표출페이지갯수
+	
+	this.stockLoad();
+ };
+this.stockLoad = function(){
+	
+	this.ds_search.clearData();
+	this.ds_news.clearData();
+	var nRow = this.ds_search.addRow();
+	
+	this.ds_search.setColumn(0,"groupId", this.selectGroup);
+	this.ds_search.setColumn(nRow, "records", this.fvRecords);
+	this.ds_search.setColumn(nRow, "recordsOffset", this.fvRecordsOffset); 
+
+	
+ 	var strSvcId    = "searchStock";
+	var strSvcUrl   = "stock/loadStock.do";
+	var inData      = "ds_search=ds_search";
+	var outData     = "ds_stock=ds_stock ds_pagingInfo=ds_pagingInfo ds_value=ds_value ds_news=ds_news";
+	var sParam      = "USER_ID=1";
+	var callBackFnc = "fnCallback";
+	var isAsync   	= true;
+	
+	this.gfnTransaction(strSvcId , 		
+						strSvcUrl , 	
+						inData , 		
+						outData , 		
+						sParam, 		
+						callBackFnc, 	
+						isAsync); 		
+}
+this.saveStock = function()
+{		
+		var strSvcId    = "saveStock";
+		var strSvcUrl   = "stock/saveStock.do";
+		var inData      = "ds_stock=ds_stock:U";
+		var outData     = "";
+		var sParam      = "USER_ID=1";
+		var callBackFnc = "fnCallback";
+		
+		this.gfnTransaction(strSvcId ,
+							strSvcUrl ,
+							inData ,
+							outData ,
+							sParam,
+							callBackFnc);
+};
+this.saveNews = function()
+{	
+    var cnt = this.ds_news.getRowCount();
+    for(var i=0; i<cnt; i++) {
+        var textAreaId = "txtNews" + i;
+        var objTextArea = this.divNews.form.components[textAreaId];
+        if(objTextArea) {
+            this.ds_news.setColumn(i, "CONTENT", objTextArea.value);
+			this.ds_news.setColumn(i, "NEWS_ORDER", (i + 1));
+        }
+    }
+		var strSvcId    = "saveNews";
+		var strSvcUrl   = "stock/saveNews.do";
+		var inData      = "ds_news=ds_news:U";
+		var outData     = "";
+		var sParam      = "USER_ID=1";
+		var callBackFnc = "fnCallback";
+		
+		this.gfnTransaction(strSvcId ,
+							strSvcUrl ,
+							inData ,
+							outData ,
+							sParam,
+							callBackFnc);
+};
+
+
+//================drawNews=====================
+//drawNews
+this.drawNews = function ()
+{	
+	var StockId = this.ds_stock.getColumn(this.ds_stock.rowposition, "STOCK_ID");
+	var filterCnt = this.ds_news.getRowCount(this.ds_news.filter("STOCK_ID == " + StockId ));
+	let cnt = filterCnt;
+	 
+    for(var i=0; i<4; i++) 
+    {
+        var textAreaId = "txtNews" + i;
+		
+		
+        if(this.divNews.form.isValidObject(textAreaId))
+        {
+            var objDel = this.divNews.form.removeChild(textAreaId);
+            objDel.destroy();
+            objDel = null;
+        }
+    }	
+	// 디자인
+	var nCardW   = 263
+    var nCardH   = 79;   // 카드 세로
+	var nGapY    = 5;    // 세로 간격
+    var nStartX  = 20;   // 시작 위치
+    var nStartY  = 56;    // 시작 위치
+
+	
+	for(let i=0; i<cnt; i++){
+		if(i!=0){
+			nStartY = nStartY+nCardH+nGapY;
+		}
+		var textArea = new TextArea();
+        var textAreaId = "txtNews" + i;
+
+        textArea.cssclass = "txtA_orange";
+		textArea.value= this.ds_news.getColumn(i, "CONTENT") ;
+        
+		textArea.init(textAreaId, nStartX, nStartY, nCardW, nCardH);
+		
+		this.divNews.form.addChild(textAreaId, textArea);
+        textArea.show();
+	}
+	this.divNews.height = 61 +(79 * cnt) +20
+};
+
+/*********transactionCallback***********************/
+
+this.fnCallback = function (svcID, errorCode, errorMsg)
+{	
+	if(svcID == "searchStock"){
+		this.fnPagingSetting();
+		this.drawNews();
+		
+	}
+	else if(svcID == "saveStock"){
+		this.fnPageInit();
+	}
+};	
+
+
+this.fnPagingCallback = function(nPage, nRecordsOffset)
+{
+ 	this.fvPage = nPage; 				
+ 	this.fvRecordsOffset = nRecordsOffset;
+	
+	this.stockLoad();
+};
+
+
+this.fnPagingSetting = function ()
+{
+	this.fvTotalCount = nexacro.toNumber(this.ds_pagingInfo.getColumn("totalCount")); //전체로우갯수
+	//create page 
+	this.Div00.form.divPage.form.fnCreatePage("fnPagingCallback",
+									this.fvTotalCount,
+									this.fvRecords,
+									this.fvPage);									
+};
+
+
+this.editSearch_onkeyup = function(obj:nexacro.Edit,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode == "13"){
+		this.stockLoad();
+	}
+};
+
+this.btnSearch_onlbuttonup = function(obj:nexacro.Button,e:nexacro.MouseEventInfo)
+{
+	this.stockLoad();	
+};
+
+this.btnDeleteStu_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	let deleteRow = this.ds_student.extractRows("CHK_DEL=='1'");
+	this.ds_student.deleteMultiRows(deleteRow);
+	
+	this.saveStock();
+};
+
+
+
+
+this.Div00_gridStudent_oncellclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	 this.divChart.form.Div03.form.fnCreateChart();
+	 this.drawNews();
+};
+
+this.divNews_btnEdit_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.divNews.form.btnNewsAdd.visible = true;
+	this.divNews.form.btnNewsAdd.bringToFront();
+};
+
+this.divNews_btnNewsAdd_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{	
+	var StockId = this.ds_stock.getColumn(this.ds_stock.rowposition, "STOCK_ID");
+	this.ds_news.addRow();
+	this.ds_news.setColumn(1, "STOCK_ID", StockId)
+	this.drawNews();
+	this.divNews.form.btnNewsAdd.top = 189;
+	this.divNews.form.btnNewsAdd.bringToFront();
+};
+
+this.btnSave_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.saveNews();
+};
+]]></Script>
+  </Form>
+</FDL>

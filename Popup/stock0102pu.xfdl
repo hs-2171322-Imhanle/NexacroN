@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="stock0102pu" width="390" height="280" titletext="New Form" background="transParent" borderRadius="0px none">
+    <Layouts>
+      <Layout height="280" width="390">
+        <Div id="divPopup" taborder="0" left="40" top="26" width="310" height="200" cssclass="div_popup">
+          <Layouts>
+            <Layout>
+              <Static id="Static00" taborder="0" text="회원가입 되었습니다." left="44" top="30" width="222" height="30" cssclass="sta_puHead" onclick="divPopup_Static00_onclick" textAlign="center"/>
+              <Static id="Static01" taborder="1" text="축하드려용!!!" left="108" top="70" width="94" height="20" cssclass="sta_puExplain" onclick="divPopup_Static01_onclick"/>
+              <Button id="btnOk" taborder="2" text="확인" left="86" top="115" width="138" height="51" cssclass="btn_puSave" onclick="divPopup_btnOk_onclick"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Bind>
+      <BindItem id="item0" compid="divPopup.form.Static00" propid="text" datasetid="ds_copyStock" columnid="TITLE"/>
+    </Bind>
+    <Script type="xscript5.1"><![CDATA[
+this.divPopup_btnOk_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close();
+};
+]]></Script>
+  </Form>
+</FDL>

@@ -1,23 +1,120 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="stock0011" width="500" height="590" titletext="login" onclick="stock0011_onclick">
+  <Form id="stock0012" width="500" height="640" titletext="signUp" onclick="stock0012_onclick" onload="stock0011_onload">
     <Layouts>
-      <Layout height="590" mobileorientation="landscape" width="500">
+      <Layout height="640" mobileorientation="landscape" width="500">
         <Static id="Static00" taborder="0" text="Create an account" top="30" height="60" fittocontents="width" left="75" width="291" cssclass="sta_login_head" textAlign="left" onclick="Static00_onclick"/>
-        <TextField id="TextFieldEmail" taborder="1" labeltext="Email" top="110" width="365" onchanged="TextField00_onchanged" height="60" contentheight="" left="75" usetrailingbutton="false" cssclass="txtField_login_basic"/>
-        <TextField id="TextFieldPW" taborder="2" labeltext="Confirm Password" top="350" width="365" onchanged="TextField00_onchanged" height="60" contentheight="" left="75" cssclass="txtField_login_basic"/>
-        <Button id="BtnLogin" taborder="3" text="Create account" left="75" top="457" width="365" height="60" cssclass="btn_header_login" onclick="Common_onclick" font="bold 14pt/normal &quot;Arial&quot;"/>
-        <Static id="Static01" taborder="4" text="Already Have An Account ?" left="120" top="540" width="168" height="15" cssclass="sta_login_explan" onclick="Common_onclick"/>
-        <Button id="btnLogin" taborder="5" text="Log In" left="289" top="538" width="64" height="17" cssclass="btn_login_choose" onclick="btnLogin_onclick"/>
-        <TextField id="TextFieldPW00" taborder="6" labeltext="Password" top="270" width="365" onchanged="TextField00_onchanged" height="60" contentheight="" left="75" cssclass="txtField_login_basic"/>
-        <TextField id="TextFieldPW01" taborder="7" labeltext="name" top="190" width="365" onchanged="TextField00_onchanged" height="60" contentheight="" left="75" cssclass="txtField_login_basic"/>
+        <TextField id="TextFieldEmail" taborder="1" labeltext="Email" top="110" width="365" height="60" contentheight="" left="75" usetrailingbutton="false" cssclass="txtField_login_basic" displaynulltext="aaaa@gmail.com" inputtype="email"/>
+        <TextField id="TextFieldPWConfirm" taborder="2" labeltext="Confirm Password" top="380" width="365" onchanged="TextField00_onchanged" height="60" contentheight="" left="75" cssclass="txtField_login_basic" inputtype="password"/>
+        <Button id="BtnAccount" taborder="3" text="Create account" left="75" top="487" width="365" height="60" cssclass="btn_header_login" font="bold 14pt/normal &quot;Arial&quot;" onclick="BtnAccount_onclick"/>
+        <Static id="Static01" taborder="4" text="Already Have An Account ?" left="120" top="570" width="168" height="15" cssclass="sta_login_explan" onclick="Common_onclick"/>
+        <Button id="btnLogin" taborder="5" text="Log In" left="289" top="568" width="64" height="17" cssclass="btn_login_choose" onclick="btnLogin_onclick"/>
+        <TextField id="TextFieldPW" taborder="6" labeltext="Password" top="290" width="365" onchanged="TextField00_onchanged" height="60" contentheight="" left="75" cssclass="txtField_login_basic" inputtype="password"/>
+        <TextField id="TextFieldName" taborder="7" labeltext="name" top="200" width="365" onchanged="TextField00_onchanged" height="60" contentheight="" left="75" cssclass="txtField_login_basic" displaynulltext="홍길동" inputtype="text"/>
+        <Static id="staEmailWarn" taborder="8" text="이메일 형식으로 입력해주세요." left="272" top="100" width="168" height="14" color="red" visible="false"/>
+        <Static id="staPwCWarn" taborder="9" text="패스워드가 일치하지 않습니다." left="272" top="370" width="168" color="red" visible="false" height="14"/>
+        <Static id="staPwWarn" taborder="10" text="패스워드는 7자 이상이어야 합니다." left="250" top="280" width="190" height="14" color="red" visible="false"/>
+        <Static id="staNameWarn" taborder="11" text="이름을 입력해 주세요." left="320" top="190" width="120" height="14" color="red" visible="false"/>
       </Layout>
     </Layouts>
     <Script type="xscript5.1"><![CDATA[
+this.stock0012_onclick = function(obj:nexacro.Form,e:nexacro.ClickEventInfo)
+{
+	this.ds_user.clearData();
+	this.ds_user.addColumn();
+};
 this.btnLogin_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
 	this.go("Login::stock0011.xfdl");
 };
+
+
+this.BtnAccount_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	//정합성 체크
+	if (this.TextFieldEmail.getValidStatus() != "valid") {
+		this.staEmailWarn.visible= true;
+		this.TextFieldEmail.setFocus();
+		return;
+	} else {
+		this.staEmailWarn.visible= false;
+	}
+	
+	var sPw = this.TextFieldPW.text;
+	if (sPw.length < 7) {
+		this.staPwWarn.visible=true;
+		this.TextFieldPW.setFocus();
+		return;
+	} else {
+		this.staPwWarn.visible=false;
+	}
+	if(this.TextFieldName == null){
+		this.staNameWarn.visible = true;
+		this.TextFieldName.setFocus();
+		return;
+	}
+	else{
+		this.staNameWarn.visible = false;
+	}
+	var sPwConfirm = this.TextFieldPWConfirm.value || "";
+	if (sPw != sPwConfirm) {
+		this.staPwCWarn.visible = true;
+		this.TextFieldPWConfirm.setFocus();
+		return;
+	}
+	else{
+		this.staPwCWarn.visible = false;
+	}
+	var strSvcId    = "save";
+		var strSvcUrl   = "user/saveUser.do";
+		var inData      = "ds_user=ds_user:u";
+		var outData     = "";
+		var sParam      = "";
+		var callBackFnc = "fnCallback";
+
+		this.gfnTransaction(strSvcId ,
+							strSvcUrl ,
+							inData ,
+							outData ,
+							sParam,
+							callBackFnc);
+	
+};
+this.fnCallback = function (svcId, errCode, errMsg)
+{
+	if(svcId == "save"){
+		var sPopupId = "popupOk"
+		var sUrl  = "Popup::stock0102pu.xfdl"
+		var oArg ="";
+		var oOption = {title:"모달팝업", titlebar:false};
+		var sPopupCallBack = "fn_callbackPopup";
+		this.gfnOpenPopup( sPopupId,sUrl,oArg,sPopupCallBack,oOption);
+	}
+};
+this.fn_callbackPopup = function (svcId, rtn)
+{
+	if(svcId == "popupOk"){
+		this.go("Login::stock0011.xfdl");
+	}
+};
+
 ]]></Script>
+    <Objects>
+      <Dataset id="ds_user">
+        <ColumnInfo>
+          <Column id="EMAIL" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+          <Column id="PASSWORD" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="TextFieldEmail" propid="value" datasetid="ds_user" columnid="EMAIL"/>
+      <BindItem id="item1" compid="TextFieldName" propid="value" datasetid="ds_user" columnid="NAME"/>
+      <BindItem id="item2" compid="TextFieldPW" propid="value" datasetid="ds_user" columnid="PASSWORD"/>
+    </Bind>
   </Form>
 </FDL>

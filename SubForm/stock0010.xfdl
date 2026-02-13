@@ -1,29 +1,36 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="stock0010" width="285" height="728" titletext="menu" background="white">
+  <Form id="stock0010" width="225" height="723" titletext="menu" background="#6B5D4C" borderRadius="0px 10px 10px 0px">
     <Layouts>
-      <Layout height="728" width="285">
-        <Button id="btnBoard" taborder="0" text="DashBoard" left="100" top="40" width="114" height="28" cssclass="btn_menu" onclick="btnBoard_onclick"/>
-        <Static id="Static00" taborder="1" left="48" top="34" width="51" height="40" background="url('theme://NewFolder/Gridview.png') no-repeat center center"/>
-        <Static id="Static00_00" taborder="2" left="48" top="100" width="51" height="40" background="url('theme://NewFolder/Addchart.png') no-repeat center center"/>
-        <Button id="btnCreate" taborder="3" text="CreateStock" left="106" top="106" width="114" height="28" cssclass="btn_menu" onclick="btnCreate_onclick"/>
-        <Static id="Static00_00_00" taborder="4" left="48" top="164" width="51" height="40" background="url('theme://NewFolder/Vector.png') no-repeat center center"/>
-        <Button id="btnCreate00" taborder="5" text="StockList" left="109" top="170" width="86" height="28" cssclass="btn_menu" onclick="btnCreate_onclick"/>
+      <Layout height="723" width="225">
+        <Button id="btnBoard" taborder="0" text="DashBoard" left="20" top="62" width="180" height="40" cssclass="btn_menu" onclick="btnBoard_onclick" textAlign="left" padding="0px 0px 0px 70px"/>
+        <Button id="btnCreate" taborder="1" text="CreateStock" left="20" top="141" width="180" height="40" cssclass="btn_menu" onclick="btnCreate_onclick" textAlign="left" padding="0px 0px 0px 70px"/>
+        <Button id="btnStockList" taborder="2" text="StockList" left="20" top="220" width="180" height="40" cssclass="btn_menu" textAlign="left" padding="0px 0px 0px 70px" onclick="btnStockList_onclick"/>
+        <ImageViewer id="ImageViewer00" taborder="3" left="38" top="225" width="30" height="30" stretch="fit" image="url('theme::p02_thema/NewFolder/Format list bulleted.png')" background="transParent" border="0px none"/>
+        <ImageViewer id="ImageViewer00_00" taborder="4" left="43" top="70" width="25" height="25" stretch="fit" image="url('theme::p02_thema/NewFolder/Vector (2).png')" background="transParent" border="0px none" text=""/>
+        <ImageViewer id="ImageViewer00_00_00" taborder="5" left="40" top="146" width="30" height="30" stretch="fit" image="url('theme::p02_thema/NewFolder/Addchart (1).png')" background="transParent" border="0px none" text="" onclick="ImageViewer00_00_00_onclick"/>
       </Layout>
     </Layouts>
     <Script type="xscript5.1"><![CDATA[
 this.btnBoard_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
-	this.parent.parent.divLeft.width = 285; 
+	this.parent.parent.divLeft.width = 225; 
 	this.parent.parent.divMain.left = "divLeft: -1";
 	this.parent.parent.divMain.url = "SubForm::stock0030.xfdl";
 };
 
 this.btnCreate_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
-	this.parent.parent.divLeft.width = 0; 
+	this.parent.parent.divLeft.width = 225; 
 	this.parent.parent.divMain.left = "divLeft: -1";
 	this.parent.parent.divMain.url = "SubForm::stock0040.xfdl";
+};
+
+this.btnStockList_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.parent.parent.divLeft.width = 225; 
+	this.parent.parent.divMain.left = "divLeft: -1";
+	this.parent.parent.divMain.url = "SubForm::stock0050.xfdl";
 };
 ]]></Script>
   </Form>

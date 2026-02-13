@@ -2978,7 +2978,9 @@
 	color : black;
 	-nexa-text-align : center;
 }
-.Button.btn_login_choose
+.Button.btn_login_choose,
+.Button.btn_login_choose[status=mouseover],
+.Button.btn_login_choose[status=focused]
 {
 	-nexa-border : 0px none;
 	background : transParent;
@@ -3464,7 +3466,7 @@
 }
 .Button.btn_transParent[status=mouseover],.Button.btn_transParent[status=focused]
 {
-	-nexa-border : 2px solid #FFA443;
+	-nexa-border : 2px solid #5b5b5b;
 	background : transParent;
 	border-radius : 10px;
 	box-shadow : 2px 2px 4px 0px #e0e0e0;
@@ -3636,8 +3638,126 @@
 	background : transParent;
 	-nexa-text-decoration : underline;
 }
+.Button.btn_news
+{
+	-nexa-border : 0px none;
+	background : transParent;
+	font : 500 11pt  "Arial";
+	color : #bbb3a9;
+}
+.Button.btn_news[status=mouseover],.Button.btn_news[status=focused]
+{
+	-nexa-border : 0px none;
+	background : transParent;
+	font : 500 11pt  "Arial";
+	color : #bbb3a9;
+}
+.TextArea.TextArea_news
+{
+	-nexa-border : 0px none;
+	background : transParent;
+	color : #4C506B;
+	font : 500 10pt "Arial";
+	
+}
 ]]></CSSData>
   <CSSData type="mobile_large"><![CDATA[]]></CSSData>
   <CSSData type="mobile_small"><![CDATA[]]></CSSData>
-  <CSSData type="mobile_medium"><![CDATA[]]></CSSData>
+  <CSSData type="mobile_medium"><![CDATA[.TextArea.textArea_addRoom
+{
+	-nexa-border : 3px solid #F8EDAB;
+	border-radius : 20px;
+	background : white;
+	color : black;
+	-nexa-text-align : center;
+	-nexa-padding : 30px 0px 0px;
+	font : bold 28px "Arial";
+	
+}
+.TextArea.textArea_addRoom[status=mouseover],.TextArea.textArea_addRoom[status=focused]
+{
+	-nexa-border : 3px solid #FFA94E;
+	border-radius : 20px;
+	background : white;
+}
+
+.Button.btn_addRoom
+{
+	background : #FFA94E;
+	-nexa-border : 0px none;
+	color : white;
+	font : bold 24px "Arial";
+	border-radius : 20px;
+	
+}
+.Button.btn_addRoom[status=mouseover],.Button.btn_addRoom[status=focused]
+{
+}
+.Div.div_stockRoom
+{
+	-nexa-border : 2px solid #e1ae37 ;
+	border-radius : 30px;
+	background : white;
+	box-shadow : 0px 20px 0px 0px #e1ae37;
+}
+.Button.btn_addRoom_account,
+.Button.btn_addRoom_account[status=mouseover],
+.Button.btn_addRoom_account[status=focused]
+{
+	-nexa-border : 1px solid #dddddd;
+	background : white;
+	border-radius : 15px;
+	color : black;
+	font : bold 20px "Arial";
+	-nexa-padding : 0px 0px 0px 30px;
+	box-shadow : 0px 3px 0px 0px #c6c6c6;
+	
+}
+.MaskEdit.mask_money,
+.MaskEdit.mask_money[status=readonly],
+.MaskEdit.mask_money[userstatus=nulltext]
+{
+	font : bold 30px/normal "Malgun Gothic";
+	color : black;
+	-nexa-border : 0px none;
+	background : white;
+	
+}
+
+.MaskEdit.mask_money2,
+.MaskEdit.mask_money2[status=readonly],
+.MaskEdit.mask_money2[userstatus=nulltext]
+{
+	font : 12px/normal "Malgun Gothic";
+	color : #9b9b9b;
+	-nexa-border : 0px none;
+	background : transParent;
+	
+}
+.ProgressBar.progress_money
+{
+
+}
+.ProgressBar.progress_money .progressbaritem
+{
+	background : #54D37A;
+	
+}
+.Button.btn_selectAll
+{
+	-nexa-border : 0px none;
+	color : #fe8a7d;
+	background : transParent;
+	font : bold 13px "Arial";
+	
+}
+.Button.btn_selectAll[status=mouseover],.Button.btn_selectAll[status=focused]
+{
+	-nexa-border : 2px solid #ffb584;
+	background : RGBA(255,181,132,0.67);
+	font : bold 13px "Arial";
+	border-radius : 15px;
+	color : white;	
+}
+]]></CSSData>
 </XCSS>

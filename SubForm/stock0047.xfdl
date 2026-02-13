@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="stock0047" width="600" height="350" titletext="RecordChart" onload="stock0047_onload" color="RGBA(249,169,41,0.16)">
+    <Layouts>
+      <Layout height="350" width="600">
+        <ChartJS id="chtLine" taborder="0" text="ChartJS00" left="0" top="0" right="0" bottom="0"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[//this.dsValue = this.parent.parent.parent.parent.ds_value;
+this.stock0047_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.fnCreateChart();
+};
+// ====================== Chart 생성 ======================
+this.fnCreateChart = function() {
+	var chart = this.chtLine;
+    var canvas = chart.getCanvas();
+    var cvs = canvas.id;
+	var dsValue = this.parent.parent.parent.parent.ds_value;
+    var dsStock = this.parent.parent.parent.parent.ds_stock;
+	
+	var nTargetId = dsStock.getColumn(dsStock.rowposition, "STOCK_ID");
+    dsValue.filter("STOCK_ID == " + nTargetId);
+	
+	DxChart.reset(canvas);
+	
+    var context = canvas.getContext('2d');
+    context.setTransform(1, 0, 0, 1, 0, 0); 
+
+	var chartObj = new DxChartLine({
+		id: cvs,										
+		elem: canvas,									
+		binddataset: dsValue,								
+		datachangeevent : {Use:true,Effect:"trace"}, 	
+		data: ["bind:CURRENT_VALUE"], 
+		options: this.fnGetOption(canvas) 	//  차트에 대한 옵션값 {background:() , key:() , xaxis , yaxis , tooltip }  : 	
+	}).trace();
+	
+	this.resetScroll();
+};
+
+
+// ====================== options ======================
+this.fnGetOption = function (canvas)
+{	
+	var Option = {
+		filled: { //라인 아래 색상
+			Use: true,
+            Colors: ['linear-gradient(to bottom, rgba(249,169,41,0.6), rgba(249,169,41,0))']
+		},
+		line: {
+                Width: 2
+        },
+		colors: ['rgba(252,170,37,0.50)'],// 라인 색상
+		text: {
+			Color:'#2C2C2C',    // text 색상을 설정할수 있습니다. 위의 예제에선 Y축 라벨 색상입니다.
+			FontStyle: '13pt Malgun Gothic' // Text  FontStyle을 설정할 수 있습니다.
+		},	
+		labels:{
+			 Above: false,//차트 요소 위에 라벨을 표시할 지 여부
+			 AboveFontStyle: '11px bold Malgun Gothic' 	//labelsAbove의 Background 색상
+		},	
+		margin: this.fnGetMargin(),		// 마진 관련
+		xaxis:  this.fnGetXaxis(),		// X축 관련
+		yaxis:  this.fnGetYaxis(),		// Y축 관련
+		background:{ GridColor: '#ffffff', GridVlines: false, GridBorder: false},		
+		
+		key: this.fnGetKey(canvas)		// 범례
+	}
+	return Option;
+};
+
+
+/************************************************************************
+ * Margin
+ ************************************************************************/
+ this.fnGetMargin = function() {
+	return {
+		Left        : 5,
+		Right       : 5,
+		Top         : 5,
+		Bottom      : 5,
+		Inner       : 0,		// 차트 내부 여백
+	};
+};
+
+/************************************************************************
+ * X Axis
+ ************************************************************************/
+this.fnGetXaxis = function() {
+    var ds = this.parent.parent.parent.parent.ds_value;
+    var nTotal = ds.rowcount;
+    var labels = [];
+    if (nTotal > 0) {
+        var nStep = (nTotal - 1) / 3; 
+        
+        for (var i = 0; i < nTotal; i++) {
+            var isTarget = false;
+            for (var j = 0; j < 4; j++) {
+                if (i == Math.round(j * nStep)) {
+                    isTarget = true;
+                    break;
+                }
+            }
+            
+            if (isTarget) {
+                labels.push(ds.getColumn(i, "DAY_SEQ"));
+            } else {
+                labels.push(""); // 라벨 숨김
+            }
+        }
+    }
+
+    return {
+        Color        : '#F3F3F3',
+        Use          : false,
+        Labels       : labels,     // [중요] bind 대신 직접 계산한 배열 전달
+		LabelsColor  : '#838383',
+        LabelsOffsetY: 5,
+        Tickmarks    : true,
+        Scale        : false       // 숫자가 나오는 현상을 막기 위해 false 설정
+    };
+};
+/************************************************************************
+ * Y Axis
+ ************************************************************************/
+this.fnGetYaxis = function() {
+	var ds = this.parent.parent.parent.parent.ds_value;
+	var dsStock = this.parent.parent.parent.parent.ds_stock;
+	var dsUnit  = this.parent.parent.parent.parent.ds_unit;
+
+    var nUnitId = dsStock.getColumn(dsStock.rowposition, "UNIT_ID");
+
+    var sUnitName = dsUnit.lookup("ID", nUnitId, "UNIT");
+    if(!sUnitName) sUnitName = "";
+	
+    var maxVal = ds.getMax("CURRENT_VALUE");
+    if(!maxVal) maxVal = 100;
+    else maxVal = nexacro.toNumber(maxVal) * 1.2; 
+	
+    return {
+		Color 		  : '#F3F3F3',
+        Use           : false,
+        ScaleMax      : maxVal,
+        LabelsOffsetX : 5,
+        Tickmarks     : true,
+		Position	  : 'right',
+		ScaleUnitsPost  : sUnitName
+    };
+};
+
+/************************************************************************
+ * tooltips
+ ************************************************************************/
+
+this.fnGetKey = function (canvas)
+{
+    var ds = this.parent.parent.parent.parent.ds_stock;
+    var sTitle = ds.getColumn(0, "SUBTITLE");
+    if(!sTitle) sTitle = "value";
+    
+    return {
+        Data : [sTitle],
+        Halign: "right",
+		PositionY:25,
+		PositionX: 510,
+        Position :'gutter',
+    }
+};
+
+
+]]></Script>
+  </Form>
+</FDL>

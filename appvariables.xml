@@ -3039,6 +3039,7 @@
         <Column id="USE_FLAG" type="STRING" size="256"/>
       </ColumnInfo>
     </Dataset>
+    <Dataset id="gds_user"/>
   </Datasets>
   <Variables/>
   <DataObjects/>

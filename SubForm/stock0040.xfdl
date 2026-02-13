@@ -1,18 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="stock0040" width="1535" height="728" titletext="createStock" onload="stock0040_onload">
+  <Form id="stock0040" width="1310" height="721" titletext="createStock" onload="stock0040_onload">
     <Layouts>
-      <Layout height="728" width="1535">
-        <Static id="Static00" taborder="0" text="새 종목 추가" left="182" top="30" width="136" height="40" cssclass="sta_login_head"/>
-        <Static id="Static01" taborder="1" text="학생들이 거래할 수 있는 새로운 종목을 추가 합니다." left="182" top="70" width="302" height="30" cssclass="sta_login_explan"/>
-        <Tab id="tabStock" taborder="3" tabindex="0" left="186" top="115" width="304" onchanged="Tab00_onchanged" bottom="30" cssclass="tab_chart">
+      <Layout height="721" width="1310">
+        <Static id="Static00" taborder="0" text="새 종목 추가" left="72" top="30" width="136" height="40" cssclass="sta_login_head"/>
+        <Static id="Static01" taborder="1" text="학생들이 거래할 수 있는 새로운 종목을 추가 합니다." left="72" top="70" width="302" height="30" cssclass="sta_login_explan"/>
+        <Tab id="tabStock" taborder="3" tabindex="0" left="76" top="115" width="304" onchanged="Tab00_onchanged" bottom="30" cssclass="tab_chart">
           <Tabpages>
             <Tabpage id="Tabpage1" text="기록형 종목" url="SubForm::stock0041.xfdl" cssclass="cbo_orange">
               <Layouts>
                 <Layout/>
               </Layouts>
             </Tabpage>
-            <Tabpage id="Tabpage2" text="주식형 종목"/>
+            <Tabpage id="Tabpage2" text="주식형 종목" url="SubForm::stock0042.xfdl"/>
           </Tabpages>
         </Tab>
         <Div id="divChart" taborder="2" left="tabStock:60" top="110" width="780" background="white" url="SubForm::stock0043.xfdl" text="" border="2px solid #FFCE99" borderRadius="10px" cssclass="div_box" height="588">
@@ -20,10 +20,11 @@
             <Layout/>
           </Layouts>
         </Div>
-        <Static id="Static00_00" taborder="5" text="&#9;걸음 수, 독서량, 학습 시간, 몸무게 등과 같은 다양한 수치형 기록의 변화를 투자 결과로 연결하는 학습 종목입니다" left="590" top="90" height="54" cssclass="sta_chart_explainSub" right="244"/>
-        <Static id="Static00_00_00" taborder="6" text="&#9;     기록형 종목이란?" left="590" top="57" height="50" cssclass="sta_chart_explainM" right="244"/>
-        <Button id="btnSave" taborder="4" text="저장" left="1261" top="20" width="80" height="28" onclick="btnSave_onclick" cssclass="btn_work_select"/>
-        <Static id="Static01_00" taborder="7" left="610" top="64" width="38" height="33" background="url('theme::p02_thema/NewFolder/Pin.png') no-repeat center center"/>
+        <Static id="Static00_00" taborder="5" text="&#9;걸음 수, 독서량, 학습 시간, 몸무게 등과 같은 다양한 수치형 기록의 변화를 투자 결과로 연결하는 학습 종목입니다" left="480" top="90" height="54" cssclass="sta_chart_explainSub" width="701"/>
+        <Static id="Static00_00_00" taborder="6" text="&#9;     기록형 종목이란?" left="480" top="57" height="50" cssclass="sta_chart_explainM" width="701"/>
+        <Button id="btnSave" taborder="4" text="저장" left="1140" top="20" width="80" height="28" onclick="btnSave_onclick" cssclass="btn_work_select"/>
+        <Static id="Static01_00" taborder="7" left="500" top="64" width="38" height="33" background="url('theme::p02_thema/NewFolder/Pin.png') no-repeat center center"/>
+        <TextArea id="TextArea00" taborder="8" left="500" top="540" width="660" height="120" border="2px solid #FFCE99" borderRadius="15px" background="#FFFBF7"/>
       </Layout>
     </Layouts>
     <Script type="xscript5.1"><![CDATA[this.stock0040_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
@@ -33,22 +34,27 @@
 		this.ds_news.clearData();
 		this.ds_news.addRow();	
 		
+		this.ds_stock.setColumn(0,"AI_MODE", 0);
+		this.ds_stock.setColumn(0,"MIN_RATE", -5.0);
+		this.ds_stock.setColumn(0,"MAX_RATE", 5.0);
+		this.ds_stock.rowposition = 0;
 };
 this.btnSave_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {		
-
-		trace(this.ds_image.getRowCount());
 		let cnt = this.ds_news.findRow("CONTENT", "");
 		if(cnt == "-1"){
 			this.ds_news.setColumn(0,"NEWS_ORDER", 1);
 		}
 		
 		if(this.tabStock.tabindex == 0){
-			this.ds_stock.setColumn(0,"TYPE","RECORD");
+			this.ds_stock.setColumn(0,"STOCK_TYPE","R"); //Record
 		}
 		else{
-			this.ds_stock.setColumn(0,"TYPE","STOCK");
+			this.ds_stock.setColumn(0,"STOCK_TYPE","S");
 		}
+		if (this.ds_stock.getColumn(0, "GROUP_ID") == 0) {
+			this.ds_stock.setColumn(0, "GROUP_ID", null); 
+		}	
 		
 		var strSvcId    = "save";
 		var strSvcUrl   = "stock/saveStock.do";
@@ -79,8 +85,6 @@ this.ds_stock_oncolumnchanged = function(obj:nexacro.NormalDataset,e:nexacro.DSC
 	
 	this.divChart.form.resetScroll();
 	this.divChart.form.fnCreateChart();	
-	
-	
 };
 
 
@@ -102,10 +106,14 @@ this.ds_stock_oncolumnchanged = function(obj:nexacro.NormalDataset,e:nexacro.DSC
           <Column id="GROUP_ID" type="INT" size="256"/>
           <Column id="IMAGE_FILE" type="STRING" size="256"/>
           <Column id="DAY_SEQ" type="DATE" size="256"/>
-          <Column id="UNIT_NAME" type="STRING" size="256"/>
+          <Column id="UNIT_ID" type="INT" size="256"/>
           <Column id="CURRENT_VALUE" type="BIGDECIMAL" size="256"/>
           <Column id="RATE" type="BIGDECIMAL" size="256"/>
-          <Column id="TYPE" type="STRING" size="256"/>
+          <Column id="STOCK_TYPE" type="STRING" size="256"/>
+          <Column id="AI_MODE" type="INT" size="256"/>
+          <Column id="MIN_RATE" type="BIGDECIMAL" size="256"/>
+          <Column id="MAX_RATE" type="BIGDECIMAL" size="256"/>
+          <Column id="ROOM_NUMBER" type="STRING" size="256"/>
         </ColumnInfo>
       </Dataset>
       <Dataset id="ds_news">
@@ -115,5 +123,8 @@ this.ds_stock_oncolumnchanged = function(obj:nexacro.NormalDataset,e:nexacro.DSC
         </ColumnInfo>
       </Dataset>
     </Objects>
+    <Bind>
+      <BindItem id="item0" compid="TextArea00" propid="value" datasetid="ds_news" columnid="CONTENT"/>
+    </Bind>
   </Form>
 </FDL>

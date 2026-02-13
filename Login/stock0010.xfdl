@@ -7,5 +7,8 @@
         <Div id="divWork" taborder="1" left="890" top="60" width="610" height="630" text="" url="Login::stock0011.xfdl"/>
       </Layout>
     </Layouts>
+    <Objects>
+      <Dataset id="ds_user"/>
+    </Objects>
   </Form>
 </FDL>

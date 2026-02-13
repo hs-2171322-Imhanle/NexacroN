@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="stock5010" width="1280" height="800" titletext="home">
+    <Layouts>
+      <Layout height="800" mobileorientation="landscape" width="1280">
+        <Static id="staName" taborder="0" text="님 환영합니다." left="171" top="60" width="186" height="60" color="black" font="bold 28px/normal &quot;Malgun Gothic&quot;"/>
+        <Button id="btnStockRoom" taborder="1" text="주식 방" left="680" top="159" width="520" height="271" onclick="btnStockRoom_onclick"/>
+        <Button id="Button00_00" taborder="2" text="마이페이지" left="680" top="469" width="520" height="271"/>
+        <Button id="Button00_00_00" taborder="3" text="지갑" left="90" top="480" width="520" height="271"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[
+this.btnStockRoom_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.go("Mobile::stock5020.xfdl");
+};
+]]></Script>
+  </Form>
+</FDL>

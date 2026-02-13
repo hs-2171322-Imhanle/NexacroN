@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="stock5000" width="1280" height="800" titletext="main">
+    <Layouts>
+      <Layout height="800" mobileorientation="landscape" width="1280">
+        <ImageViewer id="ImageViewer00" taborder="1" left="562" top="120" width="157" height="150" image="url('theme::p02_thema/NewFolder/home.png')" stretch="fit" borderRadius="50px" border="0px none"/>
+        <Static id="Static00" taborder="1" text="친구들과 함께하기" left="515" top="300" width="251" height="60" color="black" font="bold 30px/normal &quot;Malgun Gothic&quot;"/>
+        <Static id="Static01" taborder="2" text="선생님에게 받은 코드를 입력하세요!" left="509" top="360" width="263" height="60" font="bold 16px/normal &quot;Malgun Gothic&quot;"/>
+        <TextArea id="TextArea00" taborder="3" left="470" top="440" width="340" height="83" cssclass="textArea_addRoom" displaynulltext="방 코드 입력"/>
+        <Button id="Button00" taborder="4" text="주식 방 입장하기" left="474" top="556" width="333" height="80" cssclass="btn_addRoom"/>
+      </Layout>
+    </Layouts>
+  </Form>
+</FDL>

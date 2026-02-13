@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="stock0002" width="1535" height="2040" titletext="home">
+  <Form id="stock0002" width="1535" height="2040" titletext="home" cssclass="form_DefalutScroll" scrollbarsize="15" scrollbartrackbarsize="100">
     <Layouts>
       <Layout height="2040" width="1535">
         <Div id="Div00" taborder="0" left="0" top="0" height="671" right="0" url="SubForm::stock0200.xfdl"/>

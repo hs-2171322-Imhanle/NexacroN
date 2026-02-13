@@ -3,6 +3,7 @@
   <Environment themeid="theme::p02_thema" datatyperule="2.0" checkversion="true" version="2026.01.22.01" loadingimage="url('theme://images/btn_LF_Bookmark.png')" userfontid="font::font.xfont">
     <ScreenDefinition>
       <Screen id="Desktop_screen" type="desktop"/>
+      <Screen id="Phone_screen" type="mobile_medium"/>
     </ScreenDefinition>
     <Variables>
       <Variable id="evRunMode" initval="S"/>

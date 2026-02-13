@@ -1,43 +1,47 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="stock0030" width="1249" height="728" titletext="dashboard" background="#FFFBF7" onload="stock0030_onload" onlbuttonup="form_onlbuttonup" ondragmove="form_ondragmove">
+  <Form id="stock0030" width="1310" height="721" titletext="dashboard" background="#fcf9f7" onload="stock0030_onload" onlbuttonup="form_onlbuttonup" ondragmove="form_ondragmove">
     <Layouts>
-      <Layout height="728" width="1249">
-        <Static id="Static00" taborder="0" text="종목" left="40" top="32" width="50" height="30" font="bold 18pt/normal &quot;Malgun Gothic&quot;" color="black"/>
-        <Button id="btnAll" taborder="1" text="전체" left="120" top="30" width="60" height="35" cssclass="btn_group" onclick="btnAll_onclick"/>
-        <Button id="btnAdd" taborder="2" text="+" left="200" top="30" width="40" height="35" cssclass="btn_group" font="bold 11pt/normal &quot;Arial&quot;" onclick="btnAdd_onclick"/>
-        <Button id="btnDeleteStu" taborder="3" text="전체 종목" top="31" width="80" height="33" cssclass="btn_work_select" onclick="btnDeleteStu_onclick" right="110"/>
-        <Button id="btnDeleteStu00" taborder="4" text="종목 생성" top="31" width="80" height="33" cssclass="btn_work_select" onclick="btnDeleteStu_onclick" background="white" color="black" right="211"/>
-        <Div id="divChart" taborder="5" left="80" top="280" width="640" height="440" cssclass="div_box" text="" formscrollbarsize="0">
+      <Layout height="721" width="1310">
+        <Static id="Static01" taborder="10" left="60" top="64" height="140" background="white" borderRadius="8px" width="1190"/>
+        <Static id="Static00" taborder="0" text="My Stocks  |" left="60" top="22" width="106" font="bold 16px/normal &quot;Malgun Gothic&quot;" color="black" height="30"/>
+        <Button id="btnAll" taborder="1" text="전체" left="170" top="20" width="60" height="35" cssclass="btn_group" onclick="btnAll_onclick"/>
+        <Button id="btnAdd" taborder="2" text="+" left="250" top="20" width="40" height="35" cssclass="btn_group" font="bold 11pt/normal &quot;Arial&quot;" onclick="btnAdd_onclick"/>
+        <Button id="btnDeleteStu" taborder="3" text="전체 종목" top="21" width="80" height="33" cssclass="btn_work_select" onclick="btnDeleteStu_onclick" right="60"/>
+        <Button id="btnDeleteStu00" taborder="4" text="종목 생성" top="21" width="80" height="33" cssclass="btn_work_select" onclick="btnDeleteStu_onclick" background="white" color="black" right="151"/>
+        <Div id="divChart" taborder="5" left="250" top="Static01:40" width="665" height="450" text="" formscrollbarsize="0" cssclass="div_dashBoard">
           <Layouts>
             <Layout>
-              <ChartJS id="ChartJS00" taborder="0" text="ChartJS00" left="21" top="119" width="588" height="300" background="pink"/>
-              <Static id="Static01" taborder="1" left="21" top="94" width="645" height="1" border="1px solid #CFCFCF"/>
-              <ImageViewer id="ImageViewer00" taborder="2" left="29" top="19" width="100" height="60" fittocontents="none" stretch="fit" cssclass="imgView_folder"/>
-              <Static id="Static02" taborder="3" left="149" top="19" width="120" height="32" font="bold 12pt Malgun Gothic" color="black" text="Static02"/>
-              <Static id="Static03" taborder="4" text="Static03" left="149" top="52" width="60" height="22" color="#b6b6b6" font="9pt Malgun Gothic"/>
-              <Static id="Static02_00" taborder="5" left="344" top="20" width="90" height="32" font="bold 15pt Malgun Gothic" color="black" text="Static02"/>
-              <Static id="Static00" taborder="6" text="Rate of Value" left="343" top="52" width="79" height="22" color="#919499"/>
-              <Static id="staDivValue" taborder="7" text="Static04" left="429" top="52" width="77" height="22" font=" bold 11pt &quot;Arial&quot;" textAlign="left"/>
+              <Static id="Static02" taborder="0" left="91" top="53" width="120" height="32" font="bold 12pt Malgun Gothic" color="black" text="Static02"/>
+              <Static id="Static02_00" taborder="1" left="194" top="40" width="90" height="32" font="bold 15pt Malgun Gothic" color="black" text="Static02"/>
+              <Static id="Static00" taborder="2" text="Rate of Value" left="193" top="72" width="79" height="22" color="#919499"/>
+              <Static id="staDivValue" taborder="3" text="Static04" left="279" top="72" width="77" height="22" font=" bold 11pt &quot;Arial&quot;" textAlign="left"/>
+              <Static id="Static00_00" taborder="4" text="Stock Chart" left="25" top="27" font="bold 16px/normal &quot;Malgun Gothic&quot;" color="black" width="106" height="18"/>
+              <Div id="Div03" taborder="5" left="10" top="79" url="SubForm::stock0046.xfdl" right="10" bottom="44"/>
+              <Button id="Button00" taborder="6" text="6M" left="539" top="29" width="50" height="14" cssclass="btn_dashboardYear"/>
+              <Button id="Button00_00" taborder="7" text="1W" left="356" top="29" width="50" height="14" cssclass="btn_dashboardYear"/>
+              <Button id="Button00_00_00" taborder="8" text="1M" left="417" top="29" width="50" height="14" cssclass="btn_dashboardYear"/>
+              <Button id="Button00_00_00_00" taborder="9" text="1Y" left="600" top="29" width="50" height="14" cssclass="btn_dashboardYear"/>
+              <Button id="Button00_01" taborder="10" text="3M" left="478" top="29" width="50" height="14" cssclass="btn_dashboardYear"/>
+              <Static id="Static01" taborder="11" left="411" top="29" width="1" height="14" background="#c0c0c0" onclick="divChart_Static01_onclick"/>
+              <Static id="Static01_02" taborder="12" left="594" top="29" width="1" height="14" background="#c0c0c0" onclick="divChart_Static01_onclick"/>
+              <Static id="Static01_03" taborder="13" left="533" top="29" width="1" height="14" background="#c0c0c0" onclick="divChart_Static01_onclick"/>
+              <Static id="Static01_04" taborder="14" left="472" top="29" width="1" height="14" background="#c0c0c0" onclick="divChart_Static01_onclick"/>
             </Layout>
           </Layouts>
         </Div>
-        <Button id="btnAddValue" taborder="6" text="주가 업데이트" left="580" top="290" width="145" height="30" cssclass="btn_addValue" onmouseenter="btnAddValue_onmouseenter" onmouseleave="btnAddValue_onmouseleave" onclick="btnAddValue_onclick"/>
-        <Div id="Div00" taborder="7" left="770" top="280" width="350" height="438" cssclass="div_box">
+        <Div id="Div00" taborder="6" left="divChart:19" top="Static01:20" width="316" height="146" background="white" border="0px none" borderRadius="12px" cssclass="div_dashBoard">
           <Layouts>
             <Layout>
-              <Static id="Static02_00_00" taborder="0" left="29" top="19" width="90" height="32" font="bold 15pt Malgun Gothic" color="black" text="카드뉴스"/>
-              <Button id="Button00" taborder="1" text="Edit" left="289" top="30" width="40" height="23" cssclass="btn_login_choose"/>
-              <TextArea id="TextArea00" taborder="2" left="29" top="79" width="290" height="70"/>
-              <TextArea id="TextArea00_00" taborder="3" left="29" top="164" width="290" height="70"/>
-              <TextArea id="TextArea00_01" taborder="4" left="29" top="249" width="290" height="70"/>
-              <TextArea id="TextArea00_02" taborder="5" left="29" top="334" width="290" height="70"/>
+              <TextArea id="TextArea00" taborder="0" left="25" top="49" width="267" height="77" padding="5px 0px 0px" border="0px none" cssclass="TextArea_news"/>
+              <Static id="Static02_00_00" taborder="1" left="25" top="18" width="90" height="18" font="bold 16px Malgun Gothic" color="black" text="Card News"/>
+              <Static id="Static00" taborder="2" text="Static00" left="220" top="15" width="66" height="25" color="#bbb3a9"/>
             </Layout>
           </Layouts>
         </Div>
-        <Button id="btnNext" taborder="8" left="1134" top="140" width="36" height="40" cssclass="btn_next" onclick="btnNext_onclick"/>
-        <Button id="btnPrev" taborder="9" left="24" top="140" width="36" height="40" cssclass="btn_prev" onclick="btnPrev_onclick"/>
-        <Div id="div_move" taborder="10" left="1287" top="24" width="230" height="150" background="pink" visible="false">
+        <Button id="btnNext" taborder="7" left="1204" top="110" width="36" height="40" cssclass="btn_next" onclick="btnNext_onclick"/>
+        <Button id="btnPrev" taborder="8" left="74" top="110" width="36" height="40" cssclass="btn_prev" onclick="btnPrev_onclick"/>
+        <Div id="div_move" taborder="9" left="1337" top="24" width="230" height="150" background="pink" visible="false">
           <Layouts>
             <Layout>
               <ImageViewer id="imgView" taborder="0" left="20" top="20" width="65" height="65" background="transPatent" stretch="fit"/>
@@ -50,6 +54,35 @@
             </Layout>
           </Layouts>
         </Div>
+        <Div id="Div01" taborder="11" text="Div01" left="60" top="224" width="150" height="108" background="white"/>
+        <Div id="Div02" taborder="12" text="Div02" left="60" top="350" width="150" height="102" background="white"/>
+        <Button id="btnAddValue" taborder="13" text="주가 업데이트" left="778" top="654" width="142" height="30" cssclass="btn_addValue" onmouseenter="btnAddValue_onmouseenter" onmouseleave="btnAddValue_onmouseleave" onclick="btnAddValue_onclick"/>
+        <Grid id="Grid00" taborder="14" left="934" top="470" width="352" height="171" binddataset="ds_news" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row band="head" size="24"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="NEWS_ORDER"/>
+                <Cell col="1" text="CONTENT"/>
+                <Cell col="2" text="CREATE_AT"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:NEWS_ORDER"/>
+                <Cell col="1" text="bind:CONTENT"/>
+                <Cell col="2" text="bind:CREATE_AT"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="btnEdit" taborder="15" text="Show all news" left="1154" top="377" width="96" height="23" cssclass="btn_news"/>
       </Layout>
     </Layouts>
     <Script type="xscript5.1"><![CDATA[this.fvObjDrag = false;  // 드래그` 중 여부
@@ -60,7 +93,6 @@ this.stock0030_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
 {
 	this.groupLoad();
 	this.fnPageInit();
-	
 };
 /****************** popup *******************/
 //group popup
@@ -136,7 +168,7 @@ this.stockLoad = function(){
  	var strSvcId    = "searchStock";
 	var strSvcUrl   = "stock/loadStock.do";
 	var inData      = "ds_search=ds_search";
-	var outData     = "ds_stock=ds_stock ds_pagingInfo=ds_pagingInfo ds_value=ds_value";
+	var outData     = "ds_stock=ds_stock ds_pagingInfo=ds_pagingInfo ds_value=ds_value ds_news=ds_news";
 	var sParam      = "USER_ID=1";
 	var callBackFnc = "fnCallback";
 	var isAsync   	= true;
@@ -177,7 +209,8 @@ this.fnCallback = function (svcID, errorCode, errorMsg)
 		this.fnPagingSetting();
 		this.fn_setUnitName();
 		this.drawCard();
-		this.setColor()
+		this.setColor();
+		this.divChart.form.Div03.form.fnCreateChart();
 	}
 	else if(svcID == "saveStock"){
 		trace(">>>>>>되는중?");
@@ -189,7 +222,7 @@ this.fnPagingSetting = function ()
 {
 	this.fvTotalCount = nexacro.toNumber(this.ds_pagingInfo.getColumn(0,"totalCount"));
 	
-	if(this.fvTotalCount<5){
+	if(this.fvTotalCount<6){
 		this.btnNext.visible = false;
 		this.btnPrev.visible = false;
 		
@@ -212,7 +245,7 @@ this.fnPagingSetting = function ()
  this.fnPageInit = function ()
  {
  	//pagin info init setting
-	this.fvRecords=4;								 //목록갯수
+	this.fvRecords=5;								 //목록갯수
 	this.fvPage=0;	 								 //페이지번호
 	this.fvRecordsOffset=0;							 //시작rownum
 	
@@ -277,8 +310,8 @@ this.drawGroup = function ()
     var nCardH   = 35;   // 카드 세로
     var nGapX    = 20;    // 가로 간격
 	var nGapY    = 25;    // 세로 간격
-    var nStartX  = 200;   // 시작 위치
-    var nStartY  = 30;    // 시작 위치
+    var nStartX  = 250;   // 시작 위치
+    var nStartY  = 20;    // 시작 위치
 	var nColCnt  = 5;     // 한 줄에 2개
 
 	for(let i=0; i<cnt; i++){
@@ -320,7 +353,7 @@ this.drawGroup = function ()
 //drawDiv
 this.drawCard = function ()
 {
-    for(var i=0; i<4; i++) 
+    for(var i=0; i<5; i++) 
     {
         var sDivId = "divCard" + i;
         if(this.isValidObject(sDivId))
@@ -334,15 +367,16 @@ this.drawCard = function ()
     var objDs = this.ds_stock;
     if (objDs == null || objDs.getRowCount() == 0) return;
     
-
+	var aColors = ["#A6F7E2", "#B79BFF", "#FFE5A5", "#C7FFA5", "pink"];
+	
     // 디자인
-    var nCardW   = 230;   // 카드 가로
-    var nCardH   = 150;   // 카드 세로
-    var nGapX    = 40;    // 가로 간격
-    var nGapY    = 25;    // 세로 간격
-    var nStartX  = 80;   // 시작 위치
-    var nStartY  = 90;    // 시작 위치
-    var nColCnt  = 4;     // 한 줄에 4개
+    var nCardW   = 209;   // 카드 가로
+    var nCardH   = 116;   // 카드 세로
+    var nGapX    = 12;    // 가로 간격
+    var nGapY    = 16;    // 세로 간격
+    var nStartX  = 110;   // 시작 위치
+    var nStartY  = 76;    // 시작 위치
+    var nColCnt  = 5;     // 한 줄에 4개
     
     var nCnt = objDs.getRowCount();
 
@@ -361,18 +395,22 @@ this.drawCard = function ()
         objDiv.init(sDivId, nLeft, nTop, nCardW, nCardH);
         objDiv.cssclass = "div_groupBox";
 		
+		var sTargetColor = aColors[i % aColors.length];
+        objDiv.background=sTargetColor;
+		
 		this.addChild(sDivId, objDiv);
         objDiv.show();
 		
 		// 이미지 뷰어
         var objImg = new ImageViewer();
         // Left:10, Top:10, Width:280, Height:180
-        objImg.init("imgView",20 , 20, 65, 65); 
+        objImg.init("imgView",12, 18, 24, 24); 
         
         objImg.set_image(objDs.getColumn(i, "IMAGE_DATA"));
         
 		objImg.set_stretch("fit");
-		objImg.cssclass = "imgView_folder";
+		objImg.border = "0px none";
+		objImg.background = "transParent";
         
         objDiv.form.addChild("imgView", objImg);
         objImg.show();
@@ -380,59 +418,75 @@ this.drawCard = function ()
 		//STATIC
 		//Title
 		var objStaTitle = new Static();
-		objStaTitle.init("staTitle", 100, 35,120, 40);
+		objStaTitle.init("staTitle", 42, 18,120, 24);
 		objStaTitle.text = objDs.getColumn(i, "TITLE");
 		
-		objStaTitle.color = "black"; 
-		objStaTitle.font = "bold 11pt Malgun Gothic"
+		var tFontColor = "black";
+		
+		if (sTargetColor == "#B79BFF") {
+            tFontColor = "white";
+        }
+		
+		objStaTitle.color = tFontColor; 
+		objStaTitle.font = "bold 12px/normal Malgun Gothic"
 		objStaTitle.textAlign = "left"
 		
 		objDiv.form.addChild("staTitle", objStaTitle);
         objStaTitle.show();
 		
-		//SubTitle
-		var objStaSubTitle = new Static();
-		objStaSubTitle.init("staSub", 20, 105, 55, 20);
-		objStaSubTitle.text = objDs.getColumn(i, "SUBTITLE");
+		//explain
+		var objExplain = new Static();
+		objExplain.init("explain", 12, 60, 100, 20);
+		objExplain.text = objDs.getColumn(i, "explain");
 		
-		objStaSubTitle.color = "#b6b6b6"; 
-		objStaSubTitle.font = "bold 9pt Malgun Gothic"
-		objStaSubTitle.textAlign = "center"
+		var eFontColor = "#838383";
 		
-		objDiv.form.addChild("staSub", objStaSubTitle);
-        objStaSubTitle.show();
+		if (sTargetColor == "#B79BFF") {
+            eFontColor = "white";
+        }
 		
-		//VALUE_ADD_UNIT
-		var objStaValue = new Static();
-		objStaValue.init("staValue", 93, 105, 55, 20);
-		objStaValue.text = objDs.getColumn(i, "VALUE_ADD_UNIT");
+		objExplain.color = eFontColor; 
+		objExplain.font = "12px/normal Malgun Gothic"
+		objExplain.textAlign = "left"
+		objExplain.text = "Current Value"
 		
-		objStaValue.color = "black"; 
-		objStaValue.font = "bold 13px Malgun Gothic"
-		objStaValue.textAlign = "center"
-		
-		objDiv.form.addChild("staValue", objStaValue);
-        objStaValue.show();
+		objDiv.form.addChild("staSub", objExplain);
+        objExplain.show();
 		
 		//CALCULATED_RATE
 		var objStaRate = new Static();
 		var findRate = objDs.getColumn(i, "CALCULATED_RATE");
 		var rateNum = parseFloat(findRate);
-		var color = (rateNum == 0 ? "black" : (rateNum > 0 ? "#3F9A5A" : "red"));
+		var color = (rateNum == 0 ? tFontColor : (rateNum > 0 ? "#77B900" : "red"));
 		
-		objStaRate.init("staRate", 170, 105, 55, 20);
+		
+		objStaRate.init("staRate", 155, 30, 40, 14);
 		objStaRate.text = findRate;
 		
 		 var rateNum = parseFloat(findRate);
 		
-		objStaRate.color = "black"; 
+		objStaRate.color = color; 
 		objStaRate.font = "bold 13px Malgun Gothic"
-		objStaRate.textAlign = "left"
+		objStaRate.textAlign = "right"
         
 		objStaRate.set_color(color);
 		
 		objDiv.form.addChild("staRate", objStaRate);
         objStaRate.show();
+		
+		//VALUE_ADD_UNIT
+		var objStaValue = new Static();
+		objStaValue.init("staValue", 12, 78, 80, 23);
+		objStaValue.text = objDs.getColumn(i, "VALUE_ADD_UNIT");
+		
+		objStaValue.color = tFontColor; 
+		objStaValue.font = "bold 16px/normal Malgun Gothic"
+		objStaValue.textAlign = "left"
+		
+		objDiv.form.addChild("staValue", objStaValue);
+        objStaValue.show();
+		
+		
 		
 		
 		
@@ -454,23 +508,6 @@ this.drawCard = function ()
 			objBtn.setFocus();
 		}
        
-		//  ||
-		var objGuard1 = new Static();
-		objGuard1.init("staGuard1", 81, 107, 1, 18);
-		
-		objGuard1.border = "2px solid #dbdee2"
-		
-		objDiv.form.addChild("staGuard1", objGuard1);
-        objGuard1.show();
-		
-		//  ||
-		var objGuard2 = new Static();
-		objGuard2.init("staGuard2", 158, 107, 1, 18);
-		
-		objGuard2.border = "2px solid #dbdee2"
-		
-		objDiv.form.addChild("staGuard2", objGuard2);
-        objGuard2.show();
 	}
 }
 
@@ -488,7 +525,7 @@ this.btnAddValue_onmouseenter = function(obj:nexacro.Button, e:nexacro.MouseEven
     }
 
     objAni.removeTarget("targetBtn");    
-    objAni.addTarget("targetBtn", obj, "left:510, width:215");
+    objAni.addTarget("targetBtn", obj, "left:710, width:210");
     objAni.play();
 };
 
@@ -497,7 +534,7 @@ this.btnAddValue_onmouseleave = function(obj:nexacro.Button, e:nexacro.MouseEven
     var objAni = this.all["ani00"];
     if (objAni) {
         objAni.removeTarget("targetBtn");
-        objAni.addTarget("targetBtn", obj, "left:580, width:145");
+        objAni.addTarget("targetBtn", obj, "left:778, width:142");
         objAni.play();
     }
 };
@@ -517,6 +554,7 @@ this.fn_divClick = function(obj:nexacro.Button, e:nexacro.ClickEventInfo)
    this.divChart.form.staDivValue.color = color;
    
    this.divChart.form.staDivValue.text = mark + absRate + "%";	
+   this.divChart.form.Div03.form.fnCreateChart();
 };
 
 
@@ -628,25 +666,18 @@ this.fnMakeDragObj = function(objDiv)
 };
 ]]></Script>
     <Objects>
-      <Dataset id="ds_group">
-        <ColumnInfo>
-          <Column id="GROUP_ID" type="STRING" size="256"/>
-          <Column id="GROUP_NAME" type="STRING" size="256"/>
-        </ColumnInfo>
-      </Dataset>
       <Dataset id="ds_stock">
         <ColumnInfo>
           <Column id="TITLE" type="STRING" size="256"/>
-          <Column id="SUBTITLE" type="STRING" size="256"/>
+          <Column id="SUBTITLE" type="STRING" size="256" description="범례"/>
           <Column id="GROUP_ID" type="INT" size="256"/>
           <Column id="IMAGE_DATA" type="STRING" size="256"/>
-          <Column id="UNIT_NAME" type="STRING" size="256"/>
+          <Column id="UNIT_ID" type="INT" size="256"/>
           <Column id="CURRENT_VALUE" type="BIGDECIMAL" size="256"/>
           <Column id="CALCULATED_RATE" type="STRING" size="256"/>
           <Column id="VALUE_ADD_UNIT" type="STRING" size="256"/>
-          <Column id="IMAGE_FILE" type="STRING" size="256"/>
           <Column id="ROWNUM" type="STRING" size="256"/>
-          <Column id="STOCK_ID" type="STRING" size="256"/>
+          <Column id="STOCK_ID" type="INT" size="256"/>
           <Column id="RATE" type="STRING" size="256"/>
         </ColumnInfo>
       </Dataset>
@@ -654,6 +685,7 @@ this.fnMakeDragObj = function(objDiv)
         <ColumnInfo>
           <Column id="NEWS_ORDER" type="INT" size="256"/>
           <Column id="CONTENT" type="STRING" size="256"/>
+          <Column id="CREATE_AT" type="STRING" size="256"/>
         </ColumnInfo>
       </Dataset>
       <Dataset id="ds_value">
@@ -698,13 +730,35 @@ this.fnMakeDragObj = function(objDiv)
           </Row>
         </Rows>
       </Dataset>
+      <Dataset id="ds_group">
+        <ColumnInfo>
+          <Column id="GROUP_ID" type="INT" size="256"/>
+          <Column id="GROUP_NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_stock00" cancolumnchange="ds_stock_cancolumnchange" oncolumnchanged="ds_stock_oncolumnchanged">
+        <ColumnInfo>
+          <Column id="TITLE" type="STRING" size="256"/>
+          <Column id="SUBTITLE" type="STRING" size="256"/>
+          <Column id="GROUP_ID" type="INT" size="256"/>
+          <Column id="IMAGE_FILE" type="STRING" size="256"/>
+          <Column id="DAY_SEQ" type="DATE" size="256"/>
+          <Column id="UNIT_ID" type="INT" size="256"/>
+          <Column id="CURRENT_VALUE" type="BIGDECIMAL" size="256"/>
+          <Column id="RATE" type="BIGDECIMAL" size="256"/>
+          <Column id="STOCK_TYPE" type="STRING" size="256"/>
+          <Column id="AI_MODE" type="INT" size="256"/>
+          <Column id="MIN_RATE" type="BIGDECIMAL" size="256"/>
+          <Column id="MAX_RATE" type="BIGDECIMAL" size="256"/>
+        </ColumnInfo>
+      </Dataset>
     </Objects>
     <Bind>
       <BindItem id="item0" compid="divChart.form.Static02" propid="text" datasetid="ds_stock" columnid="TITLE"/>
-      <BindItem id="item1" compid="divChart.form.Static03" propid="text" datasetid="ds_stock" columnid="SUBTITLE"/>
-      <BindItem id="item2" compid="divChart.form.ImageViewer00" propid="image" datasetid="ds_stock" columnid="IMAGE_DATA"/>
       <BindItem id="item3" compid="divChart.form.Static02_00" propid="text" datasetid="ds_stock" columnid="VALUE_ADD_UNIT"/>
       <BindItem id="item4" compid="divChart.form.staDivValue" propid="text" datasetid="ds_stock" columnid="CALCULATED_RATE"/>
+      <BindItem id="item1" compid="Div00.form.TextArea00" propid="value" datasetid="ds_news" columnid="CONTENT"/>
+      <BindItem id="item2" compid="Div00.form.Static00" propid="text" datasetid="ds_news" columnid="CREATE_AT"/>
     </Bind>
   </Form>
 </FDL>

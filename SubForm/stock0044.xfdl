@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="stock0043" width="780" height="588" titletext="createStock_chart1" onload="stock0043_onload" scrollbartype="none">
+  <Form id="stock0044" width="780" height="588" titletext="createStock_chart2" onload="stock0043_onload" scrollbartype="none">
     <Layouts>
       <Layout height="588" width="780">
         <ChartJS id="chtLine" taborder="0" text="ChartJS00" left="-120" top="70" right="40" bottom="168" border="0px none"/>

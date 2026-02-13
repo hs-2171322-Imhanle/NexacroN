@@ -51,18 +51,17 @@
         </Grid>
         <Button id="Button01" taborder="4" text="Button01" left="559" top="103" width="251" height="117" ondrop="Button01_ondrop" ondrag="Button01_ondrag"/>
         <Div id="Div00" taborder="5" text="Div00" left="344" top="340" width="120" height="204" onmove="fnComBtnOnDrag" background="pink"/>
+        <Div id="Div01" taborder="6" left="593" top="310" width="209" height="116" background="#A6F7E2">
+          <Layouts>
+            <Layout>
+              <ImageViewer id="ImageViewer00" taborder="0" text="ImageViewer00" left="12" top="18" width="24" height="24"/>
+              <Static id="Static00" taborder="1" text="Static00" left="42" top="15" width="67" height="23"/>
+            </Layout>
+          </Layouts>
+        </Div>
       </Layout>
     </Layouts>
     <Objects>
-      <Dataset id="MAIN">
-        <ColumnInfo>
-          <Column id="NAME" type="STRING" size="256"/>
-          <Column id="CODE_ID" type="STRING" size="256"/>
-        </ColumnInfo>
-        <Rows>
-          <Row/>
-        </Rows>
-      </Dataset>
       <Dataset id="SUB">
         <ColumnInfo>
           <Column id="ID" type="STRING" size="256"/>
