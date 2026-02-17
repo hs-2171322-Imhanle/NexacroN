@@ -3039,7 +3039,13 @@
         <Column id="USE_FLAG" type="STRING" size="256"/>
       </ColumnInfo>
     </Dataset>
-    <Dataset id="gds_user"/>
+    <Dataset id="gds_user">
+      <ColumnInfo>
+        <Column id="USER_ID" type="STRING" size="256"/>
+        <Column id="ROLE" type="STRING" size="256"/>
+        <Column id="JOIN_CNT" type="INT" size="256" description="학생 주식방 여부"/>
+      </ColumnInfo>
+    </Dataset>
   </Datasets>
   <Variables/>
   <DataObjects/>

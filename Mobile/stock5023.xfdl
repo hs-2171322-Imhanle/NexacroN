@@ -14,7 +14,7 @@
               <Static id="Static01_03" taborder="0" text="내 계좌 금액" left="48" top="36" width="92" height="27" color="#9b9b9b" font="bold 16px/normal &quot;Malgun Gothic&quot;"/>
               <Static id="Static01_00" taborder="1" text="₩" left="48" top="74" width="44" height="42" color="black" font="bold 40px/normal &quot;Malgun Gothic&quot;"/>
               <ImageViewer id="ImageViewer01" taborder="2" left="893" top="18" width="130" height="119" image="url('theme::p02_thema/NewFolder/finance.png')" stretch="fit" border="0px none"/>
-              <Static id="Static00" taborder="3" text="0" left="98" top="71" width="248" height="47" color="black" font="bold 40px/normal &quot;Malgun Gothic&quot;"/>
+              <Static id="Static00" taborder="3" left="98" top="71" width="248" height="47" color="black" font="bold 40px/normal &quot;Malgun Gothic&quot;"/>
             </Layout>
           </Layouts>
         </Div>
@@ -34,6 +34,7 @@
         <ImageViewer id="ImageViewer01_00" taborder="5" left="1320" top="416" width="48" height="48" image="url('theme::p02_thema/NewFolder/money_wing.png')" stretch="fit" border="0px none" borderRadius="18px" padding="15px" background="#fdfde6" visible="false"/>
         <ImageViewer id="ImageViewer01_00_00" taborder="7" left="1320" top="480" width="48" height="48" image="url('theme::p02_thema/NewFolder/box.png')" stretch="fit" border="0px none" borderRadius="18px" padding="13px" background="#e0ebff" visible="false"/>
         <ImageViewer id="ImageViewer01_00_00_00" taborder="8" left="1320" top="536" width="48" height="48" image="url('theme::p02_thema/NewFolder/inbox.png')" stretch="fit" border="0px none" borderRadius="18px" padding="15px" background="#ffe5e9" visible="false"/>
+        <Button id="Button00" taborder="9" text="Button00" left="390" top="18" width="200" height="36" onclick="Button00_onclick"/>
       </Layout>
     </Layouts>
     <Objects>

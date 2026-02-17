@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="stock5004" width="1280" height="800" titletext="방추가" background="url('theme::p02_thema/NewFolder/enterStock.jpg') no-repeat center center /cover" onload="stock5004_onload">
+    <Layouts>
+      <Layout height="800" width="1280">
+        <Static id="Static01" taborder="4" top="0" background="RGBA(253,219,139,0.54)" bottom="0" left="0" right="0"/>
+        <ImageViewer id="ImageViewer00" taborder="0" left="550" top="117" width="180" height="166" image="url('theme://NewFolder/home.png')" stretch="fit" borderRadius="30px" border="0px none"/>
+        <Static id="Static00" taborder="1" text="선생님과 함께하기" left="515" top="306" width="251" height="60" color="black" font="bold 30px/normal &quot;Malgun Gothic&quot;"/>
+        <Static id="Static00_00" taborder="2" text="선생님에게 받은 코드를 입력하세요!" left="444" top="360" width="393" height="60" font="24px/normal &quot;Malgun Gothic&quot;"/>
+        <Button id="btnEnter" taborder="3" text="주식 방 입장하기" left="429" top="546" width="422" height="74" cssclass="btn_addRoom" onclick="btnEnter_onclick"/>
+        <Edit id="Edit00" taborder="5" left="433" top="440" width="418" height="90" cssclass="edit_addRoom" displaynulltext="방 코드 입력하기"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[this.fvApp = nexacro.getApplication();
+
+this.stock5004_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.ds_code.clearData();
+	this.ds_code.addRow();
+	
+};
+
+this.btnEnter_onclick = function(obj:nexacro.Button, e:nexacro.ClickEventInfo)
+{
+    var sCode = this.ds_code.getColumn(0, "GROUP_CODE");
+
+    if (!sCode || sCode.length < 4) {
+        this.alert("방 코드 4자리를 입력해주세요.");
+        return;
+    }
+	
+    var strSvcId    = "joinGroup";
+    var strSvcUrl   = "stock/joinGroup.do";
+    var inData      = "ds_code=ds_code:u gds_user=gds_user";
+    var outData     = "ds_result=ds_result";
+    var sParam      = "";
+    var callBackFnc = "fnCallback";
+
+    this.gfnTransaction(strSvcId, strSvcUrl, inData, outData, sParam, callBackFnc);
+};
+
+this.fnCallback = function(svcId, errCode, errMsg)
+{
+	
+    if (svcId == "joinGroup") {
+        if (svcId == "joinGroup") {
+			if (errCode == 0) {
+				var sRes = this.ds_result.getColumn(0, "JOIN_RES");
+
+				if (sRes == "Y") {
+					this.fvApp.gds_user.setColumn(0, "JOIN_CNT", 1);
+					this.parent.url="Mobile::stock5010.xfdl";
+				}
+			} 
+			else {
+				this.ds_code.setColumn(0, "GROUP_CODE", "");
+			}
+		}
+	}
+};]]></Script>
+    <Objects>
+      <Dataset id="ds_code">
+        <ColumnInfo>
+          <Column id="GROUP_CODE" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_result">
+        <ColumnInfo>
+          <Column id="JOIN_RES" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="Edit00" propid="value" datasetid="ds_code" columnid="GROUP_CODE"/>
+    </Bind>
+  </Form>
+</FDL>

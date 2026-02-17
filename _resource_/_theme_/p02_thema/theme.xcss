@@ -3663,18 +3663,17 @@
 ]]></CSSData>
   <CSSData type="mobile_large"><![CDATA[]]></CSSData>
   <CSSData type="mobile_small"><![CDATA[]]></CSSData>
-  <CSSData type="mobile_medium"><![CDATA[.TextArea.textArea_addRoom
+  <CSSData type="mobile_medium"><![CDATA[.Edit.edit_addRoom
 {
 	-nexa-border : 3px solid #F8EDAB;
 	border-radius : 20px;
 	background : white;
 	color : black;
 	-nexa-text-align : center;
-	-nexa-padding : 30px 0px 0px;
 	font : bold 28px "Arial";
 	
 }
-.TextArea.textArea_addRoom[status=mouseover],.TextArea.textArea_addRoom[status=focused]
+.Edit.edit_addRoom[status=mouseover],.Edit.edit_addRoom[status=focused]
 {
 	-nexa-border : 3px solid #FFA94E;
 	border-radius : 20px;
@@ -3789,11 +3788,10 @@
 }
 .Div.div_stockList
 {
-	color : #c6c6c6;
-	-nexa-border : 3px solid #c6c6c6 ;
+	-nexa-border : 3px solid #dff1fa ;
 	border-radius : 30px;
 	background : white;
-	box-shadow : 0px 20px 0px 0px #c6c6c6;
+	box-shadow : 0px 20px 0px 0px #dff1fa;
 }
 .Div.div_stockList[status=mouseover],
 .Div.div_stockList[status=focused]
@@ -3836,6 +3834,28 @@
 	color : black;
 	background : transParent;
 	
+}
+.Button.btn_back
+{
+	background : url('theme://NewFolder/Arrow back.png') no-repeat center center /30px white;
+	border-radius : 15px;
+	box-shadow : 0px 4px 0px 0px #ffb787;
+	-nexa-border : 0px none;
+}
+.Button.btn_back[status=mouseover],
+.Button.btn_back[status=focused]
+{
+	background : url('theme://NewFolder/Arrow back.png') no-repeat center center /30px white;
+	border-radius : 15px;
+	-nexa-border : 0px none;
+	box-shadow : 0px 0px 0px 0px transparent;
+}
+.Button.btn_transParent,
+.Button.btn_transParent[status=mouseover],
+.Button.btn_transParent[status=focused]
+{
+	-nexa-border : 0px none;
+	background : transParent;
 }
 ]]></CSSData>
 </XCSS>

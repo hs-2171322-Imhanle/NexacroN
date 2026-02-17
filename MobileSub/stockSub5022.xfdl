@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="stockSub5022" width="340" height="220" titletext="stockList">
+    <Layouts>
+      <Layout height="220" width="340">
+        <Static id="staTitle" taborder="0" left="70" top="13" width="110" height="42" color="black" font="bold 18px/normal &quot;Malgun Gothic&quot;"/>
+        <MaskEdit id="maskValue" taborder="1" top="20" height="28" format="#,##0" enable="true" readonly="true" textAlign="right" border="0px none" font="bold 16px/normal &quot;Malgun Gothic&quot;" color="black" displaynulltext="0" cssclass="mask_money" right="15" width="99" limitbymask="none"/>
+        <Static id="staUnit" taborder="2" text="₩" top="17" height="33" color="black" font="bold 16px/normal &quot;Malgun Gothic&quot;" textAlign="right" left="190" right="maskValue:-11"/>
+        <Static id="staRate" taborder="3" top="45" height="21" color="#ff0100" font="bold 12px/normal &quot;Malgun Gothic&quot;" textAlign="right" right="24" width="72"/>
+        <Static id="staTicker" taborder="4" left="70" top="48" width="40" height="15" color="#9b9b9b" font="14px/normal &quot;Malgun Gothic&quot;"/>
+        <Div id="divChart" taborder="5" left="23" top="80" width="295" height="125" text=""/>
+        <ImageViewer id="imgView" taborder="6" left="23" top="23" width="40" height="40" border="0px none" boxShadow="0px 0px 2px 0px #e5e5e5"/>
+        <Button id="btnClick" taborder="7" left="0" top="0" cssclass="btn_transParent" right="0" bottom="0" onclick="btnClick_onclick"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[this.fn_initCard = function(objDs, nRow) 
+{
+    this.staTitle.text=objDs.getColumn(nRow, "TITLE");
+    this.staTicker.text=objDs.getColumn(nRow, "TICKER_SYMBOL");
+    
+	var value = objDs.getColumn(nRow, "CURRENT_VALUE");
+	let tLength = nexacro.getTextSize(String(value), "bold 18px/normal Malgun Gothic");
+	this.maskValue.width = tLength.nx+30;
+	this.maskValue.value = value;
+	
+		
+	var unitId = objDs.getColumn(nRow, "UNIT_ID");
+	var nTargetRow = this.ds_unit.findRow("ID", unitId);
+	if (nTargetRow != -1) {
+		var unitName = this.ds_unit.getColumn(nTargetRow, "UNIT");
+		this.staUnit.text=unitName;
+	} else {
+		this.staUnit.text="₩"; 
+	}
+    
+	var findRate = objDs.getColumn(nRow, "CALCULATED_RATE");
+    var rateNum = parseFloat(findRate);
+    var color = (rateNum == 0 ? "#000000" : (rateNum > 0 ? "#ff0100" : "#0062ff"));
+	var prefix = (findRate > 0) ? "▲" : (findRate < 0 ? "▼" : "");
+	
+    this.staRate.text=prefix + Math.abs(findRate) + "%";
+    this.staRate.color=color;
+    
+    this.imgView.image=objDs.getColumn(nRow, "IMAGE_DATA");
+    
+    this.btnClick.u_Row = nRow;
+	this.resetScroll();
+	
+	
+};
+
+this.btnClick_onclick = function(obj, e)
+{
+    // 부모 화면(stock5010)의 함수 호출
+    this.parent.parent.fn_divClick(obj, e);
+};]]></Script>
+    <Objects>
+      <Dataset id="ds_unit">
+        <ColumnInfo>
+          <Column id="ID" type="INT" size="256"/>
+          <Column id="UNIT" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="ID">1</Col>
+            <Col id="UNIT">Kg</Col>
+          </Row>
+          <Row>
+            <Col id="ID">2</Col>
+            <Col id="UNIT">개</Col>
+          </Row>
+          <Row>
+            <Col id="ID">3</Col>
+            <Col id="UNIT">걸음</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

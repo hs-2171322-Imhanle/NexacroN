@@ -153,7 +153,7 @@ pForm.gfnCallback = function(svcID,errorCode,errorMsg)
 		{
 			case -1 :
 				// 서버 오류입니다.\n관리자에게 문의하세요.
-				this.gfnAlert("msg.server.error");
+				//this.gfnAlert("msg.server.error");
 				
 				// return; 서버 에러 와 업무 에러 코드 분리시에 return 처리 결정
 				break;

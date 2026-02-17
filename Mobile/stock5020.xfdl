@@ -133,7 +133,7 @@
             <Layout/>
           </Layouts>
         </Div>
-        <Button id="Button01" taborder="13" text="모두 보기" left="1130" top="523" width="84" height="34" cssclass="btn_selectAll"/>
+        <Button id="btnStockAll" taborder="13" text="모두 보기" left="1130" top="523" width="84" height="34" cssclass="btn_selectAll" onclick="btnStockAll_onclick"/>
         <Div id="Div00_00_01_00" taborder="14" left="358" top="570" width="260" height="160" cssclass="div_stockRoom">
           <Layouts>
             <Layout>
@@ -185,5 +185,11 @@
       </Layout>
     </Layouts>
     <Objects/>
+    <Script type="xscript5.1"><![CDATA[
+this.btnStockAll_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.parent.url="Mobile::stock5022.xfdl";
+};
+]]></Script>
   </Form>
 </FDL>
