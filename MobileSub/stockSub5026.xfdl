@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="stockSub5026" width="275" height="61" titletext="dashBoard myStock" background="white">
+    <Layouts>
+      <Layout height="61" width="275">
+        <ImageViewer id="imageView" taborder="0" left="19" top="16" width="36" height="34" stretch="fit" image="url('theme://images/btn_expand.png')" imagealign="center middle" border="0px none"/>
+        <Static id="staTitle" taborder="1" text="게임천국" left="64" top="5" width="96" height="29" color="black" font="bold 12px/normal &quot;Malgun Gothic&quot;"/>
+        <Static id="staQuatity" taborder="2" text="4주 보유" left="64" top="32" width="76" height="15" color="#9b9b9b" font="10px/normal &quot;Malgun Gothic&quot;"/>
+        <Static id="staRate" taborder="3" text="▲1.2%" left="194" top="29" width="66" height="21" color="#0062ff" font="bold 10px/normal &quot;Malgun Gothic&quot;" textAlign="right"/>
+        <MaskEdit id="maskEvalMoney" taborder="4" top="6" width="84" height="28" format="#,##0" enable="true" readonly="true" textAlign="right" border="0px none" font="bold 13px/normal &quot;Malgun Gothic&quot;" color="black" displaynulltext="0" cssclass="mask_money" value="1250885" right="4"/>
+        <Static id="Static01_00_00_00" taborder="5" text="₩" top="4" height="33" color="black" font="bold 13px/normal &quot;Malgun Gothic&quot;" right="maskEvalMoney:-9" width="14"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[this.fn_initCard = function(objStock, objHolding, nRow) 
+{
+    this.imageView.image=objStock.getColumn(nRow, "IMAGE_DATA");
+    this.staTitle.text=objStock.getColumn(nRow, "TITLE")
+    this.staQuatity.text=objHolding.getColumn(nRow, "QUANTITY") + "주 보유";
+	this.maskEvalMoney.value = objHolding.getColumn(nRow, "EVAL_MONEY");
+	
+	
+	var value = objHolding.getColumn(nRow, "EVAL_MONEY");
+	let tLength = nexacro.getTextSize(String(value), "bold 13px/normal Malgun Gothic");
+	this.maskEvalMoney.width = tLength.nx+30;
+	this.maskEvalMoney.value = value;
+	
+	var rate = objHolding.getColumn(nRow, "PROFIT_RATE");
+    var rateNum = parseFloat(rate);
+    var color = (rateNum == 0 ? "#000000" : (rateNum > 0 ? "#ff0100" : "#0062ff"));
+	var prefix = (rateNum > 0) ? "▲" : (rateNum < 0 ? "▼" : "");
+	
+    this.staRate.text=prefix + Math.abs(rate) + "%";
+    this.staRate.color=color;
+	
+	this.resetScroll();
+};]]></Script>
+  </Form>
+</FDL>

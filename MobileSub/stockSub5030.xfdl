@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="stockSub5030" width="762" height="75" titletext="카드뉴스" stepshowtype="always" onload="stockSub5030_onload" onclick="stockSub5030_onclick">
+    <Layouts>
+      <Layout height="75" width="762" stepcount="0"/>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[this.fnCreateNewsCards = function() {
+    var ds = this.parent.parent.parent.parent.ds_news;
+    var nCount = ds.rowcount;
+	
+    if (nCount == 0) return;
+	this.setStepCount(nCount);
+	
+	for(var i =0; i<nCount;i++){
+		var sTitle = ds.getColumn(i, "TITLE");
+		var sDay = ds.getColumn(i, "CREATE_AT");
+        var sId = "staTitle_" + i;
+		var dId = "staDay_"+ i;
+		if (this.components[sId]) this.removeChild(sId).destroy();
+        if (this.components[dId]) this.removeChild(dId).destroy();
+		
+		
+		//title
+		var objTitle = new Static();
+        objTitle.init(sId, 30, 10, 441, 30);
+		this.addChild(sId, objTitle);
+		objTitle.color = "black";
+		objTitle.font = "bold 16px/normal Malgun Gothic";
+        objTitle.positionstep = i; 
+		objTitle.text=sTitle;
+		
+		objTitle.show();
+		
+		//day
+		var objDay = new Static();
+		objDay.init(dId,30,40,160,22);
+		this.addChild(dId, objDay);
+		objDay.color = "gray";
+		objDay.font = "12px/normal Malgun Gothic"
+		objDay.positionstep = i; 
+		objDay.text = sDay;
+		
+		objDay.show();
+	}
+	
+};
+
+this.stockSub5030_onclick = function(obj:nexacro.Form,e:nexacro.ClickEventInfo)
+{
+    var ds = this.parent.parent.parent.parent.ds_news;
+ 
+	var nStepIdx = this.getStepIndex();
+    
+    var title   = ds.getColumn(nStepIdx, "TITLE");
+    var day     = ds.getColumn(nStepIdx, "CREATE_AT");
+    var content = ds.getColumn(nStepIdx, "CONTENT");
+
+	var sPopupId = "popupNews"
+	var sUrl  = "Popup::mStock1002pu.xfdl"
+	var oArg ={param1:title ,param2:day, param3:content};
+	var oOption = {title:"모달팝업", titlebar:false};
+	var sPopupCallBack = "fn_callbackPopup"; //close 할때, 호출
+	this.gfnOpenPopup( sPopupId,sUrl,oArg,sPopupCallBack,oOption);
+};
+
+this.fn_callbackPopup = function ()
+{
+	
+};
+]]></Script>
+  </Form>
+</FDL>

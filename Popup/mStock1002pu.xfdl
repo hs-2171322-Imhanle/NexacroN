@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="mStock1002pu" width="512" titletext="cardNews" height="383" background="white" borderRadius="20px" onload="mStock1002pu_onload">
+    <Layouts>
+      <Layout height="383" width="512">
+        <Static id="staDay" taborder="0" text="Static00" left="38" top="30" width="120" height="23" color="orange" font="12px/normal &quot;Malgun Gothic&quot;"/>
+        <Static id="staTitle" taborder="1" text="Static01" left="38" top="53" width="442" height="37" color="black" font="bold 24px/normal &quot;Malgun Gothic&quot;"/>
+        <TextArea id="staContent" taborder="3" left="38" top="110" width="432" height="160" value="dfdfdfdfffffffffffffffffffffffffffffffffffffffdkssudgktdkjdklj" color="#686868" font="16px/normal &quot;Malgun Gothic&quot;" wordWrap="char" border="0px none" padding="0px" readonly="true" background="white" letterSpacing="1px"/>
+        <Button id="btnClose" taborder="2" text="다 읽었어요!" left="38" top="290" width="432" height="64" cssclass="btn_sell_pushed" background="#272943" color="white" borderRadius="15px" border="0px none" onclick="btnClose_onclick"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[
+this.mStock1002pu_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	var objParam1 = this.parent.param1; //title
+	var objParam2 = this.parent.param2; //day
+	var objParam3 = this.parent.param3; //content
+	this.staTitle.text = objParam1;
+	this.staDay.text = objParam2;
+	this.staContent.value = objParam3;
+};
+
+
+this.btnClose_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close();
+};
+]]></Script>
+  </Form>
+</FDL>

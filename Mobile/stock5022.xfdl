@@ -5,71 +5,7 @@
       <Layout height="800" mobileorientation="landscape" width="1280">
         <Edit id="editSearch" taborder="0" left="74" top="61" width="1133" height="60" borderRadius="30px" cssclass="edit_search" displaynulltext="어떤 주식을 찾아볼까요?" onkeyup="editSearch_onkeyup"/>
         <Button id="Button01" taborder="1" left="94" top="76" width="32" height="30" cssclass="btn_search"/>
-        <Div id="Div00_00_01" taborder="2" left="1410" top="240" width="380" height="260" cssclass="div_stockRoom">
-          <Layouts>
-            <Layout>
-              <Div id="Div00" taborder="0" left="21" top="58" width="217" height="89" url="SubForm::stock0047.xfdl" text="">
-                <Layouts>
-                  <Layout/>
-                </Layouts>
-              </Div>
-              <Static id="Static01" taborder="1" text="키즈 전자 " left="25" top="8" width="69" height="42" color="black" font="bold 14px/normal &quot;Malgun Gothic&quot;"/>
-              <MaskEdit id="MaskEdit00_01" taborder="3" left="170" top="15" width="84" height="28" format="#,##0" enable="true" readonly="true" textAlign="left" border="0px none" font="bold 14px/normal &quot;Malgun Gothic&quot;" color="black" displaynulltext="0" cssclass="mask_money" value="6528255"/>
-              <Static id="Static01_00_00" taborder="2" text="₩" left="161" top="12" height="33" color="black" font="bold 14px/normal &quot;Malgun Gothic&quot;" right="MaskEdit00_01:-9"/>
-              <Static id="Static00" taborder="4" text="▲16.2%" left="198" top="40" width="46" height="21" color="#ff0100" font="bold 10px/normal &quot;Malgun Gothic&quot;" textAlign="right"/>
-              <Static id="Static01_00" taborder="5" text="kscu" left="25" top="43" width="27" height="15" color="#9b9b9b" font="10px/normal &quot;Malgun Gothic&quot;"/>
-            </Layout>
-          </Layouts>
-        </Div>
-        <Div id="Div00_00_01_00_01" taborder="3" left="1430" top="580" width="340" height="220" cssclass="div_stockList">
-          <Layouts>
-            <Layout>
-              <Static id="Static01" taborder="0" text="키즈 전자 " left="70" top="13" width="104" height="42" color="black" font="bold 18px/normal &quot;Malgun Gothic&quot;"/>
-              <MaskEdit id="MaskEdit00_01" taborder="1" left="226" top="20" width="101" height="28" format="#,##0" enable="true" readonly="true" textAlign="left" border="0px none" font="bold 18px/normal &quot;Malgun Gothic&quot;" color="black" displaynulltext="0" cssclass="mask_money" value="6528255"/>
-              <Static id="Static01_00_00" taborder="2" text="₩" left="213" top="17" height="33" color="black" font="bold 18px/normal &quot;Malgun Gothic&quot;" width="20" textAlign="center"/>
-              <Static id="Static00" taborder="3" text="▲16.2%" left="263" top="46" width="55" height="21" color="#ff0100" font="bold 14px/normal &quot;Malgun Gothic&quot;" textAlign="right"/>
-              <Static id="Static01_00" taborder="4" text="kscu" left="70" top="48" width="27" height="15" color="#9b9b9b" font="14px/normal &quot;Malgun Gothic&quot;"/>
-              <Div id="Div00" taborder="5" left="30" top="71" width="288" height="125" url="SubForm::stock0047.xfdl" text="">
-                <Layouts>
-                  <Layout/>
-                </Layouts>
-              </Div>
-              <ImageViewer id="ImageViewer00" taborder="6" left="23" top="23" width="40" height="40" border="0px none" boxShadow="0px 0px 2px 0px #e5e5e5"/>
-            </Layout>
-          </Layouts>
-        </Div>
-        <Div id="divPage" taborder="4" text="Div00" left="80" top="726" width="1124" height="58" url="Cmm::CmmPaging.xfdl"/>
-        <Grid id="Grid00" taborder="5" left="683" top="15" width="263" height="115" binddataset="ds_search">
-          <Formats>
-            <Format id="default">
-              <Columns>
-                <Column size="80"/>
-                <Column size="80"/>
-                <Column size="80"/>
-                <Column size="80"/>
-                <Column size="80"/>
-              </Columns>
-              <Rows>
-                <Row band="head" size="24"/>
-                <Row size="24"/>
-              </Rows>
-              <Band id="head">
-                <Cell text="records"/>
-                <Cell col="1" text="page"/>
-                <Cell col="2" text="recordsOffset"/>
-                <Cell col="3" text="pageCount"/>
-                <Cell col="4" text="pTitle"/>
-              </Band>
-              <Band id="body">
-                <Cell text="bind:records"/>
-                <Cell col="1" text="bind:page"/>
-                <Cell col="2" text="bind:recordsOffset"/>
-                <Cell col="3" text="bind:pageCount"/>
-                <Cell col="4" text="bind:pTitle"/>
-              </Band>
-            </Format>
-          </Formats>
-        </Grid>
+        <Div id="divPage" taborder="2" text="Div00" left="80" top="726" width="1124" height="58" url="Cmm::CmmPaging.xfdl"/>
       </Layout>
     </Layouts>
     <Objects>
@@ -82,6 +18,8 @@
           <Column id="CALCULATED_RATE" type="STRING" size="256"/>
           <Column id="STOCK_ID" type="INT" size="256"/>
           <Column id="TICKER_SYMBOL" type="STRING" size="256"/>
+          <Column id="STOCK_TYPE" type="STRING" size="256"/>
+          <Column id="GROUP_ID" type="STRING" size="256"/>
         </ColumnInfo>
       </Dataset>
       <Dataset id="ds_value">
@@ -116,6 +54,7 @@ this.fvPageCount=0; 		//실제표출페이지갯수
 this.stock5022_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
 {
 	this.fnPageInit();
+	trace(this.name);
 };
 
 //drawDiv
@@ -185,9 +124,20 @@ this.stockLoad = function(){
 						callBackFnc, 	
 						isAsync); 		
 }
-this.fn_divClick = function(obj:nexacro.Button, e:nexacro.ClickEventInfo)
+this.fn_divClick = function(nRow)
 {
-   
+    var nStockId   = this.ds_stock.getColumn(nRow, "STOCK_ID");
+    var sStockType = this.ds_stock.getColumn(nRow, "STOCK_TYPE");
+	
+    var objDiv = this.parent; 
+	if(sStockType == "R"){
+		objDiv.url = "Mobile::stock5024.xfdl";
+	}
+	else{
+		objDiv.url = "Mobile::stock5025.xfdl";
+	}
+    objDiv.select_stockId = nStockId;
+    
 };
 
 this.editSearch_onkeyup = function(obj:nexacro.Edit,e:nexacro.KeyEventInfo)
@@ -200,7 +150,6 @@ this.editSearch_onkeyup = function(obj:nexacro.Edit,e:nexacro.KeyEventInfo)
 //paging init
  this.fnPageInit = function ()
  {
- 	
 	this.fvRecords=6;								 //목록갯수
 	this.fvPage=0;	 								 //페이지번호
 	this.fvRecordsOffset=0;							 //시작rownum

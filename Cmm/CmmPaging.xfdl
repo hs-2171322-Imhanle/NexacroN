@@ -86,7 +86,7 @@ this.fnCreatePage = function(sFnCallback, nTotalCount, nRecords, nPage)
     /*실제 페이지 갯수는 MAX 10개로 조정*/	
 	var nPageScaleC = 10;
 
-	var nTermBtn = 2;		 //버튼사이
+	var nTermBtn = 10;		 //버튼사이
     var nTerm = 14;   		 //큰버튼과 숫자사이
     var nTernLastNum = 12; 	 //마지막숫자버튼과 뒤로버튼사이
     

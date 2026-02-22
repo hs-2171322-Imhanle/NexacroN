@@ -1,0 +1,530 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="stock5024" width="1280" height="800" titletext="매도 매수R" background="#fcf9f7" onload="stock5024_onload">
+    <Layouts>
+      <Layout height="800" width="1280">
+        <Button id="btnBack" taborder="0" left="29" top="48" width="51" height="51" cssclass="btn_back" onclick="btnBack_onclick"/>
+        <Static id="Static00" taborder="1" text="게임 천국" left="109" top="30" width="301" height="60" color="black" font="bold 30px/normal &quot;Malgun Gothic&quot;"/>
+        <Static id="Static01" taborder="2" text="3A8B" left="109" top="84" width="48" height="31" color="gray" font="bold 16px/normal &quot;Malgun Gothic&quot;"/>
+        <Div id="divChart" taborder="3" left="49" top="140" width="821" height="382" background="white" cssclass="div_stockRoom" border="0px none" boxShadow="0px 15px 0px 0px #ffb787" url="MobileSub::stockSub5025.xfdl" text="">
+          <Layouts>
+            <Layout/>
+          </Layouts>
+        </Div>
+        <Div id="Div01" taborder="4" left="50" top="567" width="820" height="163" background="white" cssclass="div_stockRoom" border="0px none" boxShadow="0px 15px 0px 0px #ffb787">
+          <Layouts>
+            <Layout>
+              <Static id="Static00" taborder="0" text="오늘의 뉴스" left="58" top="23" width="113" height="47" color="black" font="bold 20px/normal &quot;Malgun Gothic&quot;"/>
+              <Static id="Static01" taborder="1" left="17" top="33" width="40" height="27" background="url('theme::p02_thema/NewFolder/newspaper.png') no-repeat center center /contain" text=""/>
+              <Div id="divNews" taborder="2" left="29" top="67" width="761" height="75" background="#fcf9f7" borderRadius="30px" url="MobileSub::stockSub5030.xfdl" onclick="Div01_divNews_onclick"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="Static02" taborder="5" text="현재 거래 가격" left="87" top="161" width="120" height="39" font="bold 14px/normal &quot;Malgun Gothic&quot;" color="gray"/>
+        <MaskEdit id="maskValue" taborder="6" top="190" height="59" format="#,##0" enable="true" readonly="true" textAlign="right" border="0px none" font="bold 36px/normal &quot;Malgun Gothic&quot;" color="black" displaynulltext="0" cssclass="mask_money" width="78" limitbymask="none" left="131"/>
+        <Static id="staUnit" taborder="7" text="₩" top="197" height="44" color="black" font="bold 36px/normal &quot;Malgun Gothic&quot;" textAlign="left" left="87" right="1116"/>
+        <Static id="staRate" taborder="8" text="Static03" left="700" top="180" width="100" height="40" font="bold 18px/normal &quot;Malgun Gothic&quot;" color="RGBA(255,164,67,1)" textAlign="center" borderRadius="10px" background="RGBA(250,169,40,0.13)"/>
+        <Div id="Div01_00" taborder="9" left="1798" top="150" width="302" height="382" background="white" cssclass="div_stockRoom" border="0px none" boxShadow="0px 15px 0px 0px #ffb787" text="">
+          <Layouts>
+            <Layout>
+              <Static id="Static00" taborder="0" left="26" top="43" width="250" height="47" background="#fcf9f7" borderRadius="20px"/>
+              <Button id="btnBuy" taborder="1" text="매수" left="24" top="43" width="125" height="46" cssclass="btn_buy" onclick="Div01_00_btnBuy_onclick"/>
+              <Button id="btnSell" taborder="2" text="매도" left="151" top="43" width="125" height="46" cssclass="btn_sell" onclick="Div01_00_btnSell_onclick"/>
+              <Static id="StaExplain" taborder="3" text="얼마를 살까요?" left="49" top="121" width="95" height="22" font="12px/normal &quot;Malgun Gothic&quot;" color="gray" textAlign="left"/>
+              <Static id="StaExMoney1" taborder="4" text="내 지갑 잔액" left="34" top="225" width="95" height="20" font="12px/normal &quot;Malgun Gothic&quot;" color="gray"/>
+              <MaskEdit id="maskValuePay" taborder="5" top="150" height="59" format="#,##0" enable="true" readonly="false" textAlign="right" border="2px solid #f0e3da" font="bold 20px/normal &quot;Malgun Gothic&quot;" color="black" displaynulltext="0" cssclass="mask_money" width="250" limitbymask="none" left="26" borderRadius="20px" background="#fcf9f7" padding="0px 25px 0px 0px"/>
+              <ImageViewer id="ImageViewer00" taborder="7" left="24" top="121" width="22" height="22" border="0px none" image="url('theme::p02_thema/NewFolder/calculator1.png')" imagealign="center" stretch="fit"/>
+              <Static id="staUnit" taborder="6" text="₩" top="157" height="44" color="black" font="bold 20px/normal &quot;Malgun Gothic&quot;" textAlign="right" left="226" right="52"/>
+              <Button id="btnSelect" taborder="8" text="지금 바로 매수하기" left="32" top="286" width="237" height="64" cssclass="btn_buy_pushed" font="bold 20px/normal &quot;Arial&quot;" onclick="Div01_00_btnSelect_onclick"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="divPay" taborder="10" left="921" top="140" width="302" height="590" background="white" cssclass="div_stockRoom" border="0px none" boxShadow="0px 15px 0px 0px #ffb787">
+          <Layouts>
+            <Layout>
+              <Static id="Static00" taborder="0" left="26" top="63" width="250" height="47" background="#fcf9f7" borderRadius="20px"/>
+              <Button id="btnBuy" taborder="1" text="매수" left="24" top="63" width="125" height="46" cssclass="btn_buy" onclick="divPay_btnBuy_onclick"/>
+              <Button id="btnSell" taborder="2" text="매도" left="151" top="63" width="125" height="46" cssclass="btn_sell" onclick="divPay_btnSell_onclick"/>
+              <Static id="StaExplain" taborder="3" text="몇 주를 살까요?" left="113" top="141" width="95" height="22" font="12px/normal &quot;Malgun Gothic&quot;" color="gray"/>
+              <Button id="btnMinus" taborder="4" text="-" left="26" top="186" width="48" height="48" cssclass="btn_minus" onclick="divPay_btnMinus_onclick"/>
+              <Button id="btnPlus" taborder="5" text="+" left="228" top="186" width="48" height="48" cssclass="btn_minus" onclick="divPay_btnPlus_onclick"/>
+              <Static id="staShare" taborder="6" text="1" left="100" top="170" width="55" height="60" font="bold 36px/normal &quot;Malgun Gothic&quot;" textAlign="right"/>
+              <Static id="Static03" taborder="7" text="주" left="164" top="197" width="32" height="27" font="bold 18px/normal &quot;Malgun Gothic&quot;" color="gray"/>
+              <Static id="Static03_00" taborder="8" left="24" top="266" width="252" height="154" background="#fcf9f7" borderRadius="30px" text=""/>
+              <Static id="Static01" taborder="9" left="41" top="324" width="221" height="1" border="1px solid #c1c1c1"/>
+              <Static id="Static02" taborder="10" text="합계" left="50" top="286" width="51" height="29" color="black" font="bold 20px/normal &quot;Malgun Gothic&quot;"/>
+              <Static id="staUnit" taborder="12" text="₩" top="278" height="44" color="black" font="bold 20px/normal &quot;Malgun Gothic&quot;" textAlign="right" right="108" width="24"/>
+              <MaskEdit id="maskValuePay" taborder="11" top="271" height="59" format="#,##0" enable="true" readonly="true" textAlign="right" border="0px none" font="bold 20px/normal &quot;Malgun Gothic&quot;" color="black" displaynulltext="100" cssclass="mask_money" limitbymask="none" left="staUnit:-12" background="transParent" right="42"/>
+              <Static id="staUnit00" taborder="13" text="₩" top="336" height="17" color="gray" font="bold 12px/normal &quot;Malgun Gothic&quot;" textAlign="left" left="241" width="20"/>
+              <MaskEdit id="maskValue00_00" taborder="14" top="336" height="17" format="#,##0" enable="true" readonly="true" textAlign="right" border="0px none" font="bold 12px/normal &quot;Malgun Gothic&quot;" color="gray" displaynulltext="0" cssclass="mask_money" width="78" limitbymask="none" left="165" background="transParent"/>
+              <Static id="StaExplain2" taborder="15" text="내 지갑 잔액" left="43" top="334" width="95" height="20" font="12px/normal &quot;Malgun Gothic&quot;" color="gray"/>
+              <Static id="StaExMoney2" taborder="16" text="내 보유량" left="43" top="357" width="61" height="20" font="12px/normal &quot;Malgun Gothic&quot;" color="gray"/>
+              <MaskEdit id="maskValue00_00_00" taborder="17" top="359" height="17" format="#,##0" enable="true" readonly="true" textAlign="right" border="0px none" font="bold 12px/normal &quot;Malgun Gothic&quot;" color="gray" displaynulltext="0" cssclass="mask_money" width="78" limitbymask="none" left="165" background="transParent"/>
+              <Static id="staUnit00_00" taborder="18" text="주" top="359" height="17" color="gray" font="bold 12px/normal &quot;Malgun Gothic&quot;" textAlign="left" left="241" width="20"/>
+              <Button id="btnSelect" taborder="19" text="지금 바로 매수하기" left="35" top="454" width="237" height="64" cssclass="btn_buy_pushed" font="bold 20px/normal &quot;Arial&quot;" onclick="divPay_btnSelect_onclick"/>
+              <Static id="staUnit00_01" taborder="20" text="₩" top="382" height="17" color="gray" font="bold 12px/normal &quot;Malgun Gothic&quot;" textAlign="left" left="241" width="20"/>
+              <MaskEdit id="maskValue00_00_01" taborder="21" top="382" height="17" format="#,##0" enable="true" readonly="true" textAlign="right" border="0px none" font="bold 12px/normal &quot;Malgun Gothic&quot;" color="gray" displaynulltext="0" cssclass="mask_money" width="78" limitbymask="none" left="165" background="transParent"/>
+              <Static id="StaExplain2_00" taborder="22" text="내 평가금액" left="43" top="380" width="95" height="20" font="12px/normal &quot;Malgun Gothic&quot;" color="gray"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[
+this.stock5024_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.divPay_btnBuy_onclick();
+	var nStockId = this.parent.select_stockId;
+    
+    if (nStockId) {
+        this.stockLoad(nStockId);
+		this.accountLoad(nStockId);
+    }
+};
+/************transaction*************/
+this.stockLoad = function(nStockId){
+	
+	this.ds_search.clearData();
+	var nRow = this.ds_search.addRow();
+	
+	this.ds_search.setColumn(nRow,"pStock_Id", nStockId)
+	var objApp = nexacro.getApplication();
+	var sUserId = objApp.gds_user.getColumn(objApp.gds_user.rowposition,"USER_ID");
+	this.ds_search.setColumn(this.ds_search.rowposition,"USER_ID",sUserId); 
+	
+ 	var strSvcId    = "searchStock";
+	var strSvcUrl   = "stock/loadStockOne.do";
+	var inData      = "ds_search=ds_search gds_user=gds_user";
+	var outData     = "ds_stock=ds_stock ds_value=ds_value ds_news=ds_news";
+	var sParam      = "";
+	var callBackFnc = "fnCallback";
+	var isAsync   	= true;   
+	
+	this.gfnTransaction(strSvcId , 		
+						strSvcUrl , 	
+						inData , 		
+						outData , 		
+						sParam, 		
+						callBackFnc, 	
+						isAsync); 		
+}
+this.accountLoad = function(){
+	
+
+ 	var strSvcId    = "searchAccount";
+	var strSvcUrl   = "stock/loadAccount.do";
+	var inData      = "ds_search=ds_search";
+	var outData     = "ds_account=ds_account ds_holding=ds_holding";
+	var sParam      = "";
+	var callBackFnc = "fnCallback";
+	var isAsync   	= true;
+	
+	this.gfnTransaction(strSvcId , 		
+						strSvcUrl , 	
+						inData , 		
+						outData , 		
+						sParam, 		
+						callBackFnc, 	
+						isAsync); 		
+}
+this.updateAccount =function()
+{
+	var strSvcId    = "updateAccount";
+	var strSvcUrl   = "stock/updateAccount.do";
+	var inData      = "ds_search=ds_search gds_user=gds_user ds_account=ds_account:u ds_holding=ds_holding:u";
+	var outData     = "";
+	var sParam      = "";
+	var callBackFnc = "fnCallback";
+	var isAsync   	= true;
+	
+	this.gfnTransaction(strSvcId , 		
+						strSvcUrl , 	
+						inData , 		
+						outData , 		
+						sParam, 		
+						callBackFnc, 	
+						isAsync); 	
+}
+
+
+this.fnCallback = function(svcId) 
+{	
+	if(svcId =="searchStock"){
+		var findRate = this.ds_stock.getColumn(0, "CALCULATED_RATE");
+		var rateNum = parseFloat(findRate);
+		var prefix = (findRate > 0) ? "▲" : (findRate < 0 ? "▼" : "");
+		
+		this.staRate.text=prefix + Math.abs(findRate) + "%";
+		this.staRate.color='rgba(252, 170, 37, 1)';
+		
+		var value = this.ds_stock.getColumn(0, "CURRENT_VALUE");
+		let tLength = nexacro.getTextSize(String(value), "bold 18px/normal Malgun Gothic");
+		this.maskValue.width = tLength.nx+50;
+		this.maskValue.value = value;
+		
+		var unitId = this.ds_stock.getColumn(0, "UNIT_ID");
+		var nTargetRow = this.ds_unit.findRow("ID", unitId);
+		if (nTargetRow != -1) {
+			var unitName = this.ds_unit.getColumn(nTargetRow, "UNIT");
+			this.staUnit.text=unitName;
+		} else {
+			this.staUnit.text="₩"; 
+		}
+		
+		this.divChart.form.fnCreateChart();
+		this.Div01.form.divNews.form.fnCreateNewsCards();
+		this.fnCalculateHolding();
+	}
+	if(svcId == "searchAccount"){
+		if(this.ds_holding.rowcount == 0) {	
+			this.ds_holding.addRow();
+		}
+		this.fnCalculateHolding();
+	}
+	if (svcId == "updateAccount")
+	{
+		this.accountLoad();
+	}
+	this.resetScroll();
+}
+
+
+//++++++++++++++++++++++++++++++++++++++++++
+this.divPay_btnBuy_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.divPay.form.btnBuy.cssclass="btn_buy_pushed";
+ 	this.divPay.form.btnSell.cssclass="btn_sell";
+ 	this.divPay.form.StaExplain.text = "몇 주를 살까요?"
+	this.divPay.form.btnSelect.cssclass = "btn_buy_pushed"
+	this.divPay.form.btnSelect.text = "지금 바로 매수하기"
+	this.divPay.form.maskValuePay.value = 100;
+	this.divPay.form.staShare.text = 1;
+	
+	
+};
+this.divPay_btnSell_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var evalMoney = this.ds_holding.getColumn(0,"EVAL_MONEY");
+	var quantity = this.ds_holding.getColumn(0,"QUANTITY");
+	
+	this.divPay.form.btnSell.cssclass="btn_sell_pushed";
+ 	this.divPay.form.btnBuy.cssclass="btn_buy";
+ 	this.divPay.form.StaExplain.text = "몇 주를 팔까요?"
+	this.divPay.form.btnSelect.cssclass = "btn_sell_pushed"
+	this.divPay.form.btnSelect.text = "지금 바로 매도하기"
+	this.divPay.form.maskValuePay.value = evalMoney/quantity;
+	this.divPay.form.staShare.text = 1;
+};
+this.divPay_btnPlus_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sCurrentValue = this.divPay.form.staShare.text;
+	var nValue = nexacro.toNumber(sCurrentValue);
+	
+	var evalMoney = this.ds_holding.getColumn(0,"EVAL_MONEY");
+	var quantity = this.ds_holding.getColumn(0,"QUANTITY");
+	 
+	if(nValue != 100){
+		if(this.divPay.form.btnSelect.text == "지금 바로 매수하기"){
+			var nNewValue = nValue + 1;
+			this.divPay.form.staShare.text = nNewValue;
+			var calculate = nNewValue *100;
+			var sDisplayPrice = calculate.toLocaleString();
+			let tLength = nexacro.getTextSize(sDisplayPrice, "bold 20px/normal Malgun Gothic");
+			this.divPay.form.maskValuePay.left = 261 - (tLength.nx+50);
+			this.divPay.form.maskValuePay.value = calculate;
+		}
+		else{
+			var nNewValue = nValue + 1;
+			this.divPay.form.staShare.text = nNewValue;
+			var calculate = nNewValue *(evalMoney/quantity);
+			var sDisplayPrice = calculate.toLocaleString();
+			let tLength = nexacro.getTextSize(sDisplayPrice, "bold 20px/normal Malgun Gothic");
+			this.divPay.form.maskValuePay.left = 261 - (tLength.nx+50);
+			this.divPay.form.maskValuePay.value = calculate;
+		}
+	}
+	this.resetScroll();
+};
+
+this.divPay_btnMinus_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sCurrentValue = this.divPay.form.staShare.text;
+	var nValue = nexacro.toNumber(sCurrentValue);
+	 
+	var evalMoney = this.ds_holding.getColumn(0,"EVAL_MONEY");
+	var quantity = this.ds_holding.getColumn(0,"QUANTITY");
+	
+	if(nValue >0){
+		if(this.divPay.form.btnSelect.text == "지금 바로 매수하기"){
+			var nNewValue = nValue - 1;
+			this.divPay.form.staShare.text = nNewValue;
+			var calculate = nNewValue * 100;
+			var sDisplayPrice = calculate.toLocaleString();
+			let tLength = nexacro.getTextSize(sDisplayPrice, "bold 20px/normal Malgun Gothic");
+			this.divPay.form.maskValuePay.left = 261 - (tLength.nx+50);
+			this.divPay.form.maskValuePay.value = calculate;
+		}
+		else{
+			var nNewValue = nValue - 1;
+			this.divPay.form.staShare.text = nNewValue;
+			var calculate = nNewValue *(evalMoney/quantity);
+			var sDisplayPrice = calculate.toLocaleString();
+			let tLength = nexacro.getTextSize(sDisplayPrice, "bold 20px/normal Malgun Gothic");
+			this.divPay.form.maskValuePay.left = 261 - (tLength.nx+50);
+			this.divPay.form.maskValuePay.value = calculate;
+		}
+	}
+	this.resetScroll();
+};
+
+this.divPay_btnSelect_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var nShare = nexacro.toNumber(this.divPay.form.staShare.text);
+	var currentVal = nexacro.toNumber(this.ds_stock.getColumn(0, "CURRENT_VALUE"));
+	var sType      = this.ds_stock.getColumn(0, "STOCK_TYPE");
+	
+	var money      = nexacro.toNumber(this.ds_account.getColumn(0, "MONEY"));
+	var holdingQty = nexacro.toNumber(this.ds_holding.getColumn(0, "QUANTITY")) || 0;
+	var payAmount = (sType == 'R') ? (nShare * 100) : (nShare * currentVal);
+	
+    if(this.divPay.form.btnSelect.text == "지금 바로 매수하기") {
+		if(money >= payAmount) {
+			this.buyPopup(nShare);
+		}	
+	}
+    else { 
+		if(holdingQty >= nShare && holdingQty > 0) {
+			this.sellPopup(nShare);
+		}
+	}
+};
+
+this.fnCalculateHolding = function()
+{
+    if(this.ds_holding.rowcount == 0 || this.ds_stock.rowcount == 0) return;
+
+    var sType      = this.ds_stock.getColumn(0, "STOCK_TYPE");
+    var nCurVal    = nexacro.toNumber(this.ds_stock.getColumn(0, "CURRENT_VALUE"));
+    var nRate      = nexacro.toNumber(this.ds_stock.getColumn(0, "RATE"));
+    
+    var nQty       = nexacro.toNumber(this.ds_holding.getColumn(0, "QUANTITY"));
+    var nAvgWeight = nexacro.toNumber(this.ds_holding.getColumn(0, "HOLDING_VALUE"));
+    
+    var nProfitRate = 0; //주식 수익률
+    var nEvalMoney  = 0; //평가금액
+	
+    if(nQty > 0) { // [수익률,평가금액 계산]
+		var nTotalInvest = nQty * 100;
+        if(sType == 'R') {
+            nProfitRate = (nCurVal - nAvgWeight) * nRate;
+			nEvalMoney = Math.round(nTotalInvest + (nTotalInvest * (nProfitRate / 100)));
+			this.ds_holding.setColumn(0, "TOTAL_INVEST", nTotalInvest);
+        } else {
+			nEvalMoney = nQty * nCurVal;
+            if(nAvgWeight > 0) {
+                nProfitRate = ((nCurVal - nAvgWeight) / nAvgWeight) * 100;
+            }
+			this.ds_holding.setColumn(0, "TOTAL_INVEST", nQty * nAvgWeight);
+        }
+        
+        // 5. 계산 결과 세팅
+        this.ds_holding.setColumn(0, "PROFIT_RATE", nProfitRate.toFixed(2));
+        this.ds_holding.setColumn(0, "EVAL_MONEY", nEvalMoney);
+ 
+    } else {
+        // 보유 수량이 0인 경우 초기화
+        this.ds_holding.setColumn(0, "PROFIT_RATE", 0);
+        this.ds_holding.setColumn(0, "EVAL_MONEY", 0);
+        this.ds_holding.setColumn(0, "TOTAL_INVEST", 0);
+    }
+};
+
+this.buyPopup = function (nShare)
+{
+	var title = this.ds_stock.getColumn(0,"TITLE");
+	
+	var sPopupId = "popupBuy";
+	var sUrl  = "Popup::mStock1000pu.xfdl";
+	var oArg ={param1:title ,param2:nShare};
+	var oOption = {title:"모달팝업", titlebar:false};
+	var sPopupCallBack = "fn_callbackPopup"; //close 할때, 호출
+	this.gfnOpenPopup( sPopupId,sUrl,oArg,sPopupCallBack,oOption);
+};
+this.sellPopup = function (nShare)
+{
+	var title = this.ds_stock.getColumn(0,"TITLE");
+	
+	var sPopupId = "popupSell";
+	var sUrl  = "Popup::mStock1001pu.xfdl";
+	var oArg ={param1:title ,param2:nShare};
+	var oOption = {title:"모달팝업", titlebar:false};
+	var sPopupCallBack = "fn_callbackPopup"; //close 할때, 호출
+	this.gfnOpenPopup( sPopupId,sUrl,oArg,sPopupCallBack,oOption);
+};
+
+this.fn_callbackPopup = function(svcId, rtn)
+{
+	var nShare = nexacro.toNumber(this.divPay.form.staShare.text);
+	var currentVal = nexacro.toNumber(this.ds_stock.getColumn(0, "CURRENT_VALUE"));
+	var sType      = this.ds_stock.getColumn(0, "STOCK_TYPE");
+	var nRate      = nexacro.toNumber(this.ds_stock.getColumn(0, "RATE"));
+	
+	var money      = nexacro.toNumber(this.ds_account.getColumn(0, "MONEY"));
+	var holdingQty = nexacro.toNumber(this.ds_holding.getColumn(0, "QUANTITY")) || 0;
+	var avgWeight  = nexacro.toNumber(this.ds_holding.getColumn(0, "HOLDING_VALUE")) || 0;
+	var evalMoney = this.ds_holding.getColumn(0,"EVAL_MONEY");
+			
+	if(svcId =="popupBuy"){
+		if(rtn =="okay"){
+			var payAmount = (sType == 'R') ? (nShare * 100) : (nShare * currentVal);
+        
+			// 잔고 차감
+			this.ds_account.setColumn(0, "MONEY", money - payAmount);
+			
+			var totalQty = holdingQty + nShare;
+			// 평단가(가중 평균) 계산
+			var newAvgWeight = ((avgWeight * holdingQty) + (currentVal * nShare)) / totalQty;
+			
+			this.ds_holding.setColumn(0, "QUANTITY", totalQty);
+			this.ds_holding.setColumn(0, "HOLDING_VALUE", newAvgWeight);
+			
+			// [원금 세팅]
+			// 기록형: 주수 * 100 / 주식형: 주수 * 평단가
+			var nTotalInvest = (sType == 'R') ? (totalQty * 100) : (totalQty * newAvgWeight);
+			this.ds_holding.setColumn(0, "TOTAL_INVEST", nTotalInvest);
+			
+			this.updateAccount();
+		}
+	}
+	
+	if (svcId == "popupSell")
+	{
+		if(rtn == "okay"){
+			
+			var sellMoney = 0;
+
+			if(sType == 'R') {
+				// [기록형 매도 핵심 수정]
+				var pricePerShare = evalMoney / holdingQty;
+				sellMoney = Math.floor(nShare * pricePerShare);
+			} else {
+				// [주식형 매도] : 실제 시장가(현재가) 그대로
+				sellMoney = nShare * currentVal;
+			}
+
+			// 계좌 잔고 업데이트
+			this.ds_account.setColumn(0, "MONEY", money + sellMoney);
+
+			// [사용자 시나리오 복기] : 매도 시 평단가(avgWeight)는 유지, 주수와 원금만 감소
+			var remainQty = holdingQty - nShare;
+			this.ds_holding.setColumn(0, "QUANTITY", remainQty);
+			
+			// 원금(Principal) 감소: 판 주수만큼 100원(혹은 평단가)씩 제거
+			if(sType == 'R') {
+				this.ds_holding.setColumn(0, "TOTAL_INVEST", remainQty * 100);
+				
+			} else {
+				this.ds_holding.setColumn(0, "TOTAL_INVEST", remainQty * avgWeight);
+			}
+
+			// 전량 매도 시 초기화
+			if(remainQty <= 0) {
+				this.ds_holding.setColumn(0, "HOLDING_VALUE", 0);
+				this.ds_holding.setColumn(0, "QUANTITY", 0);
+				this.ds_holding.setColumn(0, "TOTAL_INVEST", 0);
+			}
+			this.updateAccount();
+		}
+	}
+}
+
+this.Div01_divNews_onclick = function(obj:nexacro.Div,e:nexacro.ClickEventInfo)
+{
+	this.Div01.form.divNews.form.stockSub5030_onclick();
+};
+this.btnBack_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{	
+	this.parent.url="Mobile::stock5022.xfdl";
+};]]></Script>
+    <Objects>
+      <Dataset id="ds_stock">
+        <ColumnInfo>
+          <Column id="TITLE" type="STRING" size="256"/>
+          <Column id="IMAGE_DATA" type="STRING" size="256"/>
+          <Column id="UNIT_ID" type="INT" size="256"/>
+          <Column id="CURRENT_VALUE" type="BIGDECIMAL" size="256"/>
+          <Column id="CALCULATED_RATE" type="STRING" size="256"/>
+          <Column id="STOCK_ID" type="INT" size="256"/>
+          <Column id="TICKER_SYMBOL" type="STRING" size="256"/>
+          <Column id="STOCK_TYPE" type="STRING" size="256"/>
+          <Column id="SUBTITLE" type="STRING" size="256"/>
+          <Column id="RATE" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_value">
+        <ColumnInfo>
+          <Column id="VALUE_ID" type="INT" size="256"/>
+          <Column id="STOCK_ID" type="INT" size="256"/>
+          <Column id="DAY_SEQ" type="DATE" size="256"/>
+          <Column id="CURRENT_VALUE" type="BIGDECIMAL" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_search">
+        <ColumnInfo>
+          <Column id="USER_ID" type="STRING" size="256"/>
+          <Column id="ROLE" type="STRING" size="256"/>
+          <Column id="pStock_Id" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_news">
+        <ColumnInfo>
+          <Column id="NEWS_ORDER" type="INT" size="256"/>
+          <Column id="CONTENT" type="STRING" size="256"/>
+          <Column id="TITLE" type="STRING" size="256"/>
+          <Column id="CREATE_AT" type="DATE" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_unit">
+        <ColumnInfo>
+          <Column id="ID" type="INT" size="256"/>
+          <Column id="UNIT" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="ID">1</Col>
+            <Col id="UNIT">Kg</Col>
+          </Row>
+          <Row>
+            <Col id="ID">2</Col>
+            <Col id="UNIT">개</Col>
+          </Row>
+          <Row>
+            <Col id="ID">3</Col>
+            <Col id="UNIT">걸음</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_account">
+        <ColumnInfo>
+          <Column id="MONEY" type="INT" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_holding" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="HOLDING_VALUE" type="FLOAT" size="256"/>
+          <Column id="TOTAL_INVEST" type="INT" size="256"/>
+          <Column id="QUANTITY" type="STRING" size="256"/>
+          <Column id="EVAL_MONEY" type="INT" size="256"/>
+          <Column id="PROFIT_RATE" type="FLOAT" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="Static00" propid="text" datasetid="ds_stock" columnid="TITLE"/>
+      <BindItem id="item1" compid="Static01" propid="text" datasetid="ds_stock" columnid="TICKER_SYMBOL"/>
+      <BindItem id="item2" compid="divPay.form.maskValue00_00" propid="value" datasetid="ds_account" columnid="MONEY"/>
+      <BindItem id="item3" compid="divPay.form.maskValue00_00_00" propid="value" datasetid="ds_holding" columnid="QUANTITY"/>
+      <BindItem id="item5" compid="divPay.form.maskValue00_00_01" propid="value" datasetid="ds_holding" columnid="EVAL_MONEY"/>
+    </Bind>
+  </Form>
+</FDL>

@@ -2944,7 +2944,6 @@
 }	
 
 
-
 ]]></CSSData>
   <CSSData type="desktop"><![CDATA[.Button.btn_header_noLine
 {
@@ -3758,13 +3757,15 @@
 	border-radius : 15px;
 	color : white;	
 }
-.Edit.edit_search
+.Edit.edit_search,
+.Edit.edit_search[status=mouseover],
+.Edit.edit_search[status=focused]
 {
 	border-radius : 30px;
 	-nexa-padding : 0px 0px 0px 60px;
 	background : white;
 	-nexa-border : 0px none;
-	box-shadow : 0px 4px 0px 0px #c6c6c6;
+	box-shadow : 0px 4px 0px 0px #f3d290;
 	font : bold 16px "Arial";
 	color : black;
 }
@@ -3775,32 +3776,20 @@
 	-nexa-border : 0px none;
 	background : url('theme://images/btn_WF_Grdexpand.png') no-repeat center center /20px 20px;
 }
-.Edit.edit_search[status=mouseover],
-.Edit.edit_search[status=focused]
-{
-	border-radius : 30px;
-	-nexa-padding : 0px 0px 0px 60px;
-	background : white;
-	-nexa-border : 1px solid #FFA443;
-	box-shadow : 0px 4px 0px 0px #FFA443;
-	font : bold 16px "Arial";
-	color : black;
-}
 .Div.div_stockList
 {
-	-nexa-border : 3px solid #dff1fa ;
+	-nexa-border : 0px none ;
 	border-radius : 30px;
 	background : white;
-	box-shadow : 0px 20px 0px 0px #dff1fa;
+	box-shadow : 0px 20px 0px 0px #f3d290;
 }
 .Div.div_stockList[status=mouseover],
 .Div.div_stockList[status=focused]
 {
-	color : #c6c6c6;
-	-nexa-border : 3px solid #ffb787 ;
+	-nexa-border : 3px solid #eec167 ;
 	border-radius : 30px;
 	background : white;
-	box-shadow : 0px 20px 0px 0px #ffb787;
+	box-shadow : 0px 20px 0px 0px #eec167;
 }
 .ImageViewer.image_view
 {
@@ -3857,5 +3846,172 @@
 	-nexa-border : 0px none;
 	background : transParent;
 }
+
+
+
+
+
+.Button.btn_WF_Paging,
+.Button.btn_WF_Paging[status=mouseover]
+{
+	-nexa-border : 0px none;
+	background : #EFF2F2; 
+	color : #ffffff;
+	font :normal 600 15px/normal "Segoe UI","Malgun Gothic";	
+	-nexa-padding : 0px;
+	border-radius : 10px;	
+}
+.Button.btn_WF_Paging[userstatus=pushed],
+.Button.btn_WF_Paging[userstatus=selected],
+.Button.btn_WF_Paging[status=focused]
+{
+	-nexa-border : 0px none;
+	background : #FCBA2D;
+	color : white;
+	font :bold 15px "Arial";	
+}
+
+.Button.btn_WF_PagingNext,
+.Button.btn_WF_PagingNext[status=mouseover],
+.Button.btn_WF_PagingNext[status=focused],
+.Button.btn_WF_PagingNext[userstatus=pushed],
+.Button.btn_WF_PagingNext[userstatus=selected]
+{
+	-nexa-border : 0px none;
+	background : url('theme://images/btn_WF_PagingNext.png') no-repeat center center transparent;
+}
+.Button.btn_WF_PagingNext[status=disabled]
+{
+	-nexa-border : 0px none;
+	background : url('theme://images/btn_WF_PagingNext.png') no-repeat center center transparent;
+	opacity : 0.5;
+}
+.Button.btn_WF_PagingPrev,
+.Button.btn_WF_PagingPrev[status=mouseover],
+.Button.btn_WF_PagingPrev[status=focused],
+.Button.btn_WF_PagingPrev[userstatus=pushed],
+.Button.btn_WF_PagingPrev[userstatus=selected]
+{
+	-nexa-border : 0px none;
+	background : url('theme://images/btn_WF_PagingPrev.png') no-repeat center center transparent;
+}
+
+
+.Button.btn_WF_PagingPrev[status=disabled]
+{
+	-nexa-border : 0px none;
+	background : url('theme://images/btn_WF_PagingPrev.png') no-repeat center center transparent;
+	opacity : 0.5;
+}
+.Button.btn_WF_PagingDNext,
+.Button.btn_WF_PagingDNext[status=mouseover],
+.Button.btn_WF_PagingDNext[status=focused],
+.Button.btn_WF_PagingDNext[userstatus=pushed],
+.Button.btn_WF_PagingDNext[userstatus=selected]
+{
+	-nexa-border : 0px none;
+	background : url('theme://images/btn_WF_PagingDNext.png') no-repeat center center transparent;
+}
+.Button.btn_WF_PagingDNext[status=disabled]
+{
+	-nexa-border : 0px none;
+	background : url('theme://images/btn_WF_PagingDNext.png') no-repeat center center transparent;
+	opacity : 0.5;
+}
+.Button.btn_WF_PagingDPrev,
+.Button.btn_WF_PagingDPrev[status=mouseover],
+.Button.btn_WF_PagingDPrev[status=focused],
+.Button.btn_WF_PagingDPrev[userstatus=pushed],
+.Button.btn_WF_PagingDPrev[userstatus=selected]
+{
+	-nexa-border : 0px none;
+	background : url('theme://images/btn_WF_PagingDPrev.png') no-repeat center center transparent;
+}
+.Button.btn_WF_PagingDPrev[status=disabled]
+{
+	-nexa-border : 0px none;
+	background : url('theme://images/btn_WF_PagingDPrev.png') no-repeat center center transparent;
+	opacity : 0.5;
+}
+.Button.btn_buy
+{
+	-nexa-border : 0px none;
+	color : RGBA(255,0,0,0.37);
+	font : bold 16px/normal "Arial";
+	background : transParent;
+	border-radius : 20px;
+	
+}
+.Button.btn_buy[status=mouseover]
+{
+	-nexa-border : 0px none;
+	background : transParent;
+	color : RGBA(255,0,0,0.37);
+}
+.Button.btn_buy[status=focused]
+{
+	-nexa-border : 2px solid #ffffff;
+	background : #ff3d3d;
+	color : white;
+}
+.Button.btn_buy_pushed,
+.Button.btn_buy_pushed[status=mouseover],
+.Button.btn_buy_pushed[status=focused]
+{
+	-nexa-border : 2px solid #ffffff;
+	background : #ff3d3d;
+	color : white;
+	border-radius : 20px;
+	font : bold 16px/normal "Arial";
+}
+
+.Button.btn_sell
+{
+	-nexa-border : 0px none;
+	color : RGBA(0,0,255,0.37);
+	font : bold 16px/normal "Arial";
+	background : transParent;
+	border-radius : 20px;
+	
+}
+.Button.btn_sell[status=mouseover]
+{
+	-nexa-border :0px none;
+	background : transParent;
+	color : RGBA(0,0,255,0.37);
+}
+.Button.btn_sell[status=focused]
+{
+	-nexa-border : 2px solid #ffffff;
+	background : #4242ff;
+	color : white;
+}
+.Button.btn_sell_pushed,
+.Button.btn_sell_pushed[status=mouseover],
+.Button.btn_sell_pushed[status=focused]
+{
+	-nexa-border : 2px solid #ffffff;
+	background : #4242ff;
+	color : white;
+	font : bold 16px/normal "Arial";
+	border-radius : 20px;
+}
+.Button.btn_minus,
+.Button.btn_minus[status=focused]
+{
+	-nexa-border : 0px none;
+	font : bold 26px/normal "Malgun Gothic";
+	background : #fcf9f7;
+	border-radius : 18px;
+}
+.Button.btn_minus[status=mouseover]
+{
+	-nexa-border : 0px none;
+	font : bold 26px/normal "Malgun Gothic";
+	background : #f0e3da;
+	border-radius : 18px;
+}
+
+
 ]]></CSSData>
 </XCSS>

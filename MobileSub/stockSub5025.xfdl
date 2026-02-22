@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="stockSub5023" width="295" height="125" titletext="주식종목 Linechart" onload="stockSub5023_onload">
+  <Form id="stockSub5025" width="1280" height="720" titletext="매도매수 LineChart" onload="stockSub5025_onload">
     <Layouts>
-      <Layout height="125" width="295">
-        <ChartJS id="chtLine" taborder="0" text="ChartJS00" left="0" top="-40" right="0" bottom="0"/>
+      <Layout height="720" width="1280">
+        <ChartJS id="chtLine" taborder="0" text="ChartJS00" left="0" top="0" right="0" bottom="0"/>
       </Layout>
     </Layouts>
     <Script type="xscript5.1"><![CDATA[
@@ -13,27 +13,8 @@ this.fnCreateChart = function() {
     var canvas = chart.getCanvas();
     var cvs = canvas.id;
 	
-	var dsStock = this.parent.parent.parent.parent.ds_stock;
-    var dsValue = this.parent.parent.parent.parent.ds_value;
-    var nTargetId = this.parent.u_stockId;
-   
-    if(!nTargetId) return;
-	
-	
-    var nRow = dsStock.findRow("STOCK_ID", nTargetId);
-    var findRate = dsStock.getColumn(nRow, "CALCULATED_RATE");
-    var rateNum = parseFloat(findRate);
-    var sStatus = (rateNum > 0 ? "up" : (rateNum < 0 ? "down" : "none"));
-	
-    dsValue.filter("STOCK_ID == " + nTargetId);
-    this.ds_copyValue.clearData();
-    this.ds_copyValue.copyData(dsValue, true);
-    dsValue.filter("");
-	
-    if(this.ds_copyValue.rowcount == 0) {
-        DxChart.reset(canvas);
-        return;
-    }
+	var dsStock = this.parent.parent.ds_stock;
+    var dsValue = this.parent.parent.ds_value;
 	
 	DxChart.reset(canvas);
     var context = canvas.getContext('2d');
@@ -42,32 +23,22 @@ this.fnCreateChart = function() {
 	var chartObj = new DxChartLine({
 		id: cvs,										
 		elem: canvas,									
-		binddataset: this.ds_copyValue,								
+		binddataset: dsValue,								
 		datachangeevent : {Use:true,Effect:"trace"}, 	
 		data: ["bind:CURRENT_VALUE"], 
-		options: this.fnGetOption(canvas, sStatus) 	//  차트에 대한 옵션값 {background:() , key:() , xaxis , yaxis , tooltip }  : 	
-	}).trace();
+		options: this.fnGetOption(canvas) 	//  차트에 대한 옵션값 {background:() , key:() , xaxis , yaxis , tooltip }  : 	
+	}).draw();
 	
 	this.resetScroll();
 };
 
 
 // ====================== options ======================
-this.fnGetOption = function (canvas, sStatus)
+this.fnGetOption = function (canvas)
 {	
 	var sLineColor, sFillColor;
-
-    // 상태에 따른 색상 정의
-    if (sStatus == "up") {
-        sLineColor = 'rgba(255, 1, 0, 1)';   // 빨간색 라인
-        sFillColor = 'linear-gradient(to bottom, rgba(255, 1, 0, 0.4), rgba(255, 1, 0, 0))';
-    } else if (sStatus == "down") {
-        sLineColor = 'rgba(0, 98, 255, 1)';  // 파란색 라인
-        sFillColor = 'linear-gradient(to bottom, rgba(0, 98, 255, 0.4), rgba(0, 98, 255, 0))';
-    } else {
-        sLineColor = 'rgba(252, 170, 37, 1)'; // 보합(주황색)
+        sLineColor = 'rgba(252, 170, 37, 1)';
         sFillColor = 'linear-gradient(to bottom, rgba(252, 170, 37, 0.4), rgba(252, 170, 37, 0))';
-    }
 	
 	var Option = {
 		filled: { //라인 아래 색상
@@ -86,11 +57,15 @@ this.fnGetOption = function (canvas, sStatus)
 			 Above: false,//차트 요소 위에 라벨을 표시할 지 여부
 			 AboveFontStyle: '11px bold Malgun Gothic' 	//labelsAbove의 Background 색상
 		},	
+		tickmarks: {
+			Size: 3,
+			Style: 'filledcircle'
+        },	
 		margin: this.fnGetMargin(),		// 마진 관련
 		xaxis:  this.fnGetXaxis(),		// X축 관련
 		yaxis:  this.fnGetYaxis(),		// Y축 관련
-		background:{ GridColor: '#ffffff', GridVlines: false, GridBorder: false},		
-		
+		background:{ GridColor: '#ffffff', GridVlines: false,GridHlines: false, GridBorder: false},		
+		tooltips: this.fnGetTooltip(),	// 툴팁
 		key: this.fnGetKey(canvas)		// 범례
 	}
 	return Option;
@@ -102,10 +77,10 @@ this.fnGetOption = function (canvas, sStatus)
  ************************************************************************/
  this.fnGetMargin = function() {
 	return {
-		Left        : 5,
-		Right       : 5,
-		Top         : 50,
-		Bottom      : 5,
+		Left        : 37,
+		Right       : 70,
+		Top         : 100,
+		Bottom      : 60,
 		Inner       : 0,		// 차트 내부 여백
 	};
 };
@@ -114,7 +89,7 @@ this.fnGetOption = function (canvas, sStatus)
  * X Axis
  ************************************************************************/
 this.fnGetXaxis = function() {
-    var ds = this.ds_copyValue;
+    var ds = this.parent.parent.ds_value;
     var nTotal = ds.rowcount;
     var labels = [];
     if (nTotal > 0) {
@@ -139,7 +114,7 @@ this.fnGetXaxis = function() {
 
     return {
         Color        : '#F3F3F3',
-        Use          : false,
+        Use          : true,
         Labels       : labels,     // [중요] bind 대신 직접 계산한 배열 전달
 		LabelsColor  : '#838383',
         LabelsOffsetY: 5,
@@ -151,53 +126,72 @@ this.fnGetXaxis = function() {
  * Y Axis
  ************************************************************************/
 this.fnGetYaxis = function() {
-	var ds = this.ds_copyValue;
+	var ds = this.parent.parent.ds_value;
+	var dsStock = this.parent.parent.ds_stock;
+	var dsUnit  = this.parent.parent.ds_unit;
+
+    var nUnitId = dsStock.getColumn(dsStock.rowposition, "UNIT_ID");
+
+    var sUnitName = dsUnit.lookup("ID", nUnitId, "UNIT");
+    if(!sUnitName) sUnitName = "";
+	
     var maxVal = ds.getMax("CURRENT_VALUE");
     if(!maxVal) maxVal = 100;
     else maxVal = nexacro.toNumber(maxVal) * 1.2; 
 	
     return {
 		Color 		  : '#F3F3F3',
-        Use           : false,
+        Use           : true,
         ScaleMax      : maxVal,
         LabelsOffsetX : 5,
         Tickmarks     : true,
-		Position	  : 'right'
+		Position	  : 'right',
+		ScaleUnitsPost  : sUnitName
     };
 };
 
 /************************************************************************
  * tooltips
  ************************************************************************/
+this.fnGetTooltip = function() {
+    var dsStock = this.parent.parent.ds_stock;
+    var dsUnit = this.parent.parent.ds_unit;
+    
+    var nUnitId = dsStock.getColumn(0, "UNIT_ID");
+    var sUnitName = dsUnit.lookup("ID", nUnitId, "UNIT") || "";
+    var sOrangeLine = 'rgba(252, 170, 37, 1)'; // 주황색 라인 컬러
 
+    return {
+        // 데이터 및 기본 효과 설정
+        Data : '%{value}' + sUnitName, 
+        Effect : 'slide',
+        Pointer : false,
+		
+        Css: {
+            backgroundColor: 'white',           // 배경색: 하얀색
+            color: sOrangeLine,                  // 글자색: 주황색
+            fontSize: '14px',                    // 글자 크기
+            fontFamily: 'Malgun Gothic',         // 글꼴
+            fontWeight: 'bold',                  // 굵게
+            padding: '8px 12px',                 // 내부 여백
+        }
+    }   
+}
 this.fnGetKey = function (canvas)
 {
-    var ds = this.parent.parent.parent.parent.ds_stock;
+    var ds = this.parent.parent.ds_stock;
     var sTitle = ds.getColumn(0, "SUBTITLE");
     if(!sTitle) sTitle = "value";
     
     return {
         Data : [sTitle],
         Halign: "right",
-		PositionY:25,
-		PositionX: 510,
+		PositionY:100,
+		PositionX: 640,
         Position :'gutter',
+	   
     }
 };
-
-
-
-
 ]]></Script>
-    <Objects>
-      <Dataset id="ds_copyValue">
-        <ColumnInfo>
-          <Column id="VALUE_ID" type="INT" size="256"/>
-          <Column id="STOCK_ID" type="INT" size="256"/>
-          <Column id="DAY_SEQ" type="DATE" size="256"/>
-          <Column id="CURRENT_VALUE" type="BIGDECIMAL" size="256"/>
-        </ColumnInfo>
-      </Dataset>
-    </Objects>
   </Form>
 </FDL>

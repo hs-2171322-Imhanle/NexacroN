@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="mStock1001pu" width="384" height="427" titletext="stockSell" borderRadius="40px" background="white" onload="mStock1001pu_onload">
+    <Layouts>
+      <Layout height="427" width="384">
+        <ImageViewer id="ImageViewer00" taborder="0" left="152" top="45" width="80" height="80" borderRadius="20px" background="RGBA(138,132,255,0.30)" border="0px none" image="url('theme::p02_thema/NewFolder/walletsell.png')" stretch="fit" padding="20px"/>
+        <Static id="Static00" taborder="1" text="거래 하시겠습니까?" left="86" top="133" width="221" height="60" color="black" font="bold 24px/normal &quot;Malgun Gothic&quot;"/>
+        <Static id="staTitle" taborder="2" text="우리반 종목을 &#13;&#10;1주 살까요?" left="90" top="190" width="204" height="57" usedecorate="true" font="16px/normal &quot;Malgun Gothic&quot;" color="gray" textAlign="center"/>
+        <Button id="btnYes" taborder="3" text="네, 거래할게요!" left="40" top="272" width="304" height="56" cssclass="btn_sell_pushed" borderRadius="15px" onclick="btnYes_onclick"/>
+        <Button id="btnNo" taborder="4" text="다시 생각해볼래요" left="40" top="338" width="304" height="56" cssclass="btn_buy_pushed" borderRadius="15px" background="#f1f0f3" color="black" onclick="btnNo_onclick"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[this.mStock1001pu_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	var objParam1 = this.parent.param1; //title
+	var objParam2 = this.parent.param2; //nShare
+	var sMsg = "<b v='true'><fc v='green'>" + objParam1 + "</fc></b> 종목을 \n" +
+           "<b v='true'><fc v='#000000'>" + objParam2 + "주</fc></b> 팔까요?"
+		   
+	this.staTitle.text =  sMsg;
+};
+
+this.btnYes_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{	
+	this.close("okay");
+
+};
+this.btnNo_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close("no");
+};
+
+]]></Script>
+    <Objects/>
+  </Form>
+</FDL>
