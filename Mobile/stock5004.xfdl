@@ -49,7 +49,7 @@ this.fnCallback = function(svcId, errCode, errMsg)
 
 				if (sRes == "Y") {
 					this.fvApp.gds_user.setColumn(0, "JOIN_CNT", 1);
-					this.parent.url="Mobile::stock5010.xfdl";
+					this.parent.url="Mobile::stock5020.xfdl";
 				}
 			} 
 			else {

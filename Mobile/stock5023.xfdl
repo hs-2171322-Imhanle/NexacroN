@@ -1,59 +1,318 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="stock5023" width="1280" height="800" titletext="계좌" background="#fcf9f7">
+  <Form id="stock5023" width="1280" height="800" titletext="계좌" background="#fcf9f7" onload="stock5023_onload">
     <Layouts>
       <Layout height="800" width="1280">
-        <Div id="Div00" taborder="6" left="95" top="322" width="1090" height="432" background="transParent">
+        <Div id="Div00" taborder="5" left="1465" top="292" width="505" height="432" background="transParent" visible="false">
           <Layouts>
             <Layout/>
           </Layouts>
         </Div>
-        <Div id="Div00_00_01_00_00" taborder="0" left="100" top="60" width="1080" height="170" background="white" borderRadius="50px" boxShadow="0px 5px 0px 0px #ffb1af" border="2px solid #ffb1af">
+        <Div id="Div00_00_01_00_00" taborder="0" left="140" top="140" width="300" height="170" background="white" borderRadius="50px" border="2px solid #ffb1af" text="">
           <Layouts>
             <Layout>
-              <Static id="Static01_03" taborder="0" text="내 계좌 금액" left="48" top="36" width="92" height="27" color="#9b9b9b" font="bold 16px/normal &quot;Malgun Gothic&quot;"/>
-              <Static id="Static01_00" taborder="1" text="₩" left="48" top="74" width="44" height="42" color="black" font="bold 40px/normal &quot;Malgun Gothic&quot;"/>
-              <ImageViewer id="ImageViewer01" taborder="2" left="893" top="18" width="130" height="119" image="url('theme::p02_thema/NewFolder/finance.png')" stretch="fit" border="0px none"/>
-              <Static id="Static00" taborder="3" left="98" top="71" width="248" height="47" color="black" font="bold 40px/normal &quot;Malgun Gothic&quot;"/>
+              <Static id="Static01_03" taborder="0" text="사용 가능한 현금" left="48" top="71" width="140" height="27" color="#9b9b9b" font="bold 14px/normal &quot;Malgun Gothic&quot;"/>
+              <Static id="Static01_00" taborder="1" text="₩" left="48" top="94" width="44" height="42" color="black" font="bold 26px/normal &quot;Malgun Gothic&quot;"/>
+              <MaskEdit id="maskMoney" taborder="2" left="78" top="97" width="150" height="36" format="#,##0" enable="true" readonly="true" textAlign="left" border="0px none" font="bold 26px/normal &quot;Malgun Gothic&quot;" color="black" displaynulltext="0" cssclass="mask_money"/>
+              <ImageViewer id="ImageViewer01_02" taborder="3" left="44" top="20" width="48" height="48" image="url('theme::p02_thema/NewFolder/Account_balance_wallet.png')" stretch="fit" border="0px none" borderRadius="18px" background="#fdfdec" visible="true" padding="10px"/>
             </Layout>
           </Layouts>
         </Div>
-        <Static id="Static00" taborder="1" text="돈이 어떻게 움직였나요?" left="143" top="265" width="224" height="60" color="black" font="bold 20px/normal &quot;Malgun Gothic&quot;"/>
-        <ImageViewer id="ImageViewer00" taborder="2" left="100" top="280" width="30" height="30" image="url('theme::p02_thema/NewFolder/Update.png')" background="transParent" border="0px none" stretch="fit"/>
-        <Div id="Div00_00_01_00_00_00" taborder="3" left="100" top="331" width="1080" height="89" background="white" borderRadius="20px" boxShadow="0px 2px 0px 0px #cecece">
+        <Static id="Static00" taborder="1" text="돈이 어떻게 움직였나요?" left="1513" top="315" width="224" height="60" color="black" font="bold 20px/normal &quot;Malgun Gothic&quot;" visible="false"/>
+        <Div id="Div00_00_01_00_00_00" taborder="2" left="1470" top="381" width="447" height="89" background="white" borderRadius="20px" boxShadow="0px 2px 0px 0px #cecece" visible="false">
           <Layouts>
             <Layout>
-              <ImageViewer id="ImageViewer01" taborder="0" left="20" top="20" width="48" height="48" image="url('theme::p02_thema/NewFolder/money-bag_8996194.png')" stretch="fit" border="0px none" borderRadius="18px" padding="15px" background="#d5faee"/>
-              <Static id="Static00" taborder="1" text="입금" left="80" top="15" width="40" height="35" color="black" font="bold 16px/normal &quot;Malgun Gothic&quot;"/>
-              <Static id="Static00_00" taborder="2" text="2026.06.23" left="80" top="39" width="120" height="35" font="bold 12px/normal &quot;Malgun Gothic&quot;" color="#a8a8a8"/>
-              <Static id="Static01" taborder="3" text="50,005" left="940" top="20" width="120" height="49" font="bold 18px/normal &quot;Malgun Gothic&quot;" color="#49b569" textAlign="right"/>
+              <ImageViewer id="ImageViewer01" taborder="0" left="20" top="20" width="48" height="48" image="url('theme::p02_thema/NewFolder/money-bag_8996194.png')" stretch="fit" border="0px none" borderRadius="18px" padding="15px" background="#d5faee" visible="false"/>
+              <Static id="Static00" taborder="1" text="입금" left="80" top="15" width="40" height="35" color="black" font="bold 16px/normal &quot;Malgun Gothic&quot;" visible="false"/>
+              <Static id="Static00_00" taborder="2" text="2026.06.23" left="80" top="39" width="120" height="35" font="bold 12px/normal &quot;Malgun Gothic&quot;" color="#a8a8a8" visible="false"/>
+              <Static id="Static01" taborder="3" text="50,005" top="20" width="120" height="49" font="bold 18px/normal &quot;Malgun Gothic&quot;" color="#49b569" textAlign="right" right="20" visible="false"/>
             </Layout>
           </Layouts>
         </Div>
-        <ImageViewer id="ImageViewer01" taborder="4" left="1320" top="350" width="48" height="48" image="url('theme::p02_thema/NewFolder/money-bag_8996194.png')" stretch="fit" border="0px none" borderRadius="18px" padding="15px" background="#e3fbf4" visible="false"/>
-        <ImageViewer id="ImageViewer01_00" taborder="5" left="1320" top="416" width="48" height="48" image="url('theme::p02_thema/NewFolder/money_wing.png')" stretch="fit" border="0px none" borderRadius="18px" padding="15px" background="#fdfde6" visible="false"/>
-        <ImageViewer id="ImageViewer01_00_00" taborder="7" left="1320" top="480" width="48" height="48" image="url('theme::p02_thema/NewFolder/box.png')" stretch="fit" border="0px none" borderRadius="18px" padding="13px" background="#e0ebff" visible="false"/>
-        <ImageViewer id="ImageViewer01_00_00_00" taborder="8" left="1320" top="536" width="48" height="48" image="url('theme::p02_thema/NewFolder/inbox.png')" stretch="fit" border="0px none" borderRadius="18px" padding="15px" background="#ffe5e9" visible="false"/>
-        <Button id="Button00" taborder="9" text="Button00" left="390" top="18" width="200" height="36" onclick="Button00_onclick"/>
+        <ImageViewer id="ImageViewer01" taborder="3" left="1320" top="350" width="48" height="48" image="url('theme::p02_thema/NewFolder/money-bag_8996194.png')" stretch="fit" border="0px none" borderRadius="18px" padding="15px" background="#e3fbf4" visible="false"/>
+        <ImageViewer id="ImageViewer01_00" taborder="4" left="1320" top="416" width="48" height="48" image="url('theme::p02_thema/NewFolder/money_wing.png')" stretch="fit" border="0px none" borderRadius="18px" padding="15px" background="#fdfde6" visible="false"/>
+        <ImageViewer id="ImageViewer01_00_00" taborder="6" left="1320" top="480" width="48" height="48" image="url('theme::p02_thema/NewFolder/box.png')" stretch="fit" border="0px none" borderRadius="18px" padding="13px" background="#e0ebff" visible="false"/>
+        <ImageViewer id="ImageViewer01_00_00_00" taborder="7" left="1320" top="536" width="48" height="48" image="url('theme::p02_thema/NewFolder/inbox.png')" stretch="fit" border="0px none" borderRadius="18px" padding="15px" background="#ffe5e9" visible="false"/>
+        <Static id="Static01" taborder="8" text="나의 지갑" left="155" top="40" width="172" height="60" color="black" font="bold 36px/normal &quot;Malgun Gothic&quot;"/>
+        <Static id="Static02" taborder="9" text="지금 까지 얼만큼 모았나요?" left="155" top="80" width="219" height="60" color="#606060" font="16px/normal &quot;Malgun Gothic&quot;"/>
+        <ImageViewer id="ImageViewer01_01" taborder="10" left="364" top="102" width="16" height="16" image="url('theme::p02_thema/NewFolder/money-bag_8996194.png')" stretch="fit" border="0px none" borderRadius="18px" background="transParent"/>
+        <Div id="Div01" taborder="11" left="140" top="340" width="1000" height="430" background="white" boxShadow="0px 2px 5px 0px #cecece" borderRadius="50px" border="2px solid #ffb1af">
+          <Layouts>
+            <Layout>
+              <Static id="Static00_00" taborder="1" text="보유 종목 상세" left="80" top="10" width="224" height="60" color="black" font="bold 20px/normal &quot;Malgun Gothic&quot;"/>
+              <Static id="Static03" taborder="2" text="    종목&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9; &#9;&#9;   보유량&#9;&#9;&#9;&#9;    평균단가&#9;&#9;&#9;&#9;수익률&#9;&#9;&#9;  평가금액&#9;" left="0" top="71" height="47" right="0" background="#faefe9" border="1px solid #fcf9f7,0px none" onclick="Div01_Static03_onclick" font="bold 12px/normal &quot;Malgun Gothic&quot;"/>
+              <ListView id="ListView00" taborder="1" left="0" top="Static03:0" binddataset="ds_combined" right="0" bottom="0">
+                <Formats>
+                  <Format id="default">
+                    <Band id="body" width="100%" height="80">
+                      <Cell id="Cell01" left="95" top="15" width="120" height="24" text="bind:TITLE" font="bold 16px/normal &quot;Malgun Gothic&quot;" color="black" border="0px none"/>
+                      <Cell id="Cell03" left="25" top="15" width="50" height="50" text="bind:IMAGE_DATA" border="0px none" borderRadius="20px" displaytype="imagecontrol" imagestretch="fit" background="pink"/>
+                      <Cell id="Cell09" left="520" top="28" width="100" height="24" text="bind:HOLDING_VALUE" color="black" font="bold 16px/normal &quot;Malgun Gothic&quot;" border="0px none" textAlign="right"/>
+                      <Cell id="Cell05" left="Cell09:0" top="28" width="50" height="24" text="bind:UNIT_NAME" color="black" font="bold 16px/normal &quot;Malgun Gothic&quot;" border="0px none"/>
+                      <Cell id="Cell07" left="95" top="37" width="120" height="24" text="bind:TICKER_SYMBOL" font="10px/normal &quot;Malgun Gothic&quot;" color="gray" border="0px none"/>
+                      <Cell id="Cell11" left="400" top="28" width="70" height="24" text="bind:QUANTITY" font="bold 16px/normal &quot;Malgun Gothic&quot;" color="black" border="0px none" expr="expr:QUANTITY + &quot;주&quot;" textAlign="center"/>
+                      <Cell id="Cell13" left="870" top="28" width="100" height="24" text="expr:EVAL_MONEY + &quot; ₩&quot;" color="black" font="bold 16px/normal &quot;Malgun Gothic&quot;" border="0px none" textAlign="center"/>
+                      <Cell id="Cell15" left="720" top="28" width="100" height="24" text="expr:(PROFIT_RATE &gt; 0 ? &quot;▲&quot; : (PROFIT_RATE &lt; 0 ? &quot;▼&quot; : &quot;&quot;)) + Math.abs(PROFIT_RATE) + &quot;%&quot;" color="black" font="bold 16px/normal &quot;Malgun Gothic&quot;" border="0px none" textAlign="center"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </ListView>
+              <ImageViewer id="ImageViewer00" taborder="3" left="32" top="25" width="30" height="30" image="url('theme::p02_thema/NewFolder/Update.png')" background="transParent" border="0px none" stretch="fit"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="Div00_00_01_00_00_01" taborder="12" left="490" top="140" width="300" height="170" background="white" borderRadius="50px" border="2px solid #ffb1af" text="">
+          <Layouts>
+            <Layout>
+              <Static id="Static01_03" taborder="0" text="총 투자 금액" left="48" top="71" width="140" height="27" color="#9b9b9b" font="bold 14px/normal &quot;Malgun Gothic&quot;"/>
+              <Static id="Static01_00" taborder="1" text="₩" left="48" top="94" width="44" height="42" color="black" font="bold 26px/normal &quot;Malgun Gothic&quot;"/>
+              <MaskEdit id="maskStockValue" taborder="2" left="78" top="97" width="150" height="36" format="#,##0" enable="true" readonly="true" textAlign="left" border="0px none" font="bold 26px/normal &quot;Malgun Gothic&quot;" color="black" displaynulltext="0" cssclass="mask_money"/>
+              <ImageViewer id="ImageViewer01_02" taborder="3" left="44" top="18" width="48" height="48" image="url('theme::p02_thema/NewFolder/Pie_chart_outline.png')" stretch="fit" border="0px none" borderRadius="18px" background="#ebeefd" visible="true" padding="10px"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="Div00_00_01_00_00_02" taborder="13" left="840" top="140" width="300" height="170" text="" borderRadius="50px" background="RGBA(255,219,219,0.65)" border="2px solid #ffb1af">
+          <Layouts>
+            <Layout>
+              <Static id="Static01_03" taborder="0" text="총 투자 수익" left="48" top="71" width="140" height="27" color="#9b9b9b" font="bold 14px/normal &quot;Malgun Gothic&quot;"/>
+              <Static id="Static01_00" taborder="1" text="₩" left="48" top="94" width="44" height="42" color="black" font="bold 26px/normal &quot;Malgun Gothic&quot;"/>
+              <MaskEdit id="maskStockRate" taborder="2" left="78" top="97" width="150" height="36" format="#,##0" enable="true" readonly="true" textAlign="left" border="0px none" font="bold 26px/normal &quot;Malgun Gothic&quot;" color="black" displaynulltext="0" cssclass="mask_money" background="transParent"/>
+              <ImageViewer id="ImageViewer01_02" taborder="3" left="48" top="21" width="48" height="48" image="url('theme::p02_thema/NewFolder/Stacked_line_chart.png')" stretch="fit" border="0px none" borderRadius="18px" background="white" visible="true" padding="10px"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Button id="btnBack" taborder="14" left="75" top="55" width="51" height="51" cssclass="btn_back" onclick="btnBack_onclick"/>
       </Layout>
     </Layouts>
     <Objects>
-      <Dataset id="Dataset00">
+      <Dataset id="ds_myStock">
         <ColumnInfo>
-          <Column id="jkk" type="STRING" size="256"/>
+          <Column id="TITLE" type="STRING" size="256"/>
+          <Column id="IMAGE_DATA" type="STRING" size="256"/>
+          <Column id="UNIT_ID" type="INT" size="256"/>
+          <Column id="CURRENT_VALUE" type="BIGDECIMAL" size="256"/>
+          <Column id="CALCULATED_RATE" type="STRING" size="256"/>
+          <Column id="STOCK_ID" type="INT" size="256"/>
+          <Column id="TICKER_SYMBOL" type="STRING" size="256"/>
+          <Column id="STOCK_TYPE" type="STRING" size="256"/>
+          <Column id="SUBTITLE" type="STRING" size="256"/>
+          <Column id="RATE" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_search">
+        <ColumnInfo>
+          <Column id="ROLE" type="STRING" size="256"/>
+          <Column id="USER_ID" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_account">
+        <ColumnInfo>
+          <Column id="MONEY" type="INT" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_holding" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="HOLDING_VALUE" type="FLOAT" size="256"/>
+          <Column id="TOTAL_INVEST" type="INT" size="256"/>
+          <Column id="QUANTITY" type="STRING" size="256"/>
+          <Column id="EVAL_MONEY" type="INT" size="256"/>
+          <Column id="PROFIT_RATE" type="FLOAT" size="256"/>
+          <Column id="STOCK_ID" type="INT" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_unit">
+        <ColumnInfo>
+          <Column id="ID" type="INT" size="256"/>
+          <Column id="UNIT" type="STRING" size="256"/>
         </ColumnInfo>
         <Rows>
           <Row>
-            <Col id="jkk">505000</Col>
+            <Col id="ID">1</Col>
+            <Col id="UNIT">Kg</Col>
+          </Row>
+          <Row>
+            <Col id="ID">2</Col>
+            <Col id="UNIT">개</Col>
+          </Row>
+          <Row>
+            <Col id="ID">3</Col>
+            <Col id="UNIT">걸음</Col>
           </Row>
         </Rows>
       </Dataset>
+      <Dataset id="ds_combined">
+        <ColumnInfo>
+          <Column id="TITLE" type="STRING" size="256"/>
+          <Column id="IMAGE_DATA" type="STRING" size="256"/>
+          <Column id="UNIT_NAME" type="STRING" size="256"/>
+          <Column id="TICKER_SYMBOL" type="STRING" size="256"/>
+          <Column id="HOLDING_VALUE" type="FLOAT" size="256"/>
+          <Column id="QUANTITY" type="STRING" size="256"/>
+          <Column id="EVAL_MONEY" type="INT" size="256"/>
+          <Column id="PROFIT_RATE" type="FLOAT" size="256"/>
+          <Column id="STOCK_ID" type="INT" size="256"/>
+        </ColumnInfo>
+      </Dataset>
     </Objects>
-    <Script type="xscript5.1"><![CDATA[
+    <Script type="xscript5.1"><![CDATA[this.stock5023_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{	
+	var objApp = nexacro.getApplication();
+	var sUserId = objApp.gds_user.getColumn(objApp.gds_user.rowposition,"USER_ID");
+	var sUserRole = objApp.gds_user.getColumn(objApp.gds_user.rowposition, "ROLE");
+	this.ds_search.setColumn(this.ds_search.rowposition,"USER_ID",sUserId); 
+	this.ds_search.setColumn(this.ds_search.rowposition,"ROLE",sUserRole); 
+	this.accountLoad();
+};
+
 this.Button00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
 	this.Div00_00_01_00_00.form.Static00.text = this.gfnAppendComma(50000000, 0);
 };
+
+
+
+
+this.accountLoad = function(){
+ 	var strSvcId    = "searchMyAsset";
+	var strSvcUrl   = "stock/loadMyAssets.do";
+	var inData      = "ds_search=ds_search";
+	var outData     = "ds_account=ds_account ds_holding=ds_holding ds_myStock=ds_myStock";
+	var sParam      = "";
+	var callBackFnc = "fnCallback";
+	var isAsync   	= true;
+	
+	this.gfnTransaction(strSvcId , 		
+						strSvcUrl , 	
+						inData , 		
+						outData , 		
+						sParam, 		
+						callBackFnc, 	
+						isAsync); 		
+}
+this.fnCallback = function(svcId) 
+{
+	if(svcId == "searchMyAsset"){
+		this.fnCalculateTotalAsset();
+		this.ds_combined.clearData();
+    
+		for(var i=0; i<this.ds_holding.rowcount; i++)
+		{
+			var nRow = this.ds_combined.addRow();
+			var nStockId = this.ds_holding.getColumn(i, "STOCK_ID");
+			
+		
+			this.ds_combined.copyRow(nRow, this.ds_holding, i);
+			var nFindRow = this.ds_myStock.findRow("STOCK_ID", nStockId);
+			if(nFindRow != -1) {
+				this.ds_combined.setColumn(nRow, "TITLE", this.ds_myStock.getColumn(nFindRow, "TITLE"));
+				this.ds_combined.setColumn(nRow, "IMAGE_DATA", this.ds_myStock.getColumn(nFindRow, "IMAGE_DATA"));
+				this.ds_combined.setColumn(nRow, "TICKER_SYMBOL", this.ds_myStock.getColumn(nFindRow, "TICKER_SYMBOL"));
+				
+				var nUnitId = this.ds_myStock.getColumn(nRow, "UNIT_ID");
+				var nUnitRow = this.ds_unit.findRow("ID", nUnitId);
+				if(nUnitRow != -1) {
+					var sUnitNm = this.ds_unit.getColumn(nUnitRow, "UNIT");
+					this.ds_combined.setColumn(nRow, "UNIT_NAME", sUnitNm); 
+				}
+				else{
+					this.ds_combined.setColumn(nRow, "UNIT_NAME", "₩"); 
+				}
+			}
+		}
+	}
+}
+this.Button01_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.parent.url = "Mobile::stock5020.xfdl";
+};
+
+this.fnCalculateTotalAsset = function()
+{
+    var nTotalInvest = 0; // 총 투자 원금
+    var nTotalEval   = 0; // 총 평가 금액
+    
+    var nCnt = this.ds_holding.rowcount;
+ 
+    for(var i=0; i<nCnt; i++) {
+        var nStockId = this.ds_holding.getColumn(i, "STOCK_ID");
+        var nQty     = nexacro.toNumber(this.ds_holding.getColumn(i, "QUANTITY"));
+        
+        // 보유 수량이 없으면 스킵
+        if(nQty <= 0) {
+            this.ds_holding.setColumn(i, "PROFIT_RATE", 0);
+            this.ds_holding.setColumn(i, "EVAL_MONEY", 0);
+            this.ds_holding.setColumn(i, "TOTAL_INVEST", 0);
+            continue;
+        }
+
+        var sType      = this.ds_myStock.lookup("STOCK_ID", nStockId, "STOCK_TYPE");
+        var nCurVal    = nexacro.toNumber(this.ds_myStock.lookup("STOCK_ID", nStockId, "CURRENT_VALUE"));
+        var nRate      = nexacro.toNumber(this.ds_myStock.lookup("STOCK_ID", nStockId, "RATE"));
+        var nAvgWeight = nexacro.toNumber(this.ds_holding.getColumn(i, "HOLDING_VALUE"));
+
+        var nEvalMoney  = 0;
+        var nRowInvest  = 0;
+        var nProfitRate = 0; // 개별 종목 수익률
+
+        // --- 수익률 및 금액 계산 분기 ---
+        if(sType == 'R') { 
+            // 1. 기록형 (원금 100원 고정 기준)
+            nRowInvest = nQty * 100; 
+            nProfitRate = (nCurVal - nAvgWeight) * nRate;
+            nEvalMoney = Math.round(nRowInvest + (nRowInvest * (nProfitRate / 100)));
+        } 
+        else { 
+            // 2. 주식형 (매수 평단가 기준)
+            nRowInvest = nQty * nAvgWeight; 
+            nEvalMoney = nQty * nCurVal;
+            if(nAvgWeight > 0) {
+                nProfitRate = ((nCurVal - nAvgWeight) / nAvgWeight) * 100;
+            } else {
+                nProfitRate = 0;
+            }
+        }
+
+        // --- 데이터셋 세팅 (현재 행 i에 세팅) ---
+        this.ds_holding.setColumn(i, "PROFIT_RATE", nProfitRate.toFixed(2));
+        this.ds_holding.setColumn(i, "EVAL_MONEY", nEvalMoney);
+        this.ds_holding.setColumn(i, "TOTAL_INVEST", nRowInvest);
+
+		nTotalInvest += nRowInvest;
+        nTotalEval   += nEvalMoney;
+    }
+    
+    var nProfitWon = nTotalEval - nTotalInvest;
+	
+	this.Div00_00_01_00_00_01.form.maskStockValue.value = nTotalEval;
+	this.Div00_00_01_00_00_02.form.maskStockRate.value = nProfitWon;
+	
+	if(nProfitWon <0){
+		this.Div00_00_01_00_00_02.background = "rgba(219,219,255,0.65)";
+		this.Div00_00_01_00_00_02.border = "5px solid #fffff"
+		this.Div00_00_01_00_00_02.borderRadius = "50px";
+		//this.Div00_00_01_00_00_02.boxShadow = "0px 15px 0px 0px #b5b3f9";
+	}
+	else{
+		this.Div00_00_01_00_00_02.background = "RGBA(255,219,219,0.65)";
+		this.Div00_00_01_00_00_02.border = "5px solid #fffff"
+		this.Div00_00_01_00_00_02.borderRadius = "50px";
+	//	this.Div00_00_01_00_00_02.boxShadow = "0px 15px 0px 0px #ffb1af";
+	}
+	
+};
+
+
+
+this.btnBack_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.parent.url = "Mobile::stock5020.xfdl";
+};
 ]]></Script>
+    <Bind>
+      <BindItem id="item0" compid="Div00_00_01_00_00.form.maskMoney" propid="value" datasetid="ds_account" columnid="MONEY"/>
+    </Bind>
   </Form>
 </FDL>

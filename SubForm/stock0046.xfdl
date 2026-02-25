@@ -80,8 +80,8 @@ this.fnGetOption = function (canvas)
  ************************************************************************/
  this.fnGetMargin = function() {
 	return {
-		Left        : 15,
-		Right       : 65,
+		Left        : 45,
+		Right       : 75,
 		Top         : 15,
 		Bottom      : 30,
 		Inner       : 0,		// 차트 내부 여백

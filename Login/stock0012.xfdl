@@ -3,43 +3,50 @@
   <Form id="stock0012" width="500" height="640" titletext="signUp" onclick="stock0012_onclick" onload="stock0011_onload">
     <Layouts>
       <Layout height="640" mobileorientation="landscape" width="500">
-        <Static id="Static00" taborder="0" text="Create an account" top="30" height="60" fittocontents="width" left="75" width="291" cssclass="sta_login_head" textAlign="left" onclick="Static00_onclick"/>
-        <TextField id="TextFieldEmail" taborder="1" labeltext="Email" top="110" width="365" height="60" contentheight="" left="75" usetrailingbutton="false" cssclass="txtField_login_basic" displaynulltext="aaaa@gmail.com" inputtype="email"/>
-        <TextField id="TextFieldPWConfirm" taborder="2" labeltext="Confirm Password" top="380" width="365" onchanged="TextField00_onchanged" height="60" contentheight="" left="75" cssclass="txtField_login_basic" inputtype="password"/>
-        <Button id="BtnAccount" taborder="3" text="Create account" left="75" top="487" width="365" height="60" cssclass="btn_header_login" font="bold 14pt/normal &quot;Arial&quot;" onclick="BtnAccount_onclick"/>
-        <Static id="Static01" taborder="4" text="Already Have An Account ?" left="120" top="570" width="168" height="15" cssclass="sta_login_explan" onclick="Common_onclick"/>
-        <Button id="btnLogin" taborder="5" text="Log In" left="289" top="568" width="64" height="17" cssclass="btn_login_choose" onclick="btnLogin_onclick"/>
-        <TextField id="TextFieldPW" taborder="6" labeltext="Password" top="290" width="365" onchanged="TextField00_onchanged" height="60" contentheight="" left="75" cssclass="txtField_login_basic" inputtype="password"/>
-        <TextField id="TextFieldName" taborder="7" labeltext="name" top="200" width="365" onchanged="TextField00_onchanged" height="60" contentheight="" left="75" cssclass="txtField_login_basic" displaynulltext="홍길동" inputtype="text"/>
-        <Static id="staEmailWarn" taborder="8" text="이메일 형식으로 입력해주세요." left="272" top="100" width="168" height="14" color="red" visible="false"/>
+        <Static id="Static00" taborder="1" text="Create an account" top="30" height="60" fittocontents="width" left="75" width="291" cssclass="sta_login_head" textAlign="left" onclick="Static00_onclick"/>
+        <TextField id="TextFieldEmail" taborder="2" labeltext="Email" top="200" width="365" height="60" contentheight="" left="75" usetrailingbutton="false" cssclass="txtField_login_basic" displaynulltext="aaaa@gmail.com" inputtype="email" onkillfocus="TextFieldEmail_onkillfocus"/>
+        <TextField id="TextFieldPWConfirm" taborder="3" labeltext="Confirm Password" top="380" width="365" height="60" contentheight="" left="75" cssclass="txtField_login_basic" inputtype="password" onkillfocus="TextFieldPWConfirm_onkillfocus"/>
+        <Button id="BtnAccount" taborder="4" text="Create account" left="75" top="487" width="365" height="60" cssclass="btn_header_login" font="bold 14pt/normal &quot;Arial&quot;" onclick="BtnAccount_onclick"/>
+        <Static id="Static01" taborder="5" text="Already Have An Account ?" left="120" top="570" width="168" height="15" cssclass="sta_login_explan" onclick="Common_onclick"/>
+        <Button id="btnLogin" taborder="6" text="Log In" left="289" top="568" width="64" height="17" cssclass="btn_login_choose" onclick="btnLogin_onclick"/>
+        <TextField id="TextFieldPW" taborder="7" labeltext="Password" top="290" width="365" height="60" contentheight="" left="75" cssclass="txtField_login_basic" inputtype="password" onkillfocus="TextFieldPW_onkillfocus"/>
+        <TextField id="TextFieldName" taborder="0" labeltext="name" top="110" width="365" height="60" contentheight="" left="75" cssclass="txtField_login_basic" displaynulltext="홍길동" inputtype="text" onkillfocus="TextFieldName_onkillfocus"/>
+        <Static id="staEmailWarn" taborder="8" text="이메일 형식으로 입력해주세요." left="272" top="190" width="168" height="14" color="red" visible="false" textAlign="right"/>
         <Static id="staPwCWarn" taborder="9" text="패스워드가 일치하지 않습니다." left="272" top="370" width="168" color="red" visible="false" height="14"/>
         <Static id="staPwWarn" taborder="10" text="패스워드는 7자 이상이어야 합니다." left="250" top="280" width="190" height="14" color="red" visible="false"/>
-        <Static id="staNameWarn" taborder="11" text="이름을 입력해 주세요." left="320" top="190" width="120" height="14" color="red" visible="false"/>
+        <Static id="staNameWarn" taborder="11" text="이름을 입력해 주세요." left="320" top="100" width="120" height="14" color="red" visible="false"/>
+        <Static id="staEmailOk" taborder="12" text="사용 가능한 이메일 입니다." left="270" top="190" width="168" height="14" color="green" visible="false" textAlign="right"/>
       </Layout>
     </Layouts>
-    <Script type="xscript5.1"><![CDATA[
-this.stock0012_onclick = function(obj:nexacro.Form,e:nexacro.ClickEventInfo)
+    <Script type="xscript5.1"><![CDATA[this.isEmailChecked = false;
+this.stock0011_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
 {
 	this.ds_user.clearData();
-	this.ds_user.addColumn();
+	this.ds_user.addRow();
 };
+
 this.btnLogin_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
 	this.go("Login::stock0011.xfdl");
 };
 
-
 this.BtnAccount_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
-	//정합성 체크
+	// 이메일 및 중복체크 확인
 	if (this.TextFieldEmail.getValidStatus() != "valid") {
-		this.staEmailWarn.visible= true;
+		this.staEmailWarn.text="이메일 형식을 확인해주세요.";
+		this.staEmailWarn.visible=true;
 		this.TextFieldEmail.setFocus();
 		return;
-	} else {
-		this.staEmailWarn.visible= false;
 	}
+    
+    if (!this.isEmailChecked) {
+        this.staEmailWarn.text="이미 가입된 이메일입니다.";
+        this.TextFieldEmail.setFocus();
+        return;
+    }
 	
+	//비밀번호
 	var sPw = this.TextFieldPW.text;
 	if (sPw.length < 7) {
 		this.staPwWarn.visible=true;
@@ -48,7 +55,78 @@ this.BtnAccount_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 	} else {
 		this.staPwWarn.visible=false;
 	}
-	if(this.TextFieldName == null){
+
+    //이름
+	if(!this.TextFieldName.value){
+		this.staNameWarn.visible=true;
+		this.TextFieldName.setFocus();
+		return;
+	} else {
+		this.staNameWarn.visible=false;
+	}
+
+    //비밀번호 확인
+	var sPwConfirm = this.TextFieldPWConfirm.value || "";
+	if (sPw != sPwConfirm) {
+		this.staPwCWarn.visible=true;
+		this.TextFieldPWConfirm.setFocus();
+		return;
+	} else {
+		this.staPwCWarn.visible=false;
+	}
+	
+	this.ds_user.setColumn(0, "ROLE", "TEACHER");
+	
+	var strSvcId    = "save";
+	var strSvcUrl   = "user/signUpUser.do";
+	var inData      = "ds_user=ds_user:u";
+	var outData     = "";
+	var sParam      = "";
+	var callBackFnc = "fnCallback";
+
+	this.gfnTransaction(strSvcId, strSvcUrl, inData, outData, sParam, callBackFnc);
+};
+
+this.fnCallback = function (svcId, errCode, errMsg)
+{
+	if (svcId == "checkEmail") {
+		var emailCnt = this.ds_checkEmail.getColumn(0, "emailCount");
+		if (emailCnt > 0) {
+			this.staEmailWarn.text="이미 가입된 이메일입니다.";
+			
+			this.staEmailWarn.set_visible(true);
+			this.staEmailOk.set_visible(false);
+            this.isEmailChecked = false;
+		} else {
+			this.staEmailWarn.set_visible(false);
+			this.staEmailOk.set_visible(true);
+            this.isEmailChecked = true;
+		}
+	}
+	
+	if (svcId == "save") {
+		this.go("Login::stock0011.xfdl");
+	}
+};
+
+this.checkEmailTransaction = function()
+{
+	var sEmail = this.TextFieldEmail.value;
+    if (!sEmail) return;
+
+    var strSvcId    = "checkEmail";
+    var strSvcUrl   = "user/checkEmail.do";
+    var inData      = "";
+    var outData     = "ds_checkEmail=ds_checkEmail";
+    var sParam      = "email=" + nexacro.wrapQuote(sEmail);
+    var callBackFnc = "fnCallback";
+
+    this.gfnTransaction(strSvcId, strSvcUrl, inData, outData, sParam, callBackFnc);
+};
+this.TextFieldName_onkillfocus = function(obj:nexacro.TextField,e:nexacro.KillFocusEventInfo)
+{
+
+	if(this.TextFieldName.text == ""){
 		this.staNameWarn.visible = true;
 		this.TextFieldName.setFocus();
 		return;
@@ -56,45 +134,49 @@ this.BtnAccount_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 	else{
 		this.staNameWarn.visible = false;
 	}
+
+};
+this.TextFieldEmail_onkillfocus = function(obj:nexacro.TextField,e:nexacro.KillFocusEventInfo)
+{	
+	if (this.TextFieldEmail.getValidStatus() != "valid") {
+		this.staEmailWarn.text="이메일 형식으로 입력해주세요.";
+		this.staEmailWarn.set_visible(true);
+	} else {
+		this.checkEmailTransaction();
+	}
+};
+
+this.TextFieldEmail_onchanged = function(obj:nexacro.TextField,e:nexacro.ChangeEventInfo)
+{
+	this.isEmailChecked = false;
+    this.staEmailOk.visible=false;
+};
+
+this.TextFieldPW_onkillfocus = function(obj:nexacro.TextField,e:nexacro.KillFocusEventInfo)
+{
+	this.sPw = this.TextFieldPW.text;
+	if (this.sPw.length < 7) {
+		this.staPwWarn.visible=true;
+		return;
+	} 
+	else {
+		this.staPwWarn.visible=false;
+	}
+
+};
+
+
+
+this.TextFieldPWConfirm_onkillfocus = function(obj:nexacro.TextField,e:nexacro.KillFocusEventInfo)
+{
 	var sPwConfirm = this.TextFieldPWConfirm.value || "";
-	if (sPw != sPwConfirm) {
+
+	if (this.sPw != sPwConfirm) {
 		this.staPwCWarn.visible = true;
-		this.TextFieldPWConfirm.setFocus();
 		return;
 	}
 	else{
 		this.staPwCWarn.visible = false;
-	}
-	var strSvcId    = "save";
-		var strSvcUrl   = "user/saveUser.do";
-		var inData      = "ds_user=ds_user:u";
-		var outData     = "";
-		var sParam      = "";
-		var callBackFnc = "fnCallback";
-
-		this.gfnTransaction(strSvcId ,
-							strSvcUrl ,
-							inData ,
-							outData ,
-							sParam,
-							callBackFnc);
-	
-};
-this.fnCallback = function (svcId, errCode, errMsg)
-{
-	if(svcId == "save"){
-		var sPopupId = "popupOk"
-		var sUrl  = "Popup::stock0102pu.xfdl"
-		var oArg ="";
-		var oOption = {title:"모달팝업", titlebar:false};
-		var sPopupCallBack = "fn_callbackPopup";
-		this.gfnOpenPopup( sPopupId,sUrl,oArg,sPopupCallBack,oOption);
-	}
-};
-this.fn_callbackPopup = function (svcId, rtn)
-{
-	if(svcId == "popupOk"){
-		this.go("Login::stock0011.xfdl");
 	}
 };
 
@@ -105,10 +187,16 @@ this.fn_callbackPopup = function (svcId, rtn)
           <Column id="EMAIL" type="STRING" size="256"/>
           <Column id="NAME" type="STRING" size="256"/>
           <Column id="PASSWORD" type="STRING" size="256"/>
+          <Column id="ROLE" type="STRING" size="256"/>
         </ColumnInfo>
         <Rows>
           <Row/>
         </Rows>
+      </Dataset>
+      <Dataset id="ds_checkEmail">
+        <ColumnInfo>
+          <Column id="emailCount" type="INT" size="256"/>
+        </ColumnInfo>
       </Dataset>
     </Objects>
     <Bind>

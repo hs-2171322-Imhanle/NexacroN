@@ -31,7 +31,7 @@ this.btnLogin_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
 	this.go("Mobile::stock5002.xfdl");
 	this.parent.parent.divUser.height = "534"; 
-	this.parent.parent.divUser.top = "133";
+	this.parent.parent.divUser.top = "53";
 };
 
 this.btnAccount_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)

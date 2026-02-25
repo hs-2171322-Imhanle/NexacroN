@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="stock0105pu" width="590" height="590" titletext="NewAdd" background="transParent" border="0px none" onload="stock0100pu_onload">
+    <Layouts>
+      <Layout height="590" width="590">
+        <Div id="divPopup" taborder="0" left="45" top="45" width="500" height="500" cssclass="div_popup" boxShadow="0px 0px 0px 0px transparent">
+          <Layouts>
+            <Layout>
+              <Static id="Static00" taborder="0" left="200" top="30" width="101" height="30" cssclass="sta_puHead" onclick="divPopup_Static00_onclick" text="뉴스 생성"/>
+              <Static id="Static01" taborder="1" text="뉴스는 최대 4개까지 등록되며, &#13;&#10;초과 시 가장 오래된 뉴스가 자동 삭제됩니다." left="81" top="60" width="339" height="59" cssclass="sta_puExplain" wordWrap="char" textAlign="center"/>
+              <Static id="Static02" taborder="2" text="카드 뉴스" left="38" top="139" width="85" height="21" cssclass="sta_puSub"/>
+              <Edit id="editTitle" taborder="3" left="38" top="164" width="425" height="52" cssclass="edit_pu" displaynulltext="제목" oninput="divPopup_editGroup_oninput" onkillfocus="divPopup_editGroup_onkillfocus"/>
+              <Button id="btnSave" taborder="4" text="저장" left="181" top="405" width="138" height="51" cssclass="btn_puSave" onclick="divPopup_btnSave_onclick"/>
+              <Button id="btnClose" taborder="5" left="444" top="20" width="33" height="34" cssclass="btn_puClose" text="" onclick="divPopup_btnClose_onclick"/>
+              <TextArea id="textContent" taborder="6" left="40" top="225" width="420" height="134" border="1px solid black" borderRadius="8px" displaynulltext="본문" value="안녕하세요" padding="20px" wordWrap="english"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[
+this.stock0100pu_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	var objParam = this.parent.param1; //nId
+	this.ds_news.clearData();
+	this.ds_news.addRow();
+	this.ds_news.setColumn(0,"STOCK_ID", objParam);
+};
+
+//저장
+this.divPopup_btnSave_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{		
+		this.ds_news.setColumn(0,"TITLE",this.divPopup.form.editTitle.value);
+		this.ds_news.setColumn(0,"COTENT",this.divPopup.form.textContent.value);
+		this.saveTransaction()
+};
+//팝업 닫기
+this.divPopup_btnClose_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+		this.close();
+};
+
+this.saveTransaction = function ()
+{
+		var strSvcId    = "save";
+		var strSvcUrl   = "stock/saveNews.do";
+		var inData      = "ds_news=ds_news:u";
+		var outData     = "";
+		var sParam      = "";
+		var callBackFnc = "fn_callback";
+
+		this.gfnTransaction(strSvcId ,
+							strSvcUrl ,
+							inData ,
+							outData ,
+							sParam,
+							callBackFnc);
+};
+
+
+this.fn_callback = function(svcID, errCode, errMsg) {
+	this.close();
+}
+]]></Script>
+    <Objects>
+      <Dataset id="ds_news">
+        <ColumnInfo>
+          <Column id="STOCK_ID" type="STRING" size="256"/>
+          <Column id="TITLE" type="STRING" size="256"/>
+          <Column id="CONTENT" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="divPopup.form.editTitle" propid="value" datasetid="ds_news" columnid="TITLE"/>
+      <BindItem id="item1" compid="divPopup.form.textContent" propid="value" datasetid="ds_news" columnid="CONTENT"/>
+    </Bind>
+  </Form>
+</FDL>

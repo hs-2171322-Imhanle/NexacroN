@@ -91,9 +91,9 @@ this.saveTransaction = function ()
 {
 		var strSvcId    = "save";
 		var strSvcUrl   = "stock/saveGroup.do";
-		var inData      = "ds_gpUpload=ds_gpUpload:u";
+		var inData      = "gds_user=gds_user ds_gpUpload=ds_gpUpload:u";
 		var outData     = "";
-		var sParam      = "USER_ID=1";
+		var sParam      = "";
 		var callBackFnc = "fn_callback";
 
 		this.gfnTransaction(strSvcId ,

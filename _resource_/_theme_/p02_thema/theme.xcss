@@ -2043,33 +2043,30 @@
 	font :  -nexa-define(--MalgunGothic12px);
 }
 
-.ListView .body .expandbar
+.ListView .body .expandbar,
+.ListView .body .expandbar[status=disabled],
+.ListView .body .expandbar[status=mouseover],
+.ListView .body .expandbar[status=focused]
 {
-	background : linear-gradient(to top,#eaeaea,#ffffff);
-	-nexa-border : 1px solid #c2c2c2;
+	background : white;
+	-nexa-border : 0px none;
+	box-shadow : 0px 2px 2px 0px #dbdbdb;
+	border-radius : 50px;
 }
 
-.ListView .body .expandbar[status=mouseover],.ListView .body .expandbar[status=focused]
-{
-	background : linear-gradient(to top,#e7e7e7,#fefefe);
-	-nexa-border : 1px solid #a0a0a0;
-}
-
-.ListView .body .expandbar[status=disabled]
-{
-	color : #bbbbbb;
-	background : #f5f5f5;
-	-nexa-border : 1px solid #d9d9d9;
-	opacity : 0.50;
-}
 .ListView .body .expandbar[userstatus=collapse]
 {
 	-nexa-icon : URL('theme://images/cmb_WF_Drop.png');
+	-nexa-icon-position : right;
+	-nexa-text-padding : 0px 0px 0px 10px;
 }
 
 .ListView .body .expandbar[userstatus=expand]
 {
 	-nexa-icon : URL('theme://images/btn_expand.png');
+	-nexa-icon-position : right;
+	-nexa-text-padding : 0px 0px 0px 10px;
+	
 }
 /* CheckBoxSet */
 .CheckBoxSet
@@ -2964,7 +2961,9 @@
 	color : black;
 	-nexa-text-align : center;
 }
-.Button.btn_header_login
+.Button.btn_header_login,
+.Button.btn_header_login[status=focused],
+.Button.btn_header_login[status=mouseover]
 {
 	-nexa-border : 0px none;
 	background : #FFA443;
@@ -2999,8 +2998,8 @@
 	border-radius : 10px;
 	
 	-nexa-padding : 0px 0px 0px 40px;
-	background : #fcf9f7;
-	-nexa-border : 0px none;
+	background : white;
+	-nexa-border : 1px solid #cecece;
 	
 }
 .Button.btn_filter
@@ -3031,8 +3030,8 @@
 .Grid.grid_basic .head .row .cell
 {
 	-nexa-border : 0px none,0px none,2px solid #EEEEEE;
-	background : white;
-	color : #B5B7C0;
+	background : #e0e0e0;
+	color : #3c4375;
 	font : normal 700 12px/normal "Malgun Gothic"
 	
 ;}
@@ -3040,7 +3039,7 @@
 {
 	-nexa-border : 0px none,0px none,1px solid #EEEEEE;
 	-nexa-text-align : center;
-	font : normal 12px/normal "Malgun Gothic";
+	font : bold 14px/normal "Malgun Gothic";
 	color : black;
 }
 
@@ -3421,29 +3420,6 @@
 	border-radius : 100px;
 	
 }
-.ListView.listV_list
-{
-	-nexa-border : ;
-	-nexa-edge : ;
-	-nexa-rtl-background-image : ;
-	background : ;
-	border-radius : ;
-	color : ;
-	cursor : ;
-	font : ;
-	letter-spacing : ;
-	opacity : ;
-	word-spacing : ;
-}
-.ListView.listV_list .body
-{
-}
-.ListView.listV_list .detail
-{
-}
-.ListView.listV_list .body .cell
-{
-}
 .Div.div_box
 {
 	-nexa-border : 1px solid #f8f8f8;
@@ -3465,7 +3441,7 @@
 }
 .Button.btn_transParent[status=mouseover],.Button.btn_transParent[status=focused]
 {
-	-nexa-border : 2px solid #5b5b5b;
+	-nexa-border : 3px solid #f1b64f;
 	background : transParent;
 	border-radius : 10px;
 	box-shadow : 2px 2px 4px 0px #e0e0e0;
@@ -3659,6 +3635,68 @@
 	font : 500 10pt "Arial";
 	
 }
+.Button.btn_header_logOut,
+.Button.btn_header_logOut[status=focused],
+.Button.btn_header_logOut[status=mouseover]
+{
+	-nexa-border : 0px none;
+	background : white;
+	font : 600 11pt "Arial";
+	color : black;
+}
+
+.Button.btn_menu_pushed,
+.Button.btn_menu_pushed[status=mouseover],
+.Button.btn_menu_pushed[status=focused]
+{
+	-nexa-border : 0px none;
+	background : #d87e07;
+	font : 18px/normal "Arial";
+	color : white;
+	border-radius : 5px;
+}
+.Button.btn_group_pushed,
+.Button.btn_group_pushed[status=focused],
+.Button.btn_group_pushed[status=mouseover]
+{	
+	-nexa-border : 1px solid #f8f8f8;
+	
+	border-radius : 15px;
+	box-shadow : 0px 2px 2px 0px #e0e0e0;
+	
+	font :  bold 10pt "Arial";
+	background : #5b5b5b;
+	color : white;
+}.Grid.Grid_stockCnt
+{
+}
+.Grid.grid_basic .body .row .cell .cellbutton,
+.Grid.grid_basic .body .row .cell .cellbutton[status=focused],
+.Grid.grid_basic .body .row .cell .cellbutton[status=mouseover]
+{
+	background : #ffdbe0;
+	border-radius : 100px;
+	-nexa-border : 0px none;
+	color : white;
+	font :bold 14px/normal "Malgun Gothic";
+	
+}
+
+.Grid .body .row .cell.grid_red
+{
+	-nexa-border : 0px none,0px none,1px solid #EEEEEE;
+	-nexa-text-align : center;
+	font : bold 14px/normal "Malgun Gothic";
+	color : red;
+}
+.Grid .body .row .cell.grid_blue
+{
+	-nexa-border : 0px none,0px none,1px solid #EEEEEE;
+	-nexa-text-align : center;
+	font : bold 14px/normal "Malgun Gothic";
+	color : blue;
+}
+
 ]]></CSSData>
   <CSSData type="mobile_large"><![CDATA[]]></CSSData>
   <CSSData type="mobile_small"><![CDATA[]]></CSSData>
@@ -4013,5 +4051,30 @@
 }
 
 
+.Grid.grid_myStock
+{
+	background : white;
+	-nexa-border : 0px none;
+}
+.Grid.grid_myStock .head
+{
+	-nexa-border : 1px solid #fcf9f7,0px none ;
+	
+	
+}
+.Grid.grid_myStock .head .row .cell
+{
+	-nexa-border : 0px none;
+	background : #f2e6dd;
+	font : bold 12px/normal "Arial";
+}
+.Grid.grid_myStock .body .row .cell
+{
+	-nexa-border : 0px none,0px none,1px solid #faf6f3;
+	color : black;
+	font : bold 15px "Arial";
+	background : white;
+	-nexa-background-odd : #faf6f3;
+}
 ]]></CSSData>
 </XCSS>

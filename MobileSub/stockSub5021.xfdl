@@ -3,11 +3,11 @@
   <Form id="stockSub5021" width="260" height="160" titletext="dashBoard stockList">
     <Layouts>
       <Layout height="160" width="260">
-        <Div id="divChart" taborder="0" left="21" top="58" width="217" height="89" url="MobileSub::stockSub5023.xfdl" text="" background="#fcf9f7"/>
-        <Static id="staTitle" taborder="1" text="키즈 전자 " left="25" top="8" width="69" height="42" color="black" font="bold 14px/normal &quot;Malgun Gothic&quot;"/>
-        <MaskEdit id="maskValue" taborder="2" left="170" top="15" width="84" height="28" format="#,##0" enable="true" readonly="true" textAlign="left" border="0px none" font="bold 14px/normal &quot;Malgun Gothic&quot;" color="black" displaynulltext="0" cssclass="mask_money" value="6528255"/>
-        <Static id="staUnit" taborder="3" text="₩" left="140" top="12" height="33" color="black" font="bold 14px/normal &quot;Malgun Gothic&quot;" right="81" textAlign="right"/>
-        <Static id="staRate" taborder="4" text="▲16.2%" left="198" top="40" width="46" height="21" color="#ff0100" font="bold 10px/normal &quot;Malgun Gothic&quot;" textAlign="right"/>
+        <Div id="divChart" taborder="0" left="21" top="58" width="217" height="89" text="" background="white" url="MobileSub::stockSub5023.xfdl" borderRadius="15px"/>
+        <Static id="staTitle" taborder="1" text="키즈 전자 " left="25" top="8" width="95" height="42" color="black" font="bold 14px/normal &quot;Malgun Gothic&quot;"/>
+        <MaskEdit id="maskValue" taborder="2" top="15" width="84" height="28" format="#,##0" enable="true" readonly="true" textAlign="right" border="0px none" font="bold 14px/normal &quot;Malgun Gothic&quot;" color="black" displaynulltext="0" cssclass="mask_money" value="6528255" right="11"/>
+        <Static id="staUnit" taborder="3" text="₩" left="130" top="12" height="33" color="black" font="bold 14px/normal &quot;Malgun Gothic&quot;" right="maskValue:-4" textAlign="right"/>
+        <Static id="staRate" taborder="4" text="▲16.2%" left="190" top="33" width="46" height="21" color="#ff0100" font="bold 10px/normal &quot;Malgun Gothic&quot;" textAlign="right" onclick="staRate_onclick"/>
         <Static id="staTicker" taborder="5" text="kscu" left="25" top="43" width="27" height="15" color="#9b9b9b" font="10px/normal &quot;Malgun Gothic&quot;"/>
         <Button id="btnClick" taborder="6" left="0" top="0" cssclass="btn_transParent" right="0" bottom="0" onclick="btnClick_onclick" text=""/>
       </Layout>
@@ -20,7 +20,7 @@
 	
 	var value = objDs.getColumn(nRow, "CURRENT_VALUE");
 	let tLength = nexacro.getTextSize(String(value), "bold 18px/normal Malgun Gothic");
-	this.maskValue.width = tLength.nx+30;
+	this.maskValue.width = tLength.nx+20;
 	this.maskValue.value = value;
 	
 		
@@ -46,7 +46,7 @@
         this.divChart.set_url("MobileSub::stockSub5023.xfdl");
     } 
     else if (sStockType == "S") {//주식형
-        this.divChart.set_url("MobileSub::stockSub5024.xfdl");
+        this.divChart.set_url("MobileSub::stockSub5023.xfdl");
     }
 	
 	this.divChart.u_nRow = nRow;
@@ -63,7 +63,9 @@
 this.btnClick_onclick = function(obj, e)
 {
     this.parent.parent.fn_divClick(obj.u_Row);
-};]]></Script>
+};
+
+]]></Script>
     <Objects>
       <Dataset id="ds_unit">
         <ColumnInfo>

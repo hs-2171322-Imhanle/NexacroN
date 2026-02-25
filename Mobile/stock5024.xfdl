@@ -21,7 +21,7 @@
           </Layouts>
         </Div>
         <Static id="Static02" taborder="5" text="현재 거래 가격" left="87" top="161" width="120" height="39" font="bold 14px/normal &quot;Malgun Gothic&quot;" color="gray"/>
-        <MaskEdit id="maskValue" taborder="6" top="190" height="59" format="#,##0" enable="true" readonly="true" textAlign="right" border="0px none" font="bold 36px/normal &quot;Malgun Gothic&quot;" color="black" displaynulltext="0" cssclass="mask_money" width="78" limitbymask="none" left="131"/>
+        <MaskEdit id="maskValue" taborder="6" top="190" height="59" format="#,##0" enable="true" readonly="true" textAlign="left" border="0px none" font="bold 36px/normal &quot;Malgun Gothic&quot;" color="black" displaynulltext="0" cssclass="mask_money" width="199" limitbymask="none" left="131"/>
         <Static id="staUnit" taborder="7" text="₩" top="197" height="44" color="black" font="bold 36px/normal &quot;Malgun Gothic&quot;" textAlign="left" left="87" right="1116"/>
         <Static id="staRate" taborder="8" text="Static03" left="700" top="180" width="100" height="40" font="bold 18px/normal &quot;Malgun Gothic&quot;" color="RGBA(255,164,67,1)" textAlign="center" borderRadius="10px" background="RGBA(250,169,40,0.13)"/>
         <Div id="Div01_00" taborder="9" left="1798" top="150" width="302" height="382" background="white" cssclass="div_stockRoom" border="0px none" boxShadow="0px 15px 0px 0px #ffb787" text="">
@@ -53,8 +53,8 @@
               <Static id="Static03_00" taborder="8" left="24" top="266" width="252" height="154" background="#fcf9f7" borderRadius="30px" text=""/>
               <Static id="Static01" taborder="9" left="41" top="324" width="221" height="1" border="1px solid #c1c1c1"/>
               <Static id="Static02" taborder="10" text="합계" left="50" top="286" width="51" height="29" color="black" font="bold 20px/normal &quot;Malgun Gothic&quot;"/>
-              <Static id="staUnit" taborder="12" text="₩" top="278" height="44" color="black" font="bold 20px/normal &quot;Malgun Gothic&quot;" textAlign="right" right="108" width="24"/>
-              <MaskEdit id="maskValuePay" taborder="11" top="271" height="59" format="#,##0" enable="true" readonly="true" textAlign="right" border="0px none" font="bold 20px/normal &quot;Malgun Gothic&quot;" color="black" displaynulltext="100" cssclass="mask_money" limitbymask="none" left="staUnit:-12" background="transParent" right="42"/>
+              <MaskEdit id="maskValuePay" taborder="11" top="271" height="59" format="#,##0" enable="true" readonly="true" textAlign="right" border="0px none" font="bold 20px/normal &quot;Malgun Gothic&quot;" color="black" displaynulltext="100" cssclass="mask_money" limitbymask="none" left="192" background="transParent" right="32"/>
+              <Static id="staUnit" taborder="12" text="₩" top="278" height="44" color="black" font="bold 20px/normal &quot;Malgun Gothic&quot;" textAlign="right" right="maskValuePay:-2" width="24"/>
               <Static id="staUnit00" taborder="13" text="₩" top="336" height="17" color="gray" font="bold 12px/normal &quot;Malgun Gothic&quot;" textAlign="left" left="241" width="20"/>
               <MaskEdit id="maskValue00_00" taborder="14" top="336" height="17" format="#,##0" enable="true" readonly="true" textAlign="right" border="0px none" font="bold 12px/normal &quot;Malgun Gothic&quot;" color="gray" displaynulltext="0" cssclass="mask_money" width="78" limitbymask="none" left="165" background="transParent"/>
               <Static id="StaExplain2" taborder="15" text="내 지갑 잔액" left="43" top="334" width="95" height="20" font="12px/normal &quot;Malgun Gothic&quot;" color="gray"/>
@@ -158,8 +158,6 @@ this.fnCallback = function(svcId)
 		this.staRate.color='rgba(252, 170, 37, 1)';
 		
 		var value = this.ds_stock.getColumn(0, "CURRENT_VALUE");
-		let tLength = nexacro.getTextSize(String(value), "bold 18px/normal Malgun Gothic");
-		this.maskValue.width = tLength.nx+50;
 		this.maskValue.value = value;
 		
 		var unitId = this.ds_stock.getColumn(0, "UNIT_ID");
@@ -170,7 +168,7 @@ this.fnCallback = function(svcId)
 		} else {
 			this.staUnit.text="₩"; 
 		}
-		
+		this.divPay_btnBuy_onclick();
 		this.divChart.form.fnCreateChart();
 		this.Div01.form.divNews.form.fnCreateNewsCards();
 		this.fnCalculateHolding();
@@ -192,18 +190,23 @@ this.fnCallback = function(svcId)
 //++++++++++++++++++++++++++++++++++++++++++
 this.divPay_btnBuy_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
-	this.divPay.form.btnBuy.cssclass="btn_buy_pushed";
- 	this.divPay.form.btnSell.cssclass="btn_sell";
- 	this.divPay.form.StaExplain.text = "몇 주를 살까요?"
-	this.divPay.form.btnSelect.cssclass = "btn_buy_pushed"
-	this.divPay.form.btnSelect.text = "지금 바로 매수하기"
-	this.divPay.form.maskValuePay.value = 100;
-	this.divPay.form.staShare.text = 1;
-	
-	
+    var sType = this.ds_stock.getColumn(0, "STOCK_TYPE");
+    var nCurVal = nexacro.toNumber(this.ds_stock.getColumn(0, "CURRENT_VALUE"));
+    this.divPay.form.btnBuy.cssclass="btn_buy_pushed";
+    this.divPay.form.btnSell.cssclass="btn_sell";
+    this.divPay.form.StaExplain.text = "몇 주를 살까요?";
+    this.divPay.form.btnSelect.cssclass = "btn_buy_pushed";
+    this.divPay.form.btnSelect.text = "지금 바로 매수하기";
+    var buyPrice = (sType == 'S') ? nCurVal : 100;
+    
+    this.divPay.form.maskValuePay.value = buyPrice;
+    this.divPay.form.staShare.text = 1;
+
 };
 this.divPay_btnSell_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
-{
+{	
+	var sType = this.ds_stock.getColumn(0, "STOCK_TYPE");
+    var nCurVal = nexacro.toNumber(this.ds_stock.getColumn(0, "CURRENT_VALUE"));
 	var evalMoney = this.ds_holding.getColumn(0,"EVAL_MONEY");
 	var quantity = this.ds_holding.getColumn(0,"QUANTITY");
 	
@@ -214,67 +217,64 @@ this.divPay_btnSell_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventIn
 	this.divPay.form.btnSelect.text = "지금 바로 매도하기"
 	this.divPay.form.maskValuePay.value = evalMoney/quantity;
 	this.divPay.form.staShare.text = 1;
+	
+    var sellPrice = (sType == 'S') ? nCurVal : (quantity > 0 ? evalMoney/quantity : 0);
+    this.divPay.form.maskValuePay.value = sellPrice;
 };
+
 this.divPay_btnPlus_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
-	var sCurrentValue = this.divPay.form.staShare.text;
-	var nValue = nexacro.toNumber(sCurrentValue);
-	
-	var evalMoney = this.ds_holding.getColumn(0,"EVAL_MONEY");
-	var quantity = this.ds_holding.getColumn(0,"QUANTITY");
-	 
-	if(nValue != 100){
-		if(this.divPay.form.btnSelect.text == "지금 바로 매수하기"){
-			var nNewValue = nValue + 1;
-			this.divPay.form.staShare.text = nNewValue;
-			var calculate = nNewValue *100;
-			var sDisplayPrice = calculate.toLocaleString();
-			let tLength = nexacro.getTextSize(sDisplayPrice, "bold 20px/normal Malgun Gothic");
-			this.divPay.form.maskValuePay.left = 261 - (tLength.nx+50);
-			this.divPay.form.maskValuePay.value = calculate;
-		}
-		else{
-			var nNewValue = nValue + 1;
-			this.divPay.form.staShare.text = nNewValue;
-			var calculate = nNewValue *(evalMoney/quantity);
-			var sDisplayPrice = calculate.toLocaleString();
-			let tLength = nexacro.getTextSize(sDisplayPrice, "bold 20px/normal Malgun Gothic");
-			this.divPay.form.maskValuePay.left = 261 - (tLength.nx+50);
-			this.divPay.form.maskValuePay.value = calculate;
-		}
-	}
-	this.resetScroll();
+    var nShare = nexacro.toNumber(this.divPay.form.staShare.text);
+    if(nShare >= 100) return; // 최대 100주 제한
+    
+    var sType = this.ds_stock.getColumn(0, "STOCK_TYPE");
+    var nCurVal = nexacro.toNumber(this.ds_stock.getColumn(0, "CURRENT_VALUE"));
+    var evalMoney = nexacro.toNumber(this.ds_holding.getColumn(0,"EVAL_MONEY"));
+    var quantity = nexacro.toNumber(this.ds_holding.getColumn(0,"QUANTITY"));
+    
+    var nNewShare = nShare + 1;
+    this.divPay.form.staShare.text = nNewShare;
+    
+    var nPrice = 0;
+    if(this.divPay.form.btnSelect.text == "지금 바로 매수하기"){
+        nPrice = (sType == 'S') ? (nNewShare * nCurVal) : (nNewShare * 100);
+    } else {
+        nPrice = (sType == 'S') ? (nNewShare * nCurVal) : (nNewShare * (evalMoney/quantity));
+    }
+    
+    this.divPay.form.maskValuePay.value = nPrice;
+    this.fnUpdatePriceLayout(nPrice);
 };
 
 this.divPay_btnMinus_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
-	var sCurrentValue = this.divPay.form.staShare.text;
-	var nValue = nexacro.toNumber(sCurrentValue);
-	 
-	var evalMoney = this.ds_holding.getColumn(0,"EVAL_MONEY");
-	var quantity = this.ds_holding.getColumn(0,"QUANTITY");
+	var nShare = nexacro.toNumber(this.divPay.form.staShare.text);
 	
-	if(nValue >0){
-		if(this.divPay.form.btnSelect.text == "지금 바로 매수하기"){
-			var nNewValue = nValue - 1;
-			this.divPay.form.staShare.text = nNewValue;
-			var calculate = nNewValue * 100;
-			var sDisplayPrice = calculate.toLocaleString();
-			let tLength = nexacro.getTextSize(sDisplayPrice, "bold 20px/normal Malgun Gothic");
-			this.divPay.form.maskValuePay.left = 261 - (tLength.nx+50);
-			this.divPay.form.maskValuePay.value = calculate;
-		}
-		else{
-			var nNewValue = nValue - 1;
-			this.divPay.form.staShare.text = nNewValue;
-			var calculate = nNewValue *(evalMoney/quantity);
-			var sDisplayPrice = calculate.toLocaleString();
-			let tLength = nexacro.getTextSize(sDisplayPrice, "bold 20px/normal Malgun Gothic");
-			this.divPay.form.maskValuePay.left = 261 - (tLength.nx+50);
-			this.divPay.form.maskValuePay.value = calculate;
-		}
+	// 0주 미만으로는 내려가지 않도록 제어
+	if(nShare <= 0) return;
+
+	var sType = this.ds_stock.getColumn(0, "STOCK_TYPE");
+	var nCurVal = nexacro.toNumber(this.ds_stock.getColumn(0, "CURRENT_VALUE"));
+	var evalMoney = nexacro.toNumber(this.ds_holding.getColumn(0,"EVAL_MONEY"));
+	var quantity = nexacro.toNumber(this.ds_holding.getColumn(0,"QUANTITY"));
+	
+	// 1. 수량 감소
+	var nNewShare = nShare - 1;
+	this.divPay.form.staShare.text = nNewShare;
+	
+	// 2. 금액 계산 (매수/매도 및 종목 타입에 따른 분기)
+	var nPrice = 0;
+	if(this.divPay.form.btnSelect.text == "지금 바로 매수하기") {
+		// 매수 시: 주식형은 현재가 기준, 기록형은 100원 기준
+		nPrice = (sType == 'S') ? (nNewShare * nCurVal) : (nNewShare * 100);
+	} else {
+		// 매도 시: 주식형은 현재가 기준, 기록형은 평가단가(평균가) 기준
+		nPrice = (sType == 'S') ? (nNewShare * nCurVal) : (nNewShare * (quantity > 0 ? evalMoney/quantity : 0));
 	}
-	this.resetScroll();
+	
+	// 3. 값 세팅 및 레이아웃 조정
+	this.divPay.form.maskValuePay.value = nPrice;
+	this.fnUpdatePriceLayout(nPrice); // 위치 조정 공통함수 호출
 };
 
 this.divPay_btnSelect_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
@@ -445,6 +445,15 @@ this.Div01_divNews_onclick = function(obj:nexacro.Div,e:nexacro.ClickEventInfo)
 this.btnBack_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {	
 	this.parent.url="Mobile::stock5022.xfdl";
+};
+
+
+this.fnUpdatePriceLayout = function(nPrice)
+{
+    var sVal = nexacro.toNumber(nPrice).toLocaleString();
+    var tLength = nexacro.getTextSize(sVal, "bold 20px/normal Malgun Gothic");
+    this.divPay.form.maskValuePay.left = 261 - (tLength.nx + 50);
+    this.resetScroll();
 };]]></Script>
     <Objects>
       <Dataset id="ds_stock">

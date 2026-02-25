@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="stock5000" width="1280" height="800" titletext="main">
+  <Form id="stock5000" width="1270" height="800" titletext="main">
     <Layouts>
-      <Layout height="800" width="1280">
-        <Div id="divMain" taborder="0" right="0" left="0" top="0" bottom="0" url="Mobile::stock5001.xfdl"/>
+      <Layout height="800" width="1270" mobileorientation="landscape">
+        <Div id="divMain" taborder="0" right="0" left="0" top="0" bottom="0" url="Mobile::stock5001.xfdl" text=""/>
       </Layout>
     </Layouts>
   </Form>

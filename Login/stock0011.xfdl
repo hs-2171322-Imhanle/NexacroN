@@ -1,53 +1,81 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="stock0011" width="500" height="530" titletext="login">
+  <Form id="stock0011" width="500" height="530" titletext="login" onload="stock0011_onload">
     <Layouts>
       <Layout height="530" mobileorientation="landscape" width="500">
         <Static id="Static00" taborder="0" text="Login to your account" top="100" height="60" fittocontents="width" left="75" width="291" cssclass="sta_login_head" textAlign="left" onclick="Static00_onclick"/>
-        <TextField id="TextFieldEmail" taborder="1" labeltext="Email" top="179" width="365" onchanged="TextField00_onchanged" height="60" contentheight="" left="75" usetrailingbutton="false" cssclass="txtField_login_basic" displaynulltext="aa@gmail.com" inputtype="email"/>
-        <TextField id="TextFieldPW" taborder="2" labeltext="Password" top="269" width="365" onchanged="TextField00_onchanged" height="60" contentheight="" left="75" cssclass="txtField_login_basic" inputtype="password"/>
+        <TextField id="TextFieldEmail" taborder="1" labeltext="Email" top="179" width="365" height="60" contentheight="" left="75" usetrailingbutton="false" cssclass="txtField_login_basic" displaynulltext="aa@gmail.com" inputtype="email" value="teacher@gmail.com"/>
+        <TextField id="TextFieldPW" taborder="2" labeltext="Password" top="269" width="365" height="60" contentheight="" left="75" cssclass="txtField_login_basic" inputtype="password" value="1234567"/>
         <Button id="BtnLoginNow" taborder="3" text="Login Now" left="75" top="367" width="365" height="60" cssclass="btn_header_login" font="bold 14pt/normal &quot;Arial&quot;" onclick="BtnLoginNow_onclick"/>
         <Static id="Static01" taborder="4" text="Don't have an Account ?" left="140" top="450" width="150" height="15" cssclass="sta_login_explan"/>
-        <Button id="btnSignUp" taborder="5" text="Sign Up" left="288" top="447" width="64" height="17" cssclass="btn_login_choose" onclick="btnSignUp_onclick"/>
-        <Button id="Button01" taborder="6" text="Forgot ?" left="TextFieldPW:-56" top="253" width="56" height="17" cssclass="btn_login_choose"/>
+        <Button id="btnSignUp" taborder="5" text="Sign Up" left="278" top="448" width="64" height="17" cssclass="btn_login_choose" onclick="btnSignUp_onclick"/>
+        <Static id="staWarn" taborder="6" text="로그인 정보가 틀렸습니다." left="288" top="163" width="150" height="14" color="red" visible="false"/>
       </Layout>
     </Layouts>
     <Script type="xscript5.1"><![CDATA[
+this.fvApp = nexacro.getApplication();
+this.stock0011_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.ds_user.clearData();
+	this.ds_user.addRow();
+	
+};
+
 this.btnSignUp_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
-	this.go("Login::stock0012.xfdl");
+		this.go("Login::stock0012.xfdl");
 };
-
 this.BtnLoginNow_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
-		
+	
+	this.TextFieldEmail.value = "teacher@gmail.com";
+	this.TextFieldPW.value = "1234567";
+	
 	var strSvcId    = "load";
-	var strSvcUrl   = "user/loadUser.do";
-	var inData      = "ds_user=ds_user";
-	var outData     = "";
-	var sParam      = "";
-	var callBackFnc = "fnCallback";
-	var isAsync   	= true;
+		var strSvcUrl   = "user/loginUser.do";
+		var inData      = "ds_user=ds_user:u";
+		var outData     = "gds_user=gds_user";
+		var sParam      = "";
+		var callBackFnc = "fnCallback";
 
-	this.gfnTransaction(strSvcId ,
-						strSvcUrl ,
-						inData ,
-						outData ,
-						sParam,
-						callBackFnc,
-						isAsync);
+		this.gfnTransaction(strSvcId ,
+							strSvcUrl ,
+							inData ,
+							outData ,
+							sParam,
+							callBackFnc);
 };
+
+this.fnCallback = function(svcId)
+{
+	if(svcId == "load"){
+        if (this.fvApp.gds_user.rowcount == 0) {
+			this.staWarn.visible = true;
+            this.ds_user.setColumn(0, "PASSWORD", "");
+            this.TextFieldEmail.setFocus();
+            return;
+        }
+		else if(this.fvApp.gds_user.getColumn(0,"ROLE") == "STUDENT"){
+			this.staWarn.visible = true;
+		}
+		else{
+			this.parent.parent.parent.parent.divTop.form.stock0001_onload();
+			this.parent.parent.parent.parent.divLeft.width=225; 
+			this.parent.parent.parent.set_left("divLeft: -1");
+			this.parent.parent.parent.url = "SubForm::stock0030.xfdl";
+		
+			
+		}
+	}
+};
+
 ]]></Script>
     <Objects>
       <Dataset id="ds_user">
         <ColumnInfo>
           <Column id="EMAIL" type="STRING" size="256"/>
-          <Column id="NAME" type="STRING" size="256"/>
           <Column id="PASSWORD" type="STRING" size="256"/>
         </ColumnInfo>
-        <Rows>
-          <Row/>
-        </Rows>
       </Dataset>
     </Objects>
     <Bind>

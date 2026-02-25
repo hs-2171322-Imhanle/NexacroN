@@ -4,7 +4,7 @@
     <Layouts>
       <Layout height="383" width="512">
         <Static id="staDay" taborder="0" text="Static00" left="38" top="30" width="120" height="23" color="orange" font="12px/normal &quot;Malgun Gothic&quot;"/>
-        <Static id="staTitle" taborder="1" text="Static01" left="38" top="53" width="442" height="37" color="black" font="bold 24px/normal &quot;Malgun Gothic&quot;"/>
+        <Static id="staTitle" taborder="1" text="Static01" left="38" top="53" width="442" height="57" color="black" font="bold 18px/normal &quot;Malgun Gothic&quot;" wordWrap="english"/>
         <TextArea id="staContent" taborder="3" left="38" top="110" width="432" height="160" value="dfdfdfdfffffffffffffffffffffffffffffffffffffffdkssudgktdkjdklj" color="#686868" font="16px/normal &quot;Malgun Gothic&quot;" wordWrap="char" border="0px none" padding="0px" readonly="true" background="white" letterSpacing="1px"/>
         <Button id="btnClose" taborder="2" text="다 읽었어요!" left="38" top="290" width="432" height="64" cssclass="btn_sell_pushed" background="#272943" color="white" borderRadius="15px" border="0px none" onclick="btnClose_onclick"/>
       </Layout>

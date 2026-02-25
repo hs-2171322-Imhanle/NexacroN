@@ -1,19 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="stock0000" width="1535" height="729" titletext="Main" oninit="Main_oninit" background="#FDFBF8">
+  <Form id="stock0000" width="1535" height="729" titletext="Main" background="#FDFBF8" onload="stock0000_onload">
     <Layouts>
       <Layout height="729" width="1535">
         <Div id="divLeft" taborder="1" left="0" top="65" width="225" bottom="0" url="SubForm::stock0010.xfdl" text="" border="0px none"/>
         <Div id="divHeader" taborder="0" text="Div00" url="Main::stock0001.xfdl" left="0" top="0" width="0" height="0"/>
         <Div id="divMain" taborder="2" top="67" bottom="0" left="225" border="0px none" url="SubForm::stock0002.xfdl" right="0"/>
-        <Div id="Div00" taborder="3" text="Div00" left="0" top="0" height="65" right="0" url="Main::stock0001.xfdl"/>
+        <Div id="divTop" taborder="3" text="Div00" left="0" top="0" height="65" right="0" url="Main::stock0001.xfdl"/>
       </Layout>
     </Layouts>
     <Script type="xscript5.1"><![CDATA[
-this.Main_oninit = function(obj:nexacro.Form,e:nexacro.EventInfo)
+this.stock0000_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
 {
-	this.divLeft.width = 0; 
-	this.divMain.left = "divLeft: -1";
+	var fvApp = nexacro.getApplication();
+    if(fvApp.gds_user.rowcount == 0){
+        this.divLeft.width=0;  
+        this.divMain.set_left("divLeft: -1");
+    }
+    else{
+        this.divLeft.width=225; 
+        this.divMain.set_left("divLeft: -1");
+		this.divLeft.url = "SubForm::stock0010.xfdl";
+		this.divMain.url = "SubForm::stock0030.xfdl";
+    }
 };
 ]]></Script>
   </Form>

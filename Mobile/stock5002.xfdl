@@ -60,7 +60,7 @@ this.fnCallback = function(svcId)
 				this.parent.parent.parent.url = "Mobile::stock5004.xfdl";
 			}
 			else{
-				this.parent.parent.parent.url = "Mobile::stock5010.xfdl";
+				this.parent.parent.parent.url = "Mobile::stock5020.xfdl";
 			}
 		}
 	}

@@ -3,9 +3,10 @@
   <Form id="stock5022" width="1280" height="800" titletext="주식종목" background="#fcf9f7" onload="stock5022_onload">
     <Layouts>
       <Layout height="800" mobileorientation="landscape" width="1280">
-        <Edit id="editSearch" taborder="0" left="74" top="61" width="1133" height="60" borderRadius="30px" cssclass="edit_search" displaynulltext="어떤 주식을 찾아볼까요?" onkeyup="editSearch_onkeyup"/>
-        <Button id="Button01" taborder="1" left="94" top="76" width="32" height="30" cssclass="btn_search"/>
+        <Edit id="editSearch" taborder="0" left="140" top="61" width="1067" height="60" borderRadius="30px" cssclass="edit_search" displaynulltext="어떤 주식을 찾아볼까요?" onkeyup="editSearch_onkeyup"/>
+        <Button id="Button01" taborder="1" left="156" top="75" height="30" cssclass="btn_search" width="34"/>
         <Div id="divPage" taborder="2" text="Div00" left="80" top="726" width="1124" height="58" url="Cmm::CmmPaging.xfdl"/>
+        <Button id="btnBack" taborder="3" left="60" top="65" width="51" height="51" cssclass="btn_back" onclick="btnBack_onclick"/>
       </Layout>
     </Layouts>
     <Objects>
@@ -134,7 +135,7 @@ this.fn_divClick = function(nRow)
 		objDiv.url = "Mobile::stock5024.xfdl";
 	}
 	else{
-		objDiv.url = "Mobile::stock5025.xfdl";
+		objDiv.url = "Mobile::stock5024.xfdl";
 	}
     objDiv.select_stockId = nStockId;
     
@@ -182,6 +183,12 @@ this.fnPagingCallback = function(nPage, nRecordsOffset)
  	this.fvRecordsOffset = nRecordsOffset;
 	
 	this.stockLoad();
-};]]></Script>
+};
+
+this.btnBack_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.parent.url = "Mobile::stock5020.xfdl";
+};
+]]></Script>
   </Form>
 </FDL>

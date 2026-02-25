@@ -47,7 +47,7 @@
         this.divChart.set_url("MobileSub::stockSub5023.xfdl");
     } 
     else if (sStockType == "S") {//주식형
-        this.divChart.set_url("MobileSub::stockSub5024.xfdl");
+        this.divChart.set_url("MobileSub::stockSub5023.xfdl");
     }
 	
 	this.divChart.u_nRow = nRow;

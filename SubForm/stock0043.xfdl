@@ -69,8 +69,8 @@ this.fnGetOption = function (canvas, background)
  ************************************************************************/
  this.fnGetMargin = function() {
 	return {
-		Left        : 210,
-		Right       : 20,
+		Left        : 220,
+		Right       : 30,
 		Top         : 70,
 		Bottom      : 40,
 		Inner       : 50,		// 차트 내부 여백
